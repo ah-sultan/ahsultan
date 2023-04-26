@@ -2,26 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base{
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  body{
+    margin: 0;
+    padding: 0;
+    @apply bg-black pb-72
+  }
+
+  a,a:hover, a:active, a:focus{
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  ul , li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  svg, img{
+    display: inline-block;
+  }
+
+  @layer components{
+    .btn-primary{
+      @apply bg-primary text-base border-2  border-primary text-black leading-normal font-normal 
+    }
+    .btn-outline{
+      @apply border-2  border-primary bg-transparent text-base text-primary
+    }
+
+    .section-title{
+      @apply text-white text-54px leading-none font-notoSerif font-bold border-b-[3px] pb-4 border-dark
+    }
+
+    .section-pera {
+      @apply text-base text-gray
+    }
+  }
+
+  @layer utilities{
+    .center-child{
+      @apply flex items-center justify-center
+    }
+  }
 }
