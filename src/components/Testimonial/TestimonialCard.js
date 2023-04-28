@@ -31,8 +31,8 @@ function TestimonialCard(props) {
             </div>
         </div>
         <div className="h-0.5 bg-dark">
-            <div className="relative h-0.5 bg-primary" style={{width : `${20 * rate }%`}}>
-              <DotsMd className="-right-1.5 top-px"/>
+            <div className="relative h-0.5 bg-primary animate-pulse" style={{width : `${20 * rate }%`}}>
+              <DotsMd className="-right-1.5 animate-pulse"/>
             </div>
         </div>
           <p className="text-base leading-relaxed text-gray mt-8 text-justify">Contrary to popular belief, Lorem Ipsum is not simply random text.It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more  obscure Latin words, consectetur, from a Lorem Ipsum passage, but also the leap into</p>

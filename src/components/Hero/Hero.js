@@ -1,17 +1,17 @@
 import Image from "next/image"
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
 // images
-import heroImg from '../../../public/images/hero/hero-img.png'
+import heroImg from '../../../public/images/hero/hero-img.jpg'
 
 function Hero() {
   return (
     <>
         <section>
             <div className="container">
-                <div className="flex">
+                <div className="flex items-center">
                     {/* Hero Text */}
                     <div className="w-1/2">
-                        <div className="pt-[124px] pb-[210px]">
+                        <div>
                             <span className="text-lg leading-normal text-primary font-medium">Welcome To My World</span>
                             <h1 className="text-5xl text-white leading-snug font-bold font-notoSerif my-4">Hi, I’m <span className="text-primary">Sultan </span> <span className="block">a Front End Developer</span></h1>
                             <p className="text-base leading-normal font-normal text-gray">I use animation as a third dimension by which to simplify experiences and kuiding thro each and every interaction. I’m not adding motion just to spruce things up, but doing it in ways that.</p>
@@ -21,8 +21,14 @@ function Hero() {
                             </div>
                         </div>
                     </div>
-                    <div className="w-1/2 pt-52px text-right">
-                        <Image src={heroImg} width={503} height={559} alt="Sultan"/>
+                    <div className="w-1/2 text-right">
+                       <div className="pt-100px pb-100px">
+                            <div className="w-[430px] mx-auto p-7 border-primary border-4 rounded-[50px] -skew-x-[4deg]">
+                                <div className="hero-img overflow-hidden h-[510px] rounded-[50px]">
+                                    <Image src={heroImg} className="w-full"/>
+                                </div>
+                            </div>
+                       </div>
                     </div>
                 </div>
             </div>

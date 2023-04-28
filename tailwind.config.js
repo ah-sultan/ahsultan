@@ -61,6 +61,31 @@ module.exports = {
         '40px' : '40px',
         '52px' : '52px',
         '54px' : '54px',
+      },
+
+      animation : {
+        'lineDot' : 'lineDot 20s linear infinite'
+      },
+      keyframes : {
+        lineDot : {
+          "0%" : {
+            left: 0,
+            opacity: 0,
+          },
+        
+          "5%, 95%" : {
+            opacity: 1,
+          },
+
+          "100%" : {
+            opacity: 0,
+            left: '100%'
+          }
+        },
+
+        dotMoving : {
+          "0%" : {}
+        }
       }
     },
   },

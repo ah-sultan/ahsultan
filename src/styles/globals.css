@@ -3,17 +3,37 @@
 @tailwind utilities;
 
 @layer base{
+
   *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  body{
-    margin: 0;
-    padding: 0;
-    @apply bg-black pb-72
+  input:focus,textarea:focus{
+    outline: 0;
+    box-shadow: 0;
   }
+
+  body {
+    background: radial-gradient(#000, #07011b,#000000, #090124,#000, #04000f,#000, #020108);
+    background-size: 400% 400%;
+    animation: gradient 30s ease infinite;
+    -webkit-animation: gradient 30s ease infinite;
+}
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
 
   a,a:hover, a:active, a:focus{
     display: inline-block;
@@ -45,11 +65,32 @@
     .section-pera {
       @apply text-base text-gray
     }
+
+    
   }
 
   @layer utilities{
+
     .center-child{
       @apply flex items-center justify-center
     }
+
+    .ani-delay{
+      animation-delay: 5s;
+    }
+
+    .swiper-pagination.swiper-pagination-bullet-active{
+      @apply bg-primary
+    }
   }
+}
+
+.swiper-pagination{
+  margin-top: 80px !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active{
+ background: #00CF5D !important;
 }

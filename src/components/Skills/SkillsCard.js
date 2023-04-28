@@ -10,8 +10,8 @@ function SkillsCard(props) {
                 <span className="inline-block border border-primary rounded py-0.5 px-1 text-white font-normal text-sm">{props.label}%</span>
             </div>
             <div className="h-0.5 bg-dark rounded-sm">
-                <div className="bg-primary h-0.5 relative" style={{width : `${props.label}%`}}>
-                    <DotsMd className="-right-1.5" />
+                <div className="bg-primary h-0.5 relative animate-pulse" style={{width : `${props.label}%`}}>
+                    <DotsMd className="-right-1.5 animate-pulse" />
                 </div>
             </div>
         </div>

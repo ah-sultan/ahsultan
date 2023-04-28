@@ -5,6 +5,8 @@ import SectionLine from '../SectionLine/SectionLine'
 
 // Images
 import aboutImg from '../../../public/images/about/about-img.png'
+import heroImg from '../../../public/images/hero/hero-img.jpg'
+
 
 function AboutMe() {
   return (
@@ -14,9 +16,13 @@ function AboutMe() {
             <div className="container">
                 <div className="flex items-center">
                 {/* Images Section */}
-                    <div className="w-7/12">
+                    <div className="w-7/12 pl-12">
                         <div className="py-section-xxl">
-                            <Image src={aboutImg} alt="Sultan" width={588} height={627} className="max-w-[90%]"/>
+                            <div className="border-primary ml-auto border-4 inline-block max-w-[450px] rounded-[50px] -rotate-[10deg]">
+                                <div className="overflow-hidden max-h-[600px] rounded-[50px] rotate-[10deg]">
+                                    <Image src={heroImg}/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {/* Text Section */}
@@ -27,7 +33,8 @@ function AboutMe() {
                         <div className="mt-9">
                             <h6 className="text-lg text-gray font-normal font-notoSerif leading-none">Hobby</h6>
                             <div className="h-0.5 bg-dark relative mt-2.5 mb-3">
-                                <DotsMd className="-right-1.5"/>
+                                <DotsMd className="-right-1.5 animate-lineDot"/>
+                                <DotsMd className="-right-1.5 animate-pulse"/>
                             </div>
                             <ul className="grid grid-cols-2 gap-y-4 pr-6">
                                 {
@@ -37,7 +44,7 @@ function AboutMe() {
                                     'Researching'].map((title, index) => {
                                         return(
                                             <li key={index} className="flex items-center">
-                                                <DotsSm/>
+                                                <DotsSm className="animate-pulse"/>
                                                 <span className="font-notoSerif font-normal text-base leading-none text-gray inline-block pl-4">{title}</span>
                                             </li>
                                         )

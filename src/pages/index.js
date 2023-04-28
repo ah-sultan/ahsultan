@@ -23,9 +23,7 @@ export default function Home() {
       <Portfolio/>
       <SectionLine/>
       <Testimonal/>
-      <Contact/>
-
-      
+      <Contact/>     
     </>
   )
 }

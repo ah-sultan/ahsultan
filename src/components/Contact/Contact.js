@@ -1,5 +1,7 @@
-import {AiFillFacebook, AiFillLinkedin, AiFillInstagram, AiFillGithub} from 'react-icons/ai'
+import {AiFillFacebook, AiFillLinkedin, AiFillInstagram, AiFillGithub, } from 'react-icons/ai'
+import {BsArrowUpRight, BsArrowUpRightSquare} from 'react-icons/bs'
 import { DotsMd, DotsSm } from "../SectionLine/Dots/Dots"
+import Copyright from '../Copyright/Copyright'
 
 const socialLink = [
     {
@@ -23,24 +25,25 @@ const socialLink = [
 
 function Contact() {
   return (
-   <section className="py-section-xxl bg-darkBlue">
+   <>
+    <section className="pt-section-xxl bg-darkBlue">
         <div className="container">
             <div className="mb-section-xxl px-24">
                 <h2 className="text-center section-title">Contact <span className="text-primary">With Me</span></h2>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-center pb-section-xxl">
                 <div className="w-1/2">
                     <div className="pr-3">
                         <div className="px-10 py-14 bg-black shadow-contactCard rounded-ee-[28px]">
                             <div className="relative">
-                                <DotsSm className="shadow-dots absolute right-0 top-0"/>
+                                <DotsSm className="shadow-dots absolute right-0 top-0 animate-pulse"/>
                                 <div className="pb-14 border-b-2 border-dark">
                                     <h5 className="text-primary font-notoSerif font-bold text-40px leading-snug mb-4">Email:</h5>
                                     <a href="mailto:ahsan.ah.sultan@gmail.com" className="text-white text-3xl leading-normal font-notoSerif">ahsan.ah.sultan@gmail.com</a>
                                 </div>
                                 <div className="py-20 border-b-2 border-dark">
-                                    <h5 className="text-primary font-notoSerif font-bold text-40px leading-snug mb-4">Contact No::</h5>
+                                    <h5 className="text-primary font-notoSerif font-bold text-40px leading-snug mb-4">Contact No:</h5>
                                     <a href="tel:01608626057" className="text-white text-3xl leading-normal font-notoSerif">+880 1608-626057</a>
                                 </div>
                                 <div className="flex justify-between items-center pt-52px mt-1">
@@ -75,30 +78,34 @@ function Contact() {
                         </div>
                     </div>
                 </div>
+                {/* Form Section */}
                 <div className="w-1/2">
                     <div className="px-8">
                         <form action="#">
-                            <div className="border-2 border-dark relative mb-8">
-                                <input type="text" placeholder="Name:" className="text-lg leading-none text-dark w-full bg-transparent py-5 px-6"/>
-                                <DotsMd className="right-6 top-1/2"/>
+                            <div className="relative mb-8">
+                                <input type="text" placeholder="Name:" className="text-base leading-none text-gray placeholder:text-dark w-full bg-transparent py-5 px-6 border-2 border-dark focus:border-primary"/>
+                                <DotsMd className="right-6 top-1/2 animate-pulse"/>
                             </div>
-                            <div className="border-2 border-dark relative mb-8">
-                                <input type="email" placeholder="Email:" className="text-lg leading-none text-dark w-full bg-transparent py-5 px-6"/>
-                                <DotsMd className="right-6 top-1/2"/>
+                            <div className="relative mb-8">
+                                <input type="email" placeholder="Email:" className="text-base leading-none text-gray placeholder:text-dark w-full bg-transparent py-5 px-6 border-2 border-dark focus:border-primary"/>
+                                <DotsMd className="right-6 top-1/2 animate-pulse"/>
                             </div>
-                            <div className="border-2 border-dark relative mb-8 ">
-                                <textarea type="text" placeholder="Message:" className="text-lg leading-none text-dark w-full bg-transparent py-5 px-6 h-[240px]"/>
-                                <DotsMd className="right-6 top-6 translate-y-0"/>
+                            <div className="relative mb-88">
+                                <textarea type="text" placeholder="Message:" className="text-base leading-relaxed text-gray placeholder:text-dark w-full bg-transparent py-5 px-6 h-[240px] border-2 border-dark focus:border-primary focus:border-2"/>
+                                <DotsMd className="right-6 top-6 translate-y-0 animate-pulse"/>
                             </div>
-                            <button>
-                                
+                            <button className="font-notoSerif flex justify-between items-center w-full p-5 bg-primary leading-none text-base mt-12">
+                                <span>Send Message</span>
+                                <BsArrowUpRightSquare className="text-lg mr-1"/>
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <Copyright/>
    </section>
+   </>
   )
 }
 

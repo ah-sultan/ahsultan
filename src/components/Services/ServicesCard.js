@@ -12,7 +12,7 @@ function ServicesCard(props) {
                         {props.icon}
                         </div>
                     </div>
-                    <DotsMd className="right-0 top-0"/>
+                    <DotsMd className="right-0 top-0 animate-pulse scale-110"/>
                 </div>
                 <h5 className="mt-14 pb-4 mb-9 text-white font-notoSerif font-medium text-2xl leading-none border-b-2 border-dark">{props.title}</h5>
                 <p className="mb-7 text-gray text-base leading-relaxed">{props.text}</p>
@@ -23,7 +23,7 @@ function ServicesCard(props) {
                     {
                         props.list.map((title, index) => (
                             <li key={index} className="flex items-center gap-x-4 mb-4 text-gray leading-5">
-                                <DotsSm/>
+                                <DotsSm className="animate-pulse"/>
                                 <span>{title}</span>
                             </li>
                         ))
