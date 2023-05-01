@@ -6,18 +6,18 @@ function TestimonialCard(props) {
 
   const rate = Math.floor(props.rate)
   return (
-    <div className="w-full border-2 border-darkBlue p-6">
-        <div className="flex justify-between items-end mb-5">
-            <div className="flex items-center gap-x-6 ">
-                <div className="w-100px h-100px rounded-full border-2 border-primary">
+    <div className="w-full border-2 border-darkBlue p-5 sm:p-6">
+        <div className="sm:flex justify-between items-end mb-5">
+            <div className="flex items-center gap-x-4 sm:gap-x-6 ">
+                <div className="w-16 h-16 sm:w-100px sm:h-100px rounded-full border-2 border-primary">
                 <Image src={props.img} alt={props.name} width={100} height={100} className="w-full" />
                 </div>
                 <div>
-                  <h5 className="text-2xl leading-none font-notoSerif font-bold mb-2.5 text-primary">{props.name}</h5>
-                  <span className="text-gray text-lg leading-none">{props.title}</span>
+                  <h5 className="text-lg sm:text-xl md:text-2xl leading-none font-notoSerif font-bold mb-1 sm:mb-2 md:mb-2.5 text-primary">{props.name}</h5>
+                  <span className="text-gray text-sm sm:text-lg leading-none">{props.title}</span>
                 </div>
             </div>
-            <div>
+            <div className="text-right">
               {
                 Array(rate).fill().map((_, index) => (
                   <AiFillStar  key={index} className="text-primary w-5"/>
@@ -35,7 +35,7 @@ function TestimonialCard(props) {
               <DotsMd className="-right-1.5 animate-pulse"/>
             </div>
         </div>
-          <p className="text-base leading-relaxed text-gray mt-8 text-justify">Contrary to popular belief, Lorem Ipsum is not simply random text.It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more  obscure Latin words, consectetur, from a Lorem Ipsum passage, but also the leap into</p>
+          <p className="text-sm xsm:text-base leading-relaxed text-gray mt-8 text-justify">Contrary to popular belief, Lorem Ipsum is not simply random text.It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more  obscure Latin words, consectetur, from a Lorem Ipsum passage, but also the leap into</p>
     </div>
   )
 }

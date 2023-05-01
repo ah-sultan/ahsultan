@@ -10,9 +10,13 @@ module.exports = {
   theme: {
     container: {
       center: true,
+      padding : '12px'
     },
 
     screens: {
+      'xsm': '480px',
+      // => @media (min-width: 640px) { ... }
+
       'sm': '640px',
       // => @media (min-width: 640px) { ... }
 
@@ -31,7 +35,6 @@ module.exports = {
     extend: {
       fontFamily: {
         sans : ['var(--font-poppins)' , ...fontFamily.sans],
-        "poppins": ['var(--font-poppins)', 'sans'],     
         "notoSerif": ['var(--font-notoSerif)', 'sans'],     
       },
 
@@ -58,15 +61,21 @@ module.exports = {
         "contactCard" : "10px 10px 0px #00CF5D"
       },
       fontSize : {
-        '40px' : '40px',
-        '52px' : '52px',
-        '54px' : '54px',
+        "40px" : "40px",
+        "52px" : "52px",
+        "54px" : "54px",
       },
 
       animation : {
-        'lineDot' : 'lineDot 20s linear infinite'
+        "lineDot" : "lineDot 20s linear infinite",
+        "stickyNav" : "stickyNav .7s ease-in ",
+        "filtering" : "filtering .3s ease-in-out ",
       },
       keyframes : {
+        stickyNav : {
+          "0%" : {transform : "translateY(-100%) scaleY(0)"},
+          "100%" : {transform : "translateY(0) scaleY(1)"},
+        },
         lineDot : {
           "0%" : {
             left: 0,
@@ -82,9 +91,9 @@ module.exports = {
             left: '100%'
           }
         },
-
-        dotMoving : {
-          "0%" : {}
+        filtering : {
+          "0%" : {transform : "translate(100px) scaleY(0)", opacity: 0},
+          "100%" : {transform : "translate(0) scaleY(1)", opacity: 1},
         }
       }
     },

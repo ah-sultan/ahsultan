@@ -23,9 +23,9 @@ const counterData = [
 function Counter() {
   return (
    <>
-    <section className="py-20 bg-[#0E111F]">
+    <section className="py-14 lg:py-20 bg-[#0E111F]">
         <div className="container">
-            <div className="gap-x-20 center-child">
+            <div className="gap-10 sm:gap-20 flex sm:justify-center sm:items-center flex-wrap flex-column sm:flex-row ">
                 {
                     counterData.map((data, index) => (
                         <CounterCard key={index} icon={data.icon} title={data.title} text={data.text}/>
