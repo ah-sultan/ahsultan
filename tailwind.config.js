@@ -1,4 +1,5 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
+const primary = "#454584"
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
@@ -55,7 +56,7 @@ module.exports = {
         "section-lg" : "60px",
       },
       boxShadow : {
-        "dots" : "0px 0px 4px 1px #00CF5D",
+        "dots" : `0px 0px 4px 1px #00CF5D`,
         "sliderDots" : "0px 0px 3px #00CF5D",
         "card" : " 0px 4px 4px #00CF5D",
         "contactCard" : "10px 10px 0px #00CF5D"

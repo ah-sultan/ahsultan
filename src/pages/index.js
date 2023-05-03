@@ -8,6 +8,7 @@ import SectionLine from "@/components/SectionLine/SectionLine"
 import Service from "@/components/Services/Service"
 import Skills from "@/components/Skills/Skills"
 import Testimonal from "@/components/Testimonial/Testimonal"
+import ThemeColors from "@/components/ThemeColors/ThemeColors"
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <SectionLine/>
       <Testimonal/>
       <Contact/>    
+      <ThemeColors/>
     </>
   )
 }
