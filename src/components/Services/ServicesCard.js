@@ -8,7 +8,7 @@ function ServicesCard(props) {
             <div className="border border-dark px-4 py-8 md:px-8 md:py-10 group shadow-card">
                 <div className="relative">
                     <div className="w-16 h-16 border-2 border-primary rounded-xl center-child">
-                        <div className="w-10 group-hover:rotate-45 duration-300 text-primary">
+                        <div className="w-10 trns-1 group-hover:rotate-45 duration-300 text-primary center-child text-5xl">
                         {props.icon}
                         </div>
                     </div>

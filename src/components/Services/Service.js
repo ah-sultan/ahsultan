@@ -4,7 +4,7 @@ import { Pagination } from "swiper";
 import 'swiper/css';
 
 
-import ServiceData from "./ServiceData"
+import {serviceData} from "./ServiceData"
 
 
 const pagination = {
@@ -24,7 +24,7 @@ function Service() {
 
   return (
     <>
-        <section className="py-section-lg md:py-section-xl lg:py-section-xxl">
+        <section id="service" className="py-section-lg md:py-section-xl lg:py-section-xxl">
             <div className="container">
                 <div>
                     <h2 className="section-title text-center">What I <span className="text-primary">Provide</span></h2>
@@ -45,10 +45,10 @@ function Service() {
                         }}
                         >
                             {
-                            ServiceData.map((data, index) => {
+                            serviceData.map((data, index) => {
                                 return(
                                     <SwiperSlide key={index}>
-                                        <ServicesCard icon={data.icon} title={data.title} text={data.text} list={data.list}/> 
+                                        <ServicesCard icon={data.icon} title={data.title} text={data.description} list={data.list}/> 
                                     </SwiperSlide>
                                     
                                 )

@@ -19,7 +19,7 @@ const pagination = {
 function Testimonal() {
 
   return (
-    <section className="py-section-lg md:py-section-xl lg:py-section-xxl">
+    <section id="testimonial" className="py-section-lg md:py-section-xl lg:py-section-xxl">
         <div className="container">
             <div className="lg:px-24">
                 <h2 className="section-title text-center">Client <span className="text-primary">Satisfaction</span></h2>

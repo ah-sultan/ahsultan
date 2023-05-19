@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 
-const colors = ['red', 'blue', 'yellow', 'aqua', 'tomato']
+const colors = ['#00CF5D', '#4FCCFA', 'yellow', 'aqua', '#ff1b00']
 
 function ThemeColors() {
     const [showBar, setShowBar] = useState(false)
+    const [primaryColor, setPrimaryColor] = useState('#00CF5D');
 
-    const colorSeter = () => {
+    const colorSeter = (value) => {
         setShowBar(false)
+        setPrimaryColor(value)
     }
 
   return (
@@ -22,12 +24,18 @@ function ThemeColors() {
                 <ul className={`pl-1.5 pb-1.5 bg-darkBlue trns-1 duration-700 origin-top pt-3 ${showBar ? 'scale-y-100' : 'scale-y-0'}`}>
                     {
                         colors.map((color, index) => (
-                            <li key={index} style={{background : color}} className="w-3.5 h-3.5 cursor-pointer rounded-full mb-2" onClick={colorSeter}></li>
+                            <li key={index} style={{background : color}} className="w-3.5 h-3.5 cursor-pointer rounded-full mb-2" onClick={() => colorSeter(color)}></li>
                         ))
                     }
                 </ul>
             </div>
         </div>
+
+        <style jsx global>{`
+            :root {
+                ${`--primary-color : ${primaryColor}`}
+            }
+        `}</style>
     </>
   )
 }

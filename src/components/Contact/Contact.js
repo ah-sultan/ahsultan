@@ -32,7 +32,7 @@ function Contact() {
     const notify = () => toast("Your Message Sent!");
   return (
    <>
-    <section className="pt-section-lg md:pt-section-xl lg:pt-section-xxl bg-darkBlue">
+    <section id="contact" className="pt-section-lg md:pt-section-xl lg:pt-section-xxl bg-darkBlue">
         <div className="container">
             <div className="mb-section-lg md:mb-section-xl lg:mb-section-xxl lg:px-24">
                 <h2 className="text-center section-title">Contact <span className="text-primary">With Me</span></h2>

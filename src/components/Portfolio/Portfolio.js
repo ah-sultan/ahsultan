@@ -17,7 +17,7 @@ function Portfolio() {
     
     
     return (
-    <section className="py-section-lg md:py-section-xl lg:py-section-xxl">
+    <section id="protfolio" className="py-section-lg md:py-section-xl lg:py-section-xxl">
         <div className="container">
             <div className="px-24">
                 <h2 className="text-center section-title">My <span className="text-primary">Portfolio</span></h2>
@@ -27,7 +27,7 @@ function Portfolio() {
                 <div className="flex flex-wrap gap-x-2.5 xsm:gap-x-4 gap-y-3 xsm:gap-y-5 lg:gap-x-6">
                     {
                         FilterButton.map(([title, action], index) => (
-                            <button onClick={() => setActiveFilter(action)} key={index} className={`${action === activeFilter ? 'btn-primary' : 'btn-outline'} px-4 py-2 md:py-3 md:px-6 lg:py-3 lg:px-8 leading-none`}>{title}</button>
+                            <button onClick={() => setActiveFilter(action)} key={index} className={`${action === activeFilter ? 'btn-primary before:content-none' : 'btn-outline'} px-4 py-2 md:py-3 md:px-6 lg:py-3 lg:px-8 leading-none`}>{title}</button>
                         ))
                     }
                 </div>

@@ -1,7 +1,5 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
-const primary = "#454584"
 /** @type {import('tailwindcss').Config} */
-
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -40,7 +38,7 @@ module.exports = {
       },
 
       colors : {
-        "primary" : "#00CF5D",
+        "primary" : "var(--primary-color)",
         "dark" : "#252734",
         "darkBlue" : "#0E111F",
         "gray" : "#5C5F6A",
@@ -56,10 +54,10 @@ module.exports = {
         "section-lg" : "60px",
       },
       boxShadow : {
-        "dots" : `0px 0px 4px 1px #00CF5D`,
-        "sliderDots" : "0px 0px 3px #00CF5D",
-        "card" : " 0px 4px 4px #00CF5D",
-        "contactCard" : "10px 10px 0px #00CF5D"
+        "dots" : `0px 0px 4px 1px var(--primary-color)`,
+        "sliderDots" : "0px 0px 3px var(--primary-color)",
+        "card" : " 0px 4px 4px var(--primary-color)",
+        "contactCard" : "10px 10px 0px var(--primary-color)"
       },
       fontSize : {
         "40px" : "40px",
@@ -70,12 +68,12 @@ module.exports = {
       animation : {
         "lineDot" : "lineDot 20s linear infinite",
         "stickyNav" : "stickyNav .7s ease-in ",
-        "filtering" : "filtering .3s ease-in-out ",
+        "filtering" : "filtering .7s ease-in-out ",
       },
       keyframes : {
         stickyNav : {
-          "0%" : {transform : "translateY(-100%) scaleY(0)"},
-          "100%" : {transform : "translateY(0) scaleY(1)"},
+          "0%" : {opacity : 0, visibility: 'hidden'},
+          "100%" : {opacity : 1, visibility: 'visible'},
         },
         lineDot : {
           "0%" : {

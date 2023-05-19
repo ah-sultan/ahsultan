@@ -4,17 +4,17 @@ import CounterCard from './CounterCard'
 const counterData = [
     {
         icon : <UserGroupIcon/>,
-        title : 256,
+        title : `00`,
         text : 'Happy Clients'
     },
     {
         icon : <CpuChipIcon/>,
-        title : 100,
+        title : `08`,
         text : 'Projects Complete'
     },
     {
         icon : <CloudArrowDownIcon/>,
-        title : 10,
+        title : `02`,
         text : 'Years Experience'
     }
 ]

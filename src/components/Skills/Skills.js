@@ -1,32 +1,6 @@
 import React from 'react'
 import SkillsCard from './SkillsCard'
-const SkillData = [
-    {
-        title : 'HTML',
-        label : 89
-    },
-    {
-        title : 'CSS',
-        label : 10
-    },
-    {
-        title : 'Javascript',
-        label : 50
-    },
-    {
-        title : 'Javascript',
-        label : 50
-    },
-    {
-        title : 'Javascript',
-        label : 50
-    },
-    {
-        title : 'Javascript',
-        label : 50
-    },
-]
-
+import { skillData } from './skillData'
 
 function Skills() {
   return (
@@ -39,10 +13,10 @@ function Skills() {
                 <div className="mt-10 md:mt-16 lg:mt-20">
                     <ul className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
                         {
-                            SkillData.map((data, index) => {
+                            skillData.map((data, index) => {
                                 return(
                                     <li key={index}>
-                                        <SkillsCard title={data.title} label={data.label}/>
+                                        <SkillsCard title={data.title} label={data.badge}/>
                                     </li>
                                 )
                             })
