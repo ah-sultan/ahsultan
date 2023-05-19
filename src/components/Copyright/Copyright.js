@@ -9,7 +9,7 @@ function Copyright() {
             <SectionLine/>
             <div className="container">
                 <div className="pt-8 pb-12">
-                    <p className="text-gray  text-base font-light text-center">© 2022. All rights reserved by <a href="/" className="text-primary underline">Sultan Ahmed</a></p>
+                    <p className="text-gray  text-base font-light text-center">© 2022. All rights reserved by <span className="text-primary underline">Sultan Ahmed</span></p>
                 </div>
             </div>
             <ScrollToTopButton/>
