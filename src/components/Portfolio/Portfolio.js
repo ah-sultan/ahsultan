@@ -7,13 +7,14 @@ const FilterButton = [
     ['Tailwind', 'tailwind'],
     ['React', 'react'],
     ['Next JS', 'nextJs'],
-    ['Bootstrap', 'bootstrap']
+    ['Bootstrap', 'bootstrap'],
+    ['javaScript', 'javaScript']
 ]
 
 
 function Portfolio() {
     const [activeFilter, setActiveFilter] = useState('all');
-    const filteredItems = activeFilter === 'all' ? portfolioData : portfolioData.filter(portfolioData => portfolioData.ctg === activeFilter);
+    const filteredItems = activeFilter === 'all' ? portfolioData : portfolioData.filter(portfolioData => portfolioData.ctg.includes(activeFilter) );
     
     
     return (

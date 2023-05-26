@@ -31,7 +31,7 @@ const navItem = [
     },
 ]
 
-const logo = 'Portfolio'
+const logo = 'Ah Sultan'
 
 
 function Header() {
@@ -60,7 +60,7 @@ function Header() {
             <div className="navbar flex items-center justify-between">
                 {/* Logo Section */}
                 <div className="flex-auto">
-                    <Link href="/" className="text-primary font-semibold text-base leading-normal">
+                    <Link href="/" className="text-primary font-semibold text-xl leading-normal">
                         <span>{logo}</span>
                     </Link>
                 </div>

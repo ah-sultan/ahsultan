@@ -1,4 +1,5 @@
-import {AiFillFacebook, AiFillLinkedin, AiFillInstagram, AiFillGithub, } from 'react-icons/ai'
+import Link from 'next/link'
+import {AiFillFacebook, AiFillLinkedin, AiFillTwitterSquare, AiFillGithub, } from 'react-icons/ai'
 import { BsArrowUpRightSquare} from 'react-icons/bs'
 import { DotsMd, DotsSm } from "../SectionLine/Dots/Dots"
 import Copyright from '../Copyright/Copyright'
@@ -11,20 +12,20 @@ import 'react-toastify/dist/ReactToastify.css';
 const socialLink = [
     {
         icon : <AiFillLinkedin/>,
-        url : '#'
+        url : 'www.linkedin.com/in/ah-sultan'
     },
 
     {
-        icon : <AiFillInstagram/>,
-        url : '#'
+        icon : <AiFillTwitterSquare/>,
+        url : 'https://twitter.com/AhSultanDev'
     },
     {
         icon : <AiFillFacebook/>,
-        url : '#'
+        url : 'https://web.facebook.com/devahsultan'
     },
     {
         icon : <AiFillGithub className="ml-1"/>,
-        url : '#'
+        url : 'https://github.com/ah-sultan'
     },
 ]
 
@@ -59,9 +60,9 @@ function Contact() {
                                                 socialLink.map((item, index) => {
                                                     return(
                                                         <li key={index}>
-                                                            <a href={item.url} className="text-primary text-2xl">
+                                                            <Link href={item.url} target="_blank" className="text-primary text-2xl">
                                                                 {item.icon}
-                                                            </a>
+                                                            </Link>
                                                         </li>
                                                     )
                                                 })
@@ -75,9 +76,9 @@ function Contact() {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" className="text-sm italic font-notoSerif font-normal bg-primary px-2 py-0.5 rounded-sm text-black">
+                                                <Link href="https://www.fiverr.com/ah_sultan" target='_blank' className="text-sm italic font-notoSerif font-normal bg-primary px-2 py-0.5 rounded-sm text-black">
                                                     Fiverr
-                                                </a>
+                                                </Link>
                                             </li>
                                         </ul>
                                 </div>

@@ -68,7 +68,7 @@ module.exports = {
       animation : {
         "lineDot" : "lineDot 20s linear infinite",
         "stickyNav" : "stickyNav .7s ease-in ",
-        "filtering" : "filtering .7s ease-in-out ",
+        "filtering" : "filtering .4s ease-in-out ",
       },
       keyframes : {
         stickyNav : {
@@ -91,8 +91,8 @@ module.exports = {
           }
         },
         filtering : {
-          "0%" : {transform : "translate(100px) scaleY(0)", opacity: 0},
-          "100%" : {transform : "translate(0) scaleY(1)", opacity: 1},
+          "0%" : {opacity: 0},
+          "100%" : {opacity: 1},
         }
       }
     },

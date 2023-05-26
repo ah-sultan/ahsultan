@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const colors = ['#00CF5D', '#4FCCFA', 'yellow', 'aqua', '#ff1b00']
+const colors = ['#00CF5D', '#4FCCFA', 'yellow', 'aqua', '#ff1b00', ]
 
 function ThemeColors() {
     const [showBar, setShowBar] = useState(false)
