@@ -11,9 +11,12 @@ function Meta(props) {
         <meta charset="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="descripton" content={props.descripton} />
-        <meta name="keywords" content={props.keywords} />
-        <title>Sultan Ahmed a front end developer</title>
+        <meta name="descripton" content={description} />
+        <meta name="keywords" content={keywords} />
+        <meta property="og:title" content="Front End developer | Ah Sultan">
+        <meta property="og:image" content="https://ahsultan.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fah-sultan-ahmed.13e5627c.jpg&w=750&q=75">
+        <meta property="og:url" content="https://ahsultan.vercel.app/">
+        <title>Ah Sultan a front end developer</title>
     </Head>
     </>
   )
