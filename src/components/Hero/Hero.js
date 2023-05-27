@@ -29,7 +29,7 @@ function Hero() {
                             </div>
                         </div>
                     </div>
-                    <div className="w-1/2 text-right hidden lg:block pl-40">
+                    <div className="w-1/2 text-right hidden lg:block lg:pl-40">
                        <div className="pt-100px pb-100px">
                             <div className="w-fit mx-auto p-7 border-primary border-4 rounded-[50px] -skew-x-[4deg]">
                                 <div className="hero-img overflow-hidden h-fit xl:h-fit rounded-[50px]">
