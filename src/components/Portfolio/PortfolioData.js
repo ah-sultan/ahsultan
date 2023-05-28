@@ -60,8 +60,8 @@ export const portfolioData = [
         ctg : ['react','tailwind', 'nextJs'],
         img : jesco,
         title : 'Fashions Next JS Ecommarce Template',
-        webLink : 'https://topshef.netlify.app/',
-        gitLink : 'https://github.com/ah-sultan/topshelf'
+        webLink : 'https://jesco.vercel.app/',
+        gitLink : 'https://github.com/ah-sultan/jesco'
     },
 
     {
@@ -69,7 +69,7 @@ export const portfolioData = [
         ctg : ['react','tailwind', 'nextJs'],
         img : islamicHomeDecor,
         title : 'Islamic Home Decore Next JS E-commarce Template',
-        webLink : 'https://github.com/ah-sultan/Islamic-home-decor',
+        webLink : 'https://islamic-home-decore.netlify.app/',
     },
 
     {
