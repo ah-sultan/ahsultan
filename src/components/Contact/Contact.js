@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const socialLink = [
     {
         icon : <AiFillLinkedin/>,
-        url : 'www.linkedin.com/in/ah-sultan'
+        url : 'https://linkedin.com/in/ah-sultan'
     },
 
     {
