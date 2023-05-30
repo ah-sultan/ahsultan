@@ -37,7 +37,7 @@ function SkillsCard(props) {
                     %</span>
             </div>
             <div className="h-0.5 bg-dark rounded-sm">
-                <div className="bg-primary h-0.5 relative animate-pulse duration-[2.5s]" style={{width : isVisible ? `${props.label}%` : 0}}>
+                <div className="bg-primary h-0.5 relative animate-pulse trns-1" style={{width : isVisible ? `${props.label}%` : 0}}>
                     <DotsMd className="-right-1.5 animate-pulse" />
                 </div>
             </div>
