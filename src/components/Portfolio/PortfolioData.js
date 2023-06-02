@@ -15,14 +15,6 @@ import todos from '../../../public/images/portfolio/todo.png'
 
 export const portfolioData = [
     {
-        id : 0,
-        ctg : ['tailwind'],
-        img : dewlling,
-        title : 'Dwelling - Real State Landing Page HTML-5 Template',
-        webLink : 'https://ah-sultan.github.io/Dwelling/',
-        gitLink : 'https://github.com/ah-sultan/Dwelling'
-    },
-    {
         id : 1,
         ctg : ['bootstrap'],
         img : vcamp,
