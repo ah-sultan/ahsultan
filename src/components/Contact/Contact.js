@@ -1,11 +1,10 @@
+import React, { useState } from 'react'
 import Link from 'next/link'
+import emailjs from '@emailjs/browser';
 import {AiFillFacebook, AiFillLinkedin, AiFillTwitterSquare, AiFillGithub, } from 'react-icons/ai'
 import { BsArrowUpRightSquare} from 'react-icons/bs'
 import { DotsMd, DotsSm } from "../SectionLine/Dots/Dots"
 import Copyright from '../Copyright/Copyright'
-
-// Tostify 
-import React from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -30,7 +29,49 @@ const socialLink = [
 ]
 
 function Contact() {
-    const notify = () => toast("Your Message Sent!");
+    const [isProcessing, setIsProcessing] = useState(false)
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [message, setMessage] = useState('')
+
+
+
+    const sendEmail = (e) => {
+      e.preventDefault();
+      
+  
+      if(name.length === 0 || email.length === 0 || message.length ===0){
+        toast("Please Fill the from and try again", {
+            type : 'warning'
+        });
+      }else{
+        setIsProcessing(true)
+        emailjs.send('service_v0gjey9', 'template_qj1nl8y', {
+
+            user_Name: name,
+            user_Email : email,
+            user_message: message,
+            
+    
+          }, 'LPYNBzQQElVTixuJi')
+            .then((result) => {
+                toast("Your Message Sent Successfully", {
+                    type : 'success'
+                });
+                setIsProcessing(false)
+                setName('')
+                setEmail('')
+                setMessage('')
+               
+            }, (error) => {
+                toast("Your Messages Not Send Please try Again.", {
+                    type : 'error'
+                });
+                setIsProcessing(false)
+            });
+      }
+    };
+
   return (
    <>
     <section id="contact" className="pt-section-lg md:pt-section-xl lg:pt-section-xxl bg-darkBlue">
@@ -89,23 +130,36 @@ function Contact() {
                 {/* Form Section */}
                 <div className="w-full lg:w-1/2">
                     <div className="lg:px-8 relative">
-                        <form action="#" onSubmit={(event) => event.preventDefault()}>
+                        <form action="#" onSubmit={(e) => sendEmail(e)}>
                             <div className="relative mb-8">
-                                <input type="text" placeholder="Name:" className="form-input"/>
+                                <input value={name} type="text" placeholder="Name:" className="form-input" onChange={(e) => setName(e.target.value)}/>
                                 <DotsMd className="right-6 top-1/2 animate-pulse"/>
                             </div>
                             <div className="relative mb-8">
-                                <input type="email" placeholder="Email:" className="form-input"/>
+                                <input value={email} type="email" placeholder="Email:" className="form-input" onChange={(e) => setEmail(e.target.value)}/>
                                 <DotsMd className="right-6 top-1/2 animate-pulse"/>
                             </div>
                             <div className="relative">
-                                <textarea type="text" placeholder="Message:" className="form-input h-[200px] sm:h-[240px]"/>
+                                <textarea value={message} type="text" placeholder="Message:" className="form-input h-[200px] sm:h-[240px]" onChange={(e) => setMessage(e.target.value)}/>
                                 <DotsMd className="right-6 top-6 translate-y-0 animate-pulse"/>
                             </div>
                             {/* Form Button */}
-                            <button type="submit" onClick={() => notify()} className="font-notoSerif border-2 border-transparent flex justify-between items-center w-full p-4 sm:p-5 bg-primary duration-700 hover:bg-transparent hover:text-primary hover:border-primary leading-none text-base mt-8 sm:mt-12">
+                            <button disabled={isProcessing} type="submit" className="relative font-notoSerif border-2 border-transparent flex justify-between items-center w-full p-4 sm:p-5 bg-primary duration-700 hover:bg-transparent hover:text-primary hover:border-primary leading-none text-base mt-8 sm:mt-12">
                                 <span>Send Message</span>
                                 <BsArrowUpRightSquare className="text-lg mr-1"/>
+
+                                {/* Processing */}
+                                {isProcessing && 
+                                <div className={`absolute z-10 inset-0 bg-primary flex justify-center items-center gap-x-3 hover:text-black text-lg`}>
+                                    <svg className="motion-safe:animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                        <span>
+                                        Processing...
+                                        </span>
+                                </div>
+                                }
                             </button>
                             <ToastContainer
                                 position="bottom-right"

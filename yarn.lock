@@ -40,6 +40,11 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@emailjs/browser@^3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@emailjs/browser/-/browser-3.11.0.tgz#0e78de2f85096d1a9ad5b5977b060bb5d1784cb4"
+  integrity sha512-RkY3FKZ3fPdK++OeF46mRTFpmmQWCHUVHZH209P3NE4D5sg2Atg7S2wa3gw5062Gl4clt4Wn5SyC4WhlVZC5pA==
+
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
   resolved "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz"
@@ -1982,11 +1987,6 @@ raf@^3.4.1:
   integrity sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==
   dependencies:
     performance-now "^2.1.0"
-
-react-animation-particles@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/react-animation-particles/-/react-animation-particles-1.0.4.tgz#17755c489cdc16d62ae7475eccc156a90fef622d"
-  integrity sha512-eAFFLBDlfGelkdG0LDL51XUQPTGQ5qco7lNOeogtc0SUviG1XIsiwZabDEjexNZhfxL23XlynRUjtQOQajVV4w==
 
 react-countup@^6.4.2:
   version "6.4.2"
