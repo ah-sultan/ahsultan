@@ -8,7 +8,7 @@ import Portfolio from "@/components/Portfolio/Portfolio"
 import SectionLine from "@/components/SectionLine/SectionLine"
 import Service from "@/components/Services/Service"
 import Skills from "@/components/Skills/Skills"
-import Testimonal from "@/components/Testimonial/Testimonal"
+import Testimonial from "@/components/Testimonial/Testimonal"
 import ThemeColors from "@/components/ThemeColors/ThemeColors"
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
       <Counter/>
       <Portfolio/>
       <SectionLine/>
-      <Testimonal/>
+      <Testimonial/>
       <Contact/>    
       <ThemeColors/>
     </>

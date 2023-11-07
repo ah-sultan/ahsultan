@@ -1,5 +1,4 @@
 
-import dewlling from '../../../public/images/portfolio/dewlling.png'
 import vcamp from '../../../public/images/portfolio/vcamp.png'
 import startUpLanding from '../../../public/images/portfolio/startuplanding.png'
 import landguru from '../../../public/images/portfolio/landguru.png'
@@ -7,11 +6,9 @@ import topshelf from '../../../public/images/portfolio/topshelf.png'
 import jesco from '../../../public/images/portfolio/jesco.png'
 import islamicHomeDecor from '../../../public/images/portfolio/islamic_home_decor.png'
 import personalPortfolio from '../../../public/images/portfolio/personal_portfolio.png'
-import bmiCalculator from '../../../public/images/portfolio/bmi_calculator.png'
-import regisTrationform from '../../../public/images/portfolio/registration_form.png'
-import randomColorGenarator from '../../../public/images/portfolio/random_color_genarator.png'
 import stopWatch from '../../../public/images/portfolio/stop_watch.png'
 import todos from '../../../public/images/portfolio/todo.png'
+import ludo from '../../../public/images/portfolio/ludo.png'
 
 export const portfolioData = [
     {
@@ -72,33 +69,8 @@ export const portfolioData = [
         webLink : 'https://ahsultan.vercel.app/',
         gitLink : 'https://github.com/ah-sultan/ahsultan',
     },
-
     {
         id : 8,
-        ctg : ['javaScript'],
-        img : bmiCalculator,
-        title : 'BMI Calculator By Vanila Javascript',
-        webLink : 'https://ah-sultan.github.io/bmi-calculator/',
-        gitLink : 'https://github.com/ah-sultan/bmi-calculator',
-    },
-    {
-        id : 9,
-        ctg : ['javaScript'],
-        img : regisTrationform,
-        title : 'JavaScript Registration Form',
-        webLink : 'https://ah-sultan.github.io/registration-form/',
-        gitLink : 'https://github.com/ah-sultan/registration-form',
-    },
-    {
-        id : 10,
-        ctg : ['javaScript'],
-        img : randomColorGenarator,
-        title : 'JavaScript Random Color Genarator',
-        webLink : 'https://ah-sultan.github.io/random-color-genarator/',
-        gitLink : 'https://github.com/ah-sultan/random-color-genarator',
-    },
-    {
-        id : 11,
         ctg : ['javaScript'],
         img : stopWatch,
         title : 'JavaScript Stop Watch Application',
@@ -107,7 +79,7 @@ export const portfolioData = [
     },
 
     {
-        id : 12,
+        id : 9,
         ctg : ['javaScript'],
         img : todos,
         title : 'JavaScript To Do Application',
@@ -115,5 +87,13 @@ export const portfolioData = [
         gitLink : 'https://github.com/ah-sultan/JavaScript-Todo-App',
     },
 
+    {
+        id : 10,
+        ctg : ['react','tailwind', 'nextJs'],
+        img : ludo,
+        title : 'Ludo App Using Next JS | React Js | Redux',
+        webLink : 'https://next-ludo-app.netlify.app/',
+        gitLink : 'https://github.com/ah-sultan/LudoApp',
+    },
 
 ]
