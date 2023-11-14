@@ -26,7 +26,7 @@ function Hero() {
                             <p className="text-base leading-normal font-normal text-gray">{caption}</p>
                             <div className="mt-52px">
                                 <Link href="https://www.fiverr.com/ah_sultan" target="_blank" className="btn-primary py-2 md:py-3 lg:py-3.5 text-base md:text-xl px-7 md:px-10 mr-6">Hire Me <ChevronRightIcon className="w-4"/></Link>
-                                <Link href="https://flowcv.com/resume/g0f8bdup24" target="_blank" className="btn-outline py-2 md:py-3 lg:py-3.5 text-base md:text-xl px-7 md:px-10">Resume</Link>
+                                <Link href="https://drive.google.com/file/d/1_cXQR8TFHUul0E0t1fXQXVUzNNVeb5Wn/view" target="_blank" className="btn-outline py-2 md:py-3 lg:py-3.5 text-base md:text-xl px-7 md:px-10">Resume</Link>
                             </div>
                         </div>
                     </div>
