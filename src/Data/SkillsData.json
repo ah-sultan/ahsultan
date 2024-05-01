@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Figma",
+        "icon": "/images/skills/skill1.png",
+        "value": "95"
+    },
+    {
+        "id": 2,
+        "name": "Framer",
+        "icon": "/images/skills/skill2.png",
+        "value": "83"
+    },
+    {
+        "id": 3,
+        "name": "Photoshop",
+        "icon": "/images/skills/skill3.png",
+        "value": "93"
+    },
+    {
+        "id": 4,
+        "name": "Wordpress",
+        "icon": "/images/skills/skill4.png",
+        "value": "84"
+    },
+    {
+        "id": 5,
+        "name": "Angular",
+        "icon": "/images/skills/skill5.png",
+        "value": "65"
+    },
+    {
+        "id": 6,
+        "name": "Webflow",
+        "icon": "/images/skills/skill6.png",
+        "value": "86"
+    },
+    {
+        "id": 7,
+        "name": "Python",
+        "icon": "/images/skills/skill7.png",
+        "value": "62"
+    },
+    {
+        "id": 8,
+        "name": "Sketch",
+        "icon": "/images/skills/skill8.png",
+        "value": "94"
+    }
+]
