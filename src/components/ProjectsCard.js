@@ -7,7 +7,7 @@ const ProjectsCard = (props) => {
       <div className="row align-items-center pb-25">
         <div
           className={`col-lg-6 ${
-            props.index % 2 === 0 ? "order-first" : "order-last"
+            props.index % 2 === 0 ? "order-lg-first" : "order-lg-last"
           } `}
         >
           <div className="project-image wow fadeInLeft delay-0-2s">
@@ -16,6 +16,8 @@ const ProjectsCard = (props) => {
               height={500}
               src={props.thumbnail}
               alt={props.title || "Projects"}
+              className="
+              img-fluid"
             />
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {Navigation} from 'swiper/modules'
+import { FreeMode, Navigation } from "swiper/modules";
 import Link from "next/link";
 import blogData from "@/Data/BlogsData";
 import "swiper/css";
@@ -26,22 +26,32 @@ const Blog = () => {
         </div>
         {/* CARD SECTION */}
         <div className="blog-card-section">
-          <Swiper loop={true} slidesPerView={"auto"} spaceBetween={40} navigation={{
-            nextEl : ".blog-slide-next",
-            prevEl : ".blog-slide-prev"
-          }} modules={[Navigation]}>
+          <Swiper
+            loop={true}
+            slidesPerView={"auto"}
+            spaceBetween={24}
+            centeredSlides="true"
+            navigation={{
+              nextEl: ".blog-slide-next",
+              prevEl: ".blog-slide-prev",
+            }}
+            modules={[Navigation, FreeMode]}
+          >
             {Array.isArray(blogData) &&
               blogData.map((data, index) => {
                 return (
                   <SwiperSlide key={index} className="blogSliderCard">
-                    <BlogCard {...data}/>
+                    <BlogCard {...data} />
                   </SwiperSlide>
                 );
               })}
           </Swiper>
           {/* SWIPER MODULES */}
           <div className="d-flex align-items-center justify-content-center mt-4">
-            <SliderNavigationBtn slideNext="blog-slide-next" slidePrev="blog-slide-next"/>
+            <SliderNavigationBtn
+              slideNext="blog-slide-next"
+              slidePrev="blog-slide-next"
+            />
           </div>
         </div>
       </div>
@@ -61,4 +71,3 @@ const Blog = () => {
   );
 };
 export default Blog;
-

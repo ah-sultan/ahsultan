@@ -10,7 +10,7 @@ const Testimonial = () => {
         <div className="for-bgc-black py-130 rpy-100">
           <div className="container">
             <div className="row gap-90">
-              <div className="col-lg-4">
+              <div className="col-lg-6 col-xl-4">
                 <div className="testimonials-content-part rel z-2 rmb-55 wow fadeInUp delay-0-2s">
                   <div className="section-title mb-40">
                     <span className="sub-title mb-15">
@@ -34,16 +34,22 @@ const Testimonial = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-8">
+              <div className="col-lg-6 col-xl-8">
                 <div className="testimonials-wrap"></div>
 
                 <Swiper
-                  slidesPerView={2}
+                  slidesPerView={1}
                   spaceBetween={24}
                   modules={[Navigation]}
                   navigation={{
                     nextEl: ".testimonial-next-btn",
                     prevEl: ".testimonial-prev-btn",
+                  }}
+                  breakpoints={{
+                    1199: {
+                      slidesPerView: 2,
+                      spaceBetween:24,
+                    },
                   }}
                 >
                   {Array.isArray(TestimonialData) &&
@@ -55,7 +61,7 @@ const Testimonial = () => {
                               <Image
                                 width={85}
                                 height={85}
-                                className="img-flui"
+                                className="img-fluid"
                                 src={data.authorImg}
                                 alt={data.authorName}
                               />

@@ -1,17 +1,16 @@
 import BlogSidebar from "@/components/BlogSidebar";
 import PageBanner from "@/components/PageBanner";
-import Link from "next/link";
 import BlogData from "@/Data/BlogsData";
 import BlogCard from "@/components/BlogCard";
 
 export const metadata = {
-  title: "Blog Standard",
+  title: "My Blogs",
 };
 
 const BlogPage = () => {
   return (
     <main>
-      <PageBanner pageName={"Blog Standard"} />
+      <PageBanner pageName={"Explore My Blogs"} />
       <section className="blog-standard-area pb-70 rpb-40 pb-130 rpb-100 rel z-1">
         <div className="container">
           <div className="row">
@@ -21,7 +20,7 @@ const BlogPage = () => {
                   {Array.isArray(BlogData) &&
                     BlogData.map((data, index) => {
                       return (
-                        <div className="col-lg-6 mb-4" key={index}>
+                        <div className="col-md-6 mb-4" key={index}>
                           <BlogCard {...data} />
                         </div>
                       );

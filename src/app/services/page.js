@@ -17,7 +17,7 @@ const ServicePage = () => {
     <main>
       <PageBanner pageName={"Popular Service"} />
 
-      <section className="what-i-do-area pt-25 rpt-0 pb-130 rpb-100 rel z-1">
+      <section className="what-i-do-area pt-25 rpt-0 rel z-1 ">
         <div className="container">
           <div className="row align-items-center justify-content-between">
             <div className="col-lg-6">
@@ -25,8 +25,8 @@ const ServicePage = () => {
                 <div className="first-image">
                   <Image src={whatIDoImg1} alt="What I do" />
                 </div>
-                <div className="last-image">
-                  <Image src={whatIDoImg1} alt="What I do" />
+                <div className="">
+                  <Image src={whatIDoImg2} alt="What I do" className="last-image"/>
                 </div>
                 <div className="icon first">
                   <i className="flaticon-asterisk-1" />
@@ -74,9 +74,9 @@ const ServicePage = () => {
         </div>
       </section>
       {/* What I Do Area end */}
-      <Services extraClass={"bgc-black"} />
+      <Services extraClass={"bgc-black "} />
       {/* Pricing Area start */}
-      <Pricing extraClass={"pb-100"} />
+      <Pricing extraClass={"pb-100 mt-0 pt-0"} />
     </main>
   );
 };

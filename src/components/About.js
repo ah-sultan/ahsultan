@@ -62,7 +62,7 @@ const About = () => {
             </div>
             <div className="col-lg-5">
               <div className="about-image-part wow fadeInUp delay-0-3s">
-                <Image src={aboutImg} alt="About Me" />
+                <Image src={aboutImg} alt="About Me" className="mt-4 md-mt-0 img-fluid"/>
                 <div className="about-btn btn-one wow fadeInRight delay-0-4s">
                   <Image src={btnImg1} alt="Image" />
                   <h6>Experience Designer</h6>

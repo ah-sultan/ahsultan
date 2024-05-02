@@ -10,11 +10,10 @@ import FaqData from "@/Data/FaqData";
 const Faq = () => {
   return (
     <Accordion
-      defaultActiveKey="collapseTwo"
       className="accordion wow fadeInUp delay-0-4s"
       id="faq-accordion"
+      defaultActiveKey={`faqAccordion_${1}`}
     >
-    
       {Array.isArray(FaqData) &&
         FaqData.map((data, index) => {
           return (
@@ -24,14 +23,10 @@ const Faq = () => {
               eventKey={`faqAccordion_${index}`}
             >
               <AccordionHeader className="accordion-header">
-                Are You Awards Winning Agency ?
+                {data.question}
               </AccordionHeader>
               <AccordionBody className="accordion-body">
-                <p>
-                  To take a trivial example which undertakes laborious physical
-                  exercise except to obtain some advantage pleasure annoying
-                  consequences
-                </p>
+                <p>{data.answer}</p>
               </AccordionBody>
             </AccordionItem>
           );

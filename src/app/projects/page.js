@@ -12,7 +12,7 @@ export const metadata = {
 const ProjectMasonry = () => {
   return (
     <main>
-      <PageBanner pageName={"Project Masonry"} />
+      <PageBanner pageName={"My All Project "} />
       <section className="projects-masonry-area pt-40 pb-130 rpb-100 rel z-1">
         <div className="container">
           <div className="row">

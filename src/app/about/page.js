@@ -2,7 +2,6 @@ import Clients from "@/components/Clients";
 import Faq from "@/components/Faq";
 import PageBanner from "@/components/PageBanner";
 import Services from "@/components/Services";
-import Testimonial from "@/components/Testimonials";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -13,6 +12,7 @@ import btnImg2 from "../../../public/images/about/btn-image2.png";
 import dots2Img from "../../../public/images/shape/about-dots-two.png";
 import faq1 from "../../../public/images/faqs/faq-one.jpg";
 import faq2 from "../../../public/images/faqs/faq-two.jpg";
+import Testimonial from "@/components/Testimonial";
 
 export const metadata = {
   title: "About Me",
@@ -26,12 +26,12 @@ const About = () => {
       <div className="about-main-image-area pt-40">
         <div className="container">
           <div className="about-main-image wow fadeInUp delay-0-5s">
-            <Image src={aboutPageImg} alt="About Page" />
+            <Image src={aboutPageImg} alt="About Page" className="img-fluid" />
           </div>
         </div>
       </div>
       {/* About Page Area start */}
-      <section className="about-page-area py-130 rpy-100 rel z-1">
+      <section className="about-page-area pt-130 xs-pt-60 xs-pb-0 rpy-100 rel z-1">
         <div className="container">
           <div className="row align-items-center justify-content-between">
             <div className="col-lg-6">
@@ -109,16 +109,16 @@ const About = () => {
       <Services extraClass={"bgc-black"} />
       {/* Services Area end */}
       {/* FAQs Area start */}
-      <section id="faqs" className="faqs-area py-130 rpy-100 rel z-1">
+      <section id="faqs" className="faqs-area rpy-100 xs-pt-0 xs-pb-60 rel z-1">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="faq-image-part rmb-55 wow fadeInUp delay-0-2s">
                 <div className="image-one">
-                  <Image alt="FAQs IMAGE" src={faq1} />
+                  <Image alt="FAQs IMAGE" src={faq1}  className="img-fluid"/>
                 </div>
                 <div className="image-two">
-                  <Image alt="FAQs IMAGE" src={faq2} />
+                  <Image alt="FAQs IMAGE" src={faq2} className="img-fluid" />
                 </div>
                 <div className="square-shape" />
               </div>
@@ -149,11 +149,7 @@ const About = () => {
           <span />
         </div>
       </section>
-      {/* FAQs Area end */}
-      {/* Testimonial Area start */}
       <Testimonial />
-      {/* Testimonial Area end */}
-      {/* Client Log start */}
       <Clients />
     </main>
   );

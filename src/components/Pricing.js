@@ -1,13 +1,11 @@
-"use client";
 import Link from "next/link";
-import { Nav, Tab } from "react-bootstrap";
 
 const Pricing = ({ extraClass }) => {
   return (
     <section className={`pricing-area pt-130 rpt-100 rel z-1 ${extraClass}`}>
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-xl-12">
+          <div className="col-xl-5 col-lg-8">
             <div className="section-title text-center mb-60 wow fadeInUp delay-0-2s">
               <span className="sub-title mb-15">Pricing Package</span>
               <h2>
@@ -17,7 +15,7 @@ const Pricing = ({ extraClass }) => {
           </div>
         </div>
         <div className="row justify-content-center">
-          <div className="col-lg-4 col-md-6">
+          <div className="col-xl-4 col-lg-6">
             <div className="pricing-item wow fadeInUp delay-0-2s">
               <div className="pricing-header">
                 <h4 className="title">Basic Plan</h4>
@@ -44,7 +42,7 @@ const Pricing = ({ extraClass }) => {
               </div>
             </div>
           </div>
-          <div className="col-lg-4 col-md-6">
+          <div className="col-xl-4 col-lg-6">
             <div className="pricing-item wow fadeInUp delay-0-4s">
               <div className="pricing-header">
                 <h4 className="title">Standard Plan</h4>
@@ -71,7 +69,7 @@ const Pricing = ({ extraClass }) => {
               </div>
             </div>
           </div>
-          <div className="col-lg-4 col-md-6">
+          <div className="col-xl-4 col-lg-6">
             <div className="pricing-item wow fadeInUp delay-0-6s">
               <div className="pricing-header">
                 <h4 className="title">Basic Plan</h4>

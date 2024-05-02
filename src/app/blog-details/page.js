@@ -6,6 +6,7 @@ import Link from "next/link";
 import authorImg from "../../../public/images/blog/author.jpg";
 import adminAuthorImg from "../../../public/images/blog/admin-author.jpg";
 import Comments from "@/components/Comments";
+import PageBanner from "@/components/PageBanner";
 
 export const metadata = {
   title: "Blog Details",
@@ -14,39 +15,7 @@ export const metadata = {
 const BlogDetails = () => {
   return (
     <main>
-      <section className="page-banner-area pt-200 rpt-140 pb-100 rpb-60 rel z-1 text-center">
-        <div className="container">
-          <div className="banner-inner text-white">
-            <h3 className="page-title wow fadeInUp delay-0-2s">
-              {" "}
-              Tips For Conducting to Usability Studies With Participants
-            </h3>
-            <nav aria-label="breadcrumb">
-              <ol className="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
-                <li className="breadcrumb-item">
-                  <Link href="/">Home</Link>
-                </li>
-                <li className="breadcrumb-item active">
-                  {" "}
-                  Tips For Conducting to Usability Studies With Participants
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-        <div className="bg-lines">
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
-      </section>
+      <PageBanner pageName={"Blog Details"} />
       {/* Page Banner End */}
       {/* Blog Details Area start */}
       <section className="blog-details-area pb-70 rpb-40 pb-130 rpb-100 rel z-1">
@@ -64,14 +33,7 @@ const BlogDetails = () => {
                     </Link>
                   </div>
                   <div className="author-date-share mb-40 wow fadeInUp delay-0-4s">
-                    <div className="author">
-                      <Image src={authorImg} alt="Author" />
-                    </div>
-                    <div className="text">
-                      <span>Post By</span>
-                      <h5>Martin D. Rubio</h5>
-                    </div>
-                    <div className="text">
+                                        <div className="text">
                       <span>Published</span>
                       <h5>September 25, 2023</h5>
                     </div>
@@ -177,7 +139,7 @@ const BlogDetails = () => {
                 <div className="admin-comment mt-50 wow fadeInUp delay-0-2s">
                   <div className="comment-body">
                     <div className="author-thumb">
-                      <Image  src={adminAuthorImg} alt="Author" />
+                      <Image src={adminAuthorImg} alt="Author" />
                     </div>
                     <div className="content">
                       <h5>Richard M. Fudge</h5>
@@ -208,7 +170,13 @@ const BlogDetails = () => {
                   <div className="next-prev-post pt-50 pb-20 wow fadeInUp delay-0-2s">
                     <div className="post-item">
                       <div className="image">
-                        <Image width={65} height={65} className="img-fluid" src="/images/blog/post-prev.jpg" alt="Post" />
+                        <Image
+                          width={65}
+                          height={65}
+                          className="img-fluid"
+                          src="/images/blog/post-prev.jpg"
+                          alt="Post"
+                        />
                       </div>
                       <div className="post-content">
                         <span className="date">
@@ -224,7 +192,13 @@ const BlogDetails = () => {
                     </div>
                     <div className="post-item">
                       <div className="image">
-                        <Image width={65} height={65} className="img-fluid" src="/images/blog/post-next.jpg" alt="Post" />
+                        <Image
+                          width={65}
+                          height={65}
+                          className="img-fluid"
+                          src="/images/blog/post-next.jpg"
+                          alt="Post"
+                        />
                       </div>
                       <div className="post-content">
                         <span className="date">
@@ -241,7 +215,7 @@ const BlogDetails = () => {
                   </div>
                 </div>
                 {/* COMMENTS SECTION */}
-                <Comments/>
+                <Comments />
               </div>
             </div>
             <div className="col-lg-4">
