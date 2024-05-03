@@ -1,0 +1,32 @@
+[
+    {
+        "id": "0",
+        "title": "Home",
+        "path": "/admin"
+    },
+    {
+        "id": "0",
+        "title": "Services",
+        "path": "/admin/Services"
+    },
+    {
+        "id": "1",
+        "title": "Blogs",
+        "path": "/admin/blogs"
+    },
+    {
+        "id": "1",
+        "title": "blog category",
+        "path": "/admin/blog-category"
+    },
+    {
+        "id": "2",
+        "title": "Projects",
+        "path": "/admin/projects"
+    },
+    {
+        "id": "3",
+        "title": "Testimonial",
+        "path": "/admin/testimonial"
+    }
+]

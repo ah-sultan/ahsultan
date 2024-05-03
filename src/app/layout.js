@@ -2,6 +2,7 @@ import { DM_Sans, Inter, Lexend, Syne, Unbounded } from "next/font/google";
 
 // import Preloader from "@/layout/Preloader";
 import 'swiper/css';
+import 'react-quill/dist/quill.snow.css';
 import "@/assets/css/bootstrap.min.css";
 import "@/assets/css/animate.min.css";
 import "@/assets/css/flaticon.min.css";
