@@ -1,4 +1,5 @@
 import "@/app/styles/admin.css";
+import AdminModal from "@/components/Admin/AdminModal";
 import SideNav from "@/components/Admin/SideNav";
 const layout = ({ children }) => {
   return (

@@ -8,6 +8,7 @@ const page = () => {
   return (
     <>
       <section className="dash-blog-category">
+        
         <DashboardBreadcrumb currentPage="Blog Category" />
         <div className="section-header">
           <h2 className="section-title">Blog Categories</h2>

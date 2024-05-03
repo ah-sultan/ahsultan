@@ -1,9 +1,15 @@
 "use client";
+import AdminModal from "@/components/Admin/AdminModal";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 const CategoryItem = ({ title }) => {
   const [value, setValue] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  const handleDelete = () => {
+    setShowModal(false);
+  };
   return (
     <>
       <div className="dash-cat-title">
@@ -24,10 +30,15 @@ const CategoryItem = ({ title }) => {
         <Button size="sm" variant="success">
           Update
         </Button>
-        <Button size="sm" variant="danger">
+        <Button size="sm" variant="danger" onClick={() => setShowModal(true)}>
           Delete
         </Button>
       </div>
+      <AdminModal
+        handleDelete={handleDelete}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </>
   );
 };

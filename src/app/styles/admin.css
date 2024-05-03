@@ -43,6 +43,38 @@ header {
   display: none;
 }
 
+.admin-modal {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .offcanvas-body,
+  .offcanvas-header {
+    display: none;
+  }
+
+  .admin-modal-body {
+    width: 450px;
+    padding: 40px;
+    flex-shrink: 0;
+    background: #fff;
+    h6 {
+      font-size: 18px;
+      color: var(--dark-color);
+      text-align: center;
+      padding-bottom: 40px;
+    }
+
+    .btn-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+  }
+}
+
 p {
   font-size: 16px;
   color: var(--gray-color);
@@ -59,6 +91,7 @@ p {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   min-height: 60vh;
+  margin-bottom: 200px;
 
   .no-items {
     display: flex;
