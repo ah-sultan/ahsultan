@@ -18,7 +18,11 @@ const expertTitle = [
   "Redux Expert",
 ];
 
+
+
 const Hero = () => {
+
+
   return (
     <section id="home" className="main-hero-area pt-150 pb-80 rel z-1">
       <div className="container container-1620">
@@ -64,7 +68,9 @@ const Hero = () => {
             expertTitle.map((title, index) => {
               return (
                 <React.Fragment key={index}>
-                  <li className="text" key={index}>{title}</li>
+                  <li className="text" key={index}>
+                    {title}
+                  </li>
                   <li>
                     <svg
                       width="24"
@@ -80,7 +86,6 @@ const Hero = () => {
                       />
                     </svg>
                   </li>
-                  
                 </React.Fragment>
               );
             })}
@@ -90,7 +95,9 @@ const Hero = () => {
             expertTitle.map((title, index) => {
               return (
                 <React.Fragment key={index}>
-                  <li className="text" key={index}>{title}</li>
+                  <li className="text" key={index}>
+                    {title}
+                  </li>
                   <li>
                     <svg
                       width="24"
@@ -106,7 +113,6 @@ const Hero = () => {
                       />
                     </svg>
                   </li>
-                  
                 </React.Fragment>
               );
             })}

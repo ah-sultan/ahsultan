@@ -10,7 +10,7 @@ const page = () => {
     <>
       <section className="dash-testimonial">
         <DashboardBreadcrumb currentPage="Testimonial" />
-        <SectionHeader sectionTitle="testimonial" />
+        <SectionHeader sectionTitle="testimonial" path="/admin/testimonial/add-new"/>
         <ContentWrapper noItems={false}>
           <ul>
             {Array.isArray(TestimonialData) &&

@@ -1,8 +1,8 @@
 import { DM_Sans, Inter, Lexend, Syne, Unbounded } from "next/font/google";
 
 // import Preloader from "@/layout/Preloader";
-import 'swiper/css';
-import 'react-quill/dist/quill.snow.css';
+import "swiper/css";
+import "react-quill/dist/quill.snow.css";
 import "@/assets/css/bootstrap.min.css";
 import "@/assets/css/animate.min.css";
 import "@/assets/css/flaticon.min.css";
@@ -15,6 +15,9 @@ import Preloader from "@/components/Shared/Preloader";
 import Header from "@/components/Shared/Header/Header";
 import Footer from "@/components/Shared/Footer";
 import SideBar from "@/components/Shared/SideBar";
+import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /** google fonts */
 const primaryFont = Lexend({
@@ -48,6 +51,7 @@ export default function RootLayout({ children }) {
           <SideBar />
           {children}
           <Footer />
+          <ToastContainer/>
         </div>
       </body>
     </html>
