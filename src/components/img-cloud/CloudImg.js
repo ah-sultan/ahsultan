@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "./ImgCloud.module.css";
 import { ModalBody, Modal, ModalHeader, ModalTitle } from "react-bootstrap";
 
@@ -8,9 +8,16 @@ const CloudImg = () => {
     "/images/blog/blog_01/blog_card_thumbnail.jpg"
   );
   const [modalShow, setModalShow] = useState(false);
+  const cloudImgRef = useRef();
+
+  useEffect(() => {
+    // IMG CSS ----
+    cloudImgRef.current.style.height = `${cloudImgRef.current.clientWidth}px`;
+  }, [cloudImgRef]);
+
   return (
     <>
-      <div className={style.cloudImgBlock + "" + " cloudImgBlockID"}>
+      <div className={style.cloudImgBlock + "" + " cloudImgBlockID"} ref={cloudImgRef}>
         <input type="checkbox" />
         <Image
           src={imgPath}

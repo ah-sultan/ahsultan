@@ -14,25 +14,43 @@ import UploadNewImage from "./UploadNewImage";
 import CloudImg from "./CloudImg";
 
 const ImgCloud = ({ imgCaption = "Upload Image" }) => {
-  const [fileList, setFileList] = useState(["", ""]);
+  const [fileList, setFileList] = useState([]);
+  const [folderPath, setFolderPath] = useState('/imagCloud')
   const [selectedImg, setSelectedImg] = useState(
     "/images/dashboard/upload-img-btn.png"
   );
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    // IMG CSS ----
-    const cloudImgRef = document.querySelectorAll(".cloudImgBlockID");
-    cloudImgRef.forEach((img) => {
-      img.style.height = img.clientWidth + "px";
-    });
-    // IMG CSS END
-  }, [showModal]);
+
+  // HANDLE FIND IMAGE ==============
+  const handleGetFiles = async (path = "") => {
+    setFolderPath(path)
+    try {
+      const res = await fetch(`/api/find-files?id=/imgCloud${path}`, {
+        method: "GET",
+        
+      });
+      const data = await res.json()
+      setFileList(data.files)
+
+      console.log(data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // CONST HANDLE SHOW MODAL
+  const handleShowModal = () => {
+    setShowModal(true)
+    handleGetFiles()
+  }
+
+
 
   return (
     <>
       <section className={style.imgCloud}>
-        <div className={style.uploadImgBtn} onClick={() => setShowModal(true)}>
+        <div className={style.uploadImgBtn} onClick={() => handleShowModal()}>
           <Image
             src={selectedImg}
             width={300}
@@ -56,7 +74,12 @@ const ImgCloud = ({ imgCaption = "Upload Image" }) => {
                     <Button type="button" variant="primary">
                       Select Image
                     </Button>
-                    <Button type="button" variant="danger" className="ms-4" onClick={() => setShowModal(false)}>
+                    <Button
+                      type="button"
+                      variant="danger"
+                      className="ms-4"
+                      onClick={() => setShowModal(false)}
+                    >
                       Close
                     </Button>
                   </div>
@@ -67,7 +90,7 @@ const ImgCloud = ({ imgCaption = "Upload Image" }) => {
                       fileList.map((data, index) => {
                         return (
                           <li key={index}>
-                            {true ? (
+                            {data.imgPath ? (
                               <CloudImg />
                             ) : (
                               <Image
@@ -75,7 +98,6 @@ const ImgCloud = ({ imgCaption = "Upload Image" }) => {
                                 alt="Folder"
                                 width={400}
                                 height={400}
-                                
                               />
                             )}
                             <h6>Folder Name</h6>
@@ -84,7 +106,7 @@ const ImgCloud = ({ imgCaption = "Upload Image" }) => {
                       })}
                     {/* CREATE NEW FOLDER */}
                     <li>
-                      <CreateNewFolder />
+                      <CreateNewFolder currentPath={folderPath}/>
                     </li>
                     <li>
                       <UploadNewImage />

@@ -2,12 +2,19 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
-const CreateNewFolder = () => {
+const CreateNewFolder = ({currentPath}) => {
   const [showModal, setShowModal] = useState(false)
 
   const handleCreateFolder = async () => {
-    setShowModal(false)
+    try {
+      const res = ""
+    } catch (error) {
+      
+    }
+
   }
+
+
 
   return (
     <div>
