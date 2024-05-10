@@ -50,6 +50,10 @@
   box-shadow: none;
 }
 
+.Toastify__toast-container{
+  --toastify-z-index : 99999999;
+}
+
 body {
   color: var(--base-color);
   background: #ffffff;

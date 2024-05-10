@@ -387,3 +387,7 @@ textarea.dash-input-form {
     }
   }
 }
+
+.Toastify__toast-container{
+  --toastify-z-index : 99999999;
+}

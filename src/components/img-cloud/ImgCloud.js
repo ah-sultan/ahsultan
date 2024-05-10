@@ -11,46 +11,49 @@ import {
 import Image from "next/image";
 import CreateNewFolder from "./CreateNewFolder";
 import UploadNewImage from "./UploadNewImage";
-import CloudImg from "./CloudImg";
+import ViewCloudImg from "./ViewCloudImg";
+import Loading from "../Loading";
 
 const ImgCloud = ({ imgCaption = "Upload Image" }) => {
+  const [currentPath, setCurrentPath] = useState("")
   const [fileList, setFileList] = useState([]);
-  const [folderPath, setFolderPath] = useState('/imagCloud')
+  const [loading, setLoading] = useState(true);
+  const [folderPath, setFolderPath] = useState("");
   const [selectedImg, setSelectedImg] = useState(
     "/images/dashboard/upload-img-btn.png"
   );
   const [showModal, setShowModal] = useState(false);
 
-
   // HANDLE FIND IMAGE ==============
-  const handleGetFiles = async (path = "") => {
-    setFolderPath(path)
+  const handleFetchData = async () => {
     try {
-      const res = await fetch(`/api/find-files?id=/imgCloud${path}`, {
+      const res = await fetch("/api/imgCloudFiles", {
         method: "GET",
-        
       });
-      const data = await res.json()
-      setFileList(data.files)
+      const data = await res.json();
 
-      console.log(data)
+      if (res.ok) {
+        setFileList(data.files);
+        setLoading(false)
+      }
     } catch (error) {
-      console.log(error);
+      setLoading(false)
     }
   };
 
   // CONST HANDLE SHOW MODAL
-  const handleShowModal = () => {
-    setShowModal(true)
-    handleGetFiles()
-  }
-
-
+  const handleShowModal = (e) => {
+    setShowModal(true);
+    handleFetchData();
+  };
 
   return (
     <>
       <section className={style.imgCloud}>
-        <div className={style.uploadImgBtn} onClick={() => handleShowModal()}>
+        <div
+          className={style.uploadImgBtn}
+          onClick={() => handleShowModal()}
+        >
           <Image
             src={selectedImg}
             width={300}
@@ -85,33 +88,44 @@ const ImgCloud = ({ imgCaption = "Upload Image" }) => {
                   </div>
                 </div>
                 <div className={style.cloudContent}>
-                  <ul>
-                    {Array.isArray(fileList) &&
-                      fileList.map((data, index) => {
-                        return (
-                          <li key={index}>
-                            {data.imgPath ? (
-                              <CloudImg />
-                            ) : (
-                              <Image
-                                src="/images/dashboard/folder-icon.svg"
-                                alt="Folder"
-                                width={400}
-                                height={400}
-                              />
-                            )}
-                            <h6>Folder Name</h6>
-                          </li>
-                        );
-                      })}
-                    {/* CREATE NEW FOLDER */}
-                    <li>
-                      <CreateNewFolder currentPath={folderPath}/>
-                    </li>
-                    <li>
-                      <UploadNewImage />
-                    </li>
-                  </ul>
+                  {loading ? (
+                    <Loading />
+                  ) : (
+                    <ul>
+                      {Array.isArray(fileList) &&
+                        fileList.map((data, index) => {
+                          return (
+                            <li key={index}>
+                              {data.imgPath.length > 0 ? (
+                                <ViewCloudImg />
+                              ) : (
+                                <Image
+                                  src="/images/dashboard/folder-icon.svg"
+                                  alt="Folder"
+                                  width={400}
+                                  height={400}
+                                  onClick={() =>
+                                    handleGetFiles(
+                                      `/${folderPath}/${data.folderName}`
+                                    )
+                                  }
+                                />
+                              )}
+                              <h6 style={{ textTransform: "capitalize" }}>
+                                {data.folderName}
+                              </h6>
+                            </li>
+                          );
+                        })}
+                      {/* CREATE NEW FOLDER */}
+                      <li>
+                        <CreateNewFolder currentPath={currentPath} />
+                      </li>
+                      <li>
+                        <UploadNewImage />
+                      </li>
+                    </ul>
+                  )}
                 </div>
               </div>
             </div>
