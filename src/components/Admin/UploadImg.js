@@ -7,7 +7,6 @@ const UploadImg = ({ getImages = () => {} }) => {
 
   //   HANDLE FOR DATA
   const handleFormData = (value) => {
-    
     const formData = new FormData();
     [...value].forEach((file) => {
       formData.append("file", file);
@@ -17,22 +16,18 @@ const UploadImg = ({ getImages = () => {} }) => {
 
   //   HANDLE PREVIEW DATA
   const handlePreview = (value = []) => {
-    const img = []
+    const img = [];
     value.forEach((file, idex) => {
-        
       if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
           const imageSrc = e.target.result;
-          
+          setPreview([{ image: imageSrc, index: idex }]);
         };
         reader.readAsDataURL(file);
       }
-      
     });
-
-    
-  };
+  }
 
   console.log(preview);
 
@@ -40,16 +35,13 @@ const UploadImg = ({ getImages = () => {} }) => {
   const handleDelate = (index) => {
     const updatedData = selectedImages; // Create a copy of the selectedImages array
     updatedData.splice(index, 1); // Remove one element at the specified index
-    const updatePreview = preview.splice(index)
-    updatePreview.splice(index)
     setSelectedImages(updatedData);
     handleFormData(updatedData);
-    handlePreview(updatePreview);
+    handlePreview(updatedData);
   };
 
   //   HANDLE CHANGE
   const handleChanged = (e) => {
-    
     const allFiles = e.target.files;
     const imagesArray = Array.from(allFiles);
     setSelectedImages((prevSelectedImages) => {
@@ -58,8 +50,6 @@ const UploadImg = ({ getImages = () => {} }) => {
       handlePreview(newData);
       return newData;
     });
-
-    
   };
 
   return (
@@ -87,7 +77,7 @@ const UploadImg = ({ getImages = () => {} }) => {
                 <Image
                   width={300}
                   height={300}
-                  src={data.img}
+                  src={data.image}
                   alt="UPLOAD IMG"
                 />
                 <span
