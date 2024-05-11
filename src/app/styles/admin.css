@@ -7,6 +7,10 @@ body {
   color: var(--gray-color);
 }
 
+.Toastify__toast-container {
+  --toastify-z-index: 99999999;
+}
+
 .admin-page label {
   font-size: 16px;
   color: var(--dark-color);
@@ -388,6 +392,70 @@ textarea.dash-input-form {
   }
 }
 
-.Toastify__toast-container{
-  --toastify-z-index : 99999999;
+/* ===========================================================
+   UPLOADED IMG
+=========================================================== */
+
+.dash-upload-img {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  align-items: center;
+  gap: 20px;
+
+  .dash-upload-area {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    img {
+      width: 200px;
+      height: 200px;
+    }
+
+    input {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      border: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+
+  .dash-selected-img {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .selected-img-remove {
+    background: black;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 24px;
+    height: 24px;
+    background: black;
+    color: #ffffff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    font-family: var(--font-secondary);
+    cursor: pointer;
+
+}
 }

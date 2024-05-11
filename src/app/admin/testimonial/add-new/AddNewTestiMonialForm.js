@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import React from "react";
 import { toast } from "react-toastify";
+import UploadImg from "@/components/Admin/UploadImg";
 
 const AddNewTestiMonialForm = () => {
   const [clientName, setClientName] = useState("");
@@ -51,12 +52,7 @@ const AddNewTestiMonialForm = () => {
           onChange={(e) => setClientTitle(e.target.value)}
           required
         />
-        <input
-          type="file"
-          className="dash-input-form"
-          placeholder="Client Image"
-          onChange={(e) => setClientImage(e.target.value)}
-        />
+       <UploadImg/>
         <textarea
           className="dash-input-form"
           placeholder="Client Review"
@@ -68,20 +64,6 @@ const AddNewTestiMonialForm = () => {
           Save Testimonial
         </Button>
       </form>
-
-      {/* <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition="Bounce"
-      /> */}
     </>
   );
 };

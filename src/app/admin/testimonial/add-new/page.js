@@ -3,8 +3,6 @@ import DashboardBreadcrumb from "@/components/Admin/DashboardBreadcrumb";
 import React from "react";
 import AddNewTestiMonialForm from "./AddNewTestiMonialForm";
 import FileUpload from "./FileUpload";
-import ImgCloud from "@/components/img-cloud/ImgCloud";
-
 const AddNewTestimonial = () => {
   const SectionTitle = "Add New Testimonial";
 
@@ -17,10 +15,8 @@ const AddNewTestimonial = () => {
         </div>
         <ContentWrapper>
           <div className="dash-testimonial-form">
-            {/* <AddNewTestiMonialForm /> */}
-            {/* <FileUpload/> */}
-            <ImgCloud/>
-            
+            <AddNewTestiMonialForm />
+            {/* <FileUpload/> */}           
           </div>
         </ContentWrapper>
       </section>
