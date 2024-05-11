@@ -4,12 +4,24 @@ import { Button } from "react-bootstrap";
 import React from "react";
 import { toast } from "react-toastify";
 import UploadImg from "@/components/Admin/UploadImg";
+import { replaceString } from "@/lib/helper";
 
 const AddNewTestiMonialForm = () => {
   const [clientName, setClientName] = useState("");
   const [clientTitle, setClientTitle] = useState("");
   const [reviewText, setReviewText] = useState("");
-  const [clientImage, setClientImage] = useState(null);
+  const [getImages, setGetImages]= useState([])
+
+
+console.log(getImages)    
+
+  const testimonialData = {
+    clientName: clientName,
+    clientTitle: clientTitle,
+    reviewText: reviewText,
+    image: `/images/testimonial/${replaceString(clientTitle)}`,
+  };
+  // console.log()
 
   // Handle Submit
   const handleSubmit = async (e) => {
@@ -17,12 +29,10 @@ const AddNewTestiMonialForm = () => {
 
     try {
       // Fetch Api
-      const res = await fetch("/api/testimonial/new", {
+      const res = await fetch("/api/testimonial", {
         method: "POST",
         body: JSON.stringify({
-          clientName: clientName,
-          clientTitle: clientTitle,
-          reviewText: reviewText,
+          testimonialData,
         }),
       });
       if (res.ok) {
@@ -52,7 +62,7 @@ const AddNewTestiMonialForm = () => {
           onChange={(e) => setClientTitle(e.target.value)}
           required
         />
-       <UploadImg/>
+        <UploadImg getImages={setGetImages}/>
         <textarea
           className="dash-input-form"
           placeholder="Client Review"
@@ -60,6 +70,7 @@ const AddNewTestiMonialForm = () => {
           onChange={(e) => setReviewText(e.target.value)}
           required
         />
+       
         <Button type="submit" variant="primary" size="lg">
           Save Testimonial
         </Button>

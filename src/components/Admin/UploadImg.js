@@ -1,36 +1,66 @@
 import Image from "next/image";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-const UploadImg = () => {
+const UploadImg = ({ getImages = () => {} }) => {
   const [selectedImages, setSelectedImages] = useState([]);
+  const [preview, setPreview] = useState([]);
+
+  //   HANDLE FOR DATA
+  const handleFormData = (value) => {
+    
+    const formData = new FormData();
+    [...value].forEach((file) => {
+      formData.append("file", file);
+      getImages(formData);
+    });
+  };
+
+  //   HANDLE PREVIEW DATA
+  const handlePreview = (value = []) => {
+    const img = []
+    value.forEach((file, idex) => {
+        
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imageSrc = e.target.result;
+          
+        };
+        reader.readAsDataURL(file);
+      }
+      
+    });
+
+    
+  };
+
+  console.log(preview);
+
+  //   HANDLE DELETE
+  const handleDelate = (index) => {
+    const updatedData = selectedImages; // Create a copy of the selectedImages array
+    updatedData.splice(index, 1); // Remove one element at the specified index
+    const updatePreview = preview.splice(index)
+    updatePreview.splice(index)
+    setSelectedImages(updatedData);
+    handleFormData(updatedData);
+    handlePreview(updatePreview);
+  };
 
   //   HANDLE CHANGE
-  const handleChanged = useCallback((e) => {
-    const allFiles = e.target.files || [];
-
-    [...allFiles].forEach((file, index) => {
-      file.id = `_uploadImg_${index}`;
-
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        const imageSrc = e.target.result;
-        setSelectedImages((prevSelectedImages) => [
-          ...prevSelectedImages,
-          { ...file, livePreview: imageSrc },
-        ]);
-      };
+  const handleChanged = (e) => {
+    
+    const allFiles = e.target.files;
+    const imagesArray = Array.from(allFiles);
+    setSelectedImages((prevSelectedImages) => {
+      const newData = [...prevSelectedImages, ...imagesArray];
+      handleFormData(newData);
+      handlePreview(newData);
+      return newData;
     });
-  }, []);
 
-
-  const handleDelete = useCallback((id) => {
-    setSelectedImages((prevSelectedImages) =>
-      prevSelectedImages.filter((image) => image.id !== id)
-    );
-  }, []);
-
-  console.log(selectedImages)
+    
+  };
 
   return (
     <>
@@ -49,17 +79,23 @@ const UploadImg = () => {
             multiple
           />
         </div>
-        {Array.isArray(selectedImages) &&
-          selectedImages.map((data, index) => {
+
+        {Array.isArray(preview) &&
+          preview.map((data, index) => {
             return (
               <div className="dash-selected-img" key={index}>
-                <img
+                <Image
                   width={300}
                   height={300}
-                  src={data.livePreview}
+                  src={data.img}
                   alt="UPLOAD IMG"
                 />
-                <span className="selected-img-remove" onClick={() => handleDelete(data.id)}>X</span>
+                <span
+                  className="selected-img-remove"
+                  onClick={() => handleDelate(index)}
+                >
+                  X
+                </span>
               </div>
             );
           })}

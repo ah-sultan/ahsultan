@@ -16,7 +16,7 @@ const AddNewTestimonial = () => {
         <ContentWrapper>
           <div className="dash-testimonial-form">
             <AddNewTestiMonialForm />
-            {/* <FileUpload/> */}           
+            {/* <FileUpload/> */}
           </div>
         </ContentWrapper>
       </section>

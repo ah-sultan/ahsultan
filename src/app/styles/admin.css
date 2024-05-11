@@ -405,11 +405,11 @@ textarea.dash-input-form {
 
   .dash-upload-area {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
     img {
-      width: 200px;
-      height: 200px;
+      width: 160px;
+      height: 160px;
     }
 
     input {
@@ -424,13 +424,24 @@ textarea.dash-input-form {
   }
 
   .dash-selected-img {
-    width: 200px;
-    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 160px;
     overflow: hidden;
     position: relative;
-    img {
+    padding: 10px;
+    background: #E4E4E4;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    img{
       width: 100%;
       height: auto;
+      border-radius: 10px;
     }
   }
 
@@ -456,6 +467,5 @@ textarea.dash-input-form {
     -o-border-radius: 100%;
     font-family: var(--font-secondary);
     cursor: pointer;
-
-}
+  }
 }
