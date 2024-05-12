@@ -6,6 +6,7 @@ export const POST = async (req, res) => {
   const formData = await req.formData();
 
   const file = formData.get("file");
+  const filePath = formData.get("path");
   if (!file) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
   }
@@ -16,14 +17,19 @@ export const POST = async (req, res) => {
 
   try {
     await writeFile(
-      path.join(process.cwd(), "public/uploads/" + filename),
+      // path.join(process.cwd(), "public/uploads/" + filename),
+      path.join(process.cwd(), "public" + filePath),
       buffer
     );
-    return NextResponse.json({ Message: "Success", status: 201 });
+    return NextResponse.json(
+      { Message: "success" },
+      { statusText: "OK", status: 201 }
+    );
   } catch (error) {
-    console.log("Error occured ", error);
-    return NextResponse.json({ Message: "Failed", status: 500 });
+    console.log("Error occurred ", error);
+    return NextResponse.json(
+      { Message: "Failed To Upload" },
+      { status: 500, statusText: "ERROR" }
+    );
   }
-
-  
 };

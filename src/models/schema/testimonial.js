@@ -11,6 +11,9 @@ const testimonialContent = new Schema({
     type: String,
     required: [true, "Review text Name is required"],
   },
+
+  image: String,
+  publishedDate: String,
 });
 
 const TestimonialSchema =

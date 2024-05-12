@@ -398,12 +398,20 @@ textarea.dash-input-form {
 
 .dash-upload-img {
   margin-bottom: 40px;
+  position: relative;
 
   .upload__image-wrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 20px;
+  }
+
+  .remove-all-img-btn {
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    bottom: 0;
   }
 
   .dash-upload-area {
@@ -413,6 +421,7 @@ textarea.dash-input-form {
     img {
       width: 160px;
       height: 160px;
+      cursor: pointer;
     }
 
     input {
@@ -470,5 +479,9 @@ textarea.dash-input-form {
     -o-border-radius: 100%;
     font-family: var(--font-secondary);
     cursor: pointer;
+  }
+
+  .selected-img-remove:last-child {
+    right: 36px;
   }
 }

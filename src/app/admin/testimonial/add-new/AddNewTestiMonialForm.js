@@ -1,45 +1,92 @@
 "use client";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import React from "react";
 import { toast } from "react-toastify";
-import { replaceString } from "@/lib/helper";
 import UploadImage from "@/components/Admin/UploadImage";
+import { handleRemoveSelectedImg } from "@/lib/helper";
 
 const AddNewTestiMonialForm = () => {
   const [clientName, setClientName] = useState("");
   const [clientTitle, setClientTitle] = useState("");
   const [reviewText, setReviewText] = useState("");
-  const [getImages, setGetImages]= useState([])
-
-
-console.log(getImages)    
-
-  const testimonialData = {
-    clientName: clientName,
-    clientTitle: clientTitle,
-    reviewText: reviewText,
-    image: `/images/testimonial/${replaceString(clientTitle)}`,
-  };
-  // console.log()
+  const [getImages, setGetImages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Handle Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      clientName.length > 0 &&
+      reviewText.length > 0 &&
+      getImages.length > 0
+    ) {
+      // CREATE OBJECT DATA
+      const getImgExtension =
+        getImages.length > 0 && getImages[0].type.replace("image/", ".");
+      const createImgName =
+        clientName.length > 0 && clientName.replace(" ", "_");
+      const testimonialData = {
+        clientName: clientName,
+        clientTitle: clientTitle,
+        reviewText: reviewText,
+        image: "/images/testimonials/" + createImgName + getImgExtension,
+      };
+
+      try {
+        setLoading(true);
+        // Fetch Api
+        const res = await fetch("/api/testimonial/", {
+          method: "POST",
+          body: JSON.stringify(testimonialData),
+        });
+
+        if (res.statusText === "OK") {
+          handleUploadImage(testimonialData.image);
+        } else {
+          setLoading(false);
+        }
+      } catch (error) {
+        setLoading(false);
+        toast.error("Error: Testimonial didn't added");
+      }
+    } else {
+      toast.warning("Please Fill required filed");
+      setLoading(false);
+    }
+  };
+
+  // HANDLE UPLOAD IMAGES
+  const handleUploadImage = async (path) => {
+    const formData = new FormData();
+    formData.append("file", getImages[0]);
+    formData.append("path", path);
+
     try {
-      // Fetch Api
-      const res = await fetch("/api/testimonial", {
+      const res = await fetch("/api/uploadFile", {
         method: "POST",
-        body: JSON.stringify({
-          testimonialData,
-        }),
+        body: formData,
       });
-      if (res.ok) {
-        toast.success("Testimonial Added Successfully");
+      if (res.statusText === "OK") {
+        toast.success("Testimonial has created successfully");
+        setLoading(false);
+
+        // EMPTY DATA
+        setClientName("");
+        setClientTitle("");
+        setReviewText("");
+        setGetImages([]);
+        handleRemoveSelectedImg()
+      } else {
+        setLoading(false);
       }
     } catch (error) {
-      toast.error("Error: Testimonial didn't added");
+      if (error) {
+        toast.error("Error: Image Not uploaded");
+      }
+
+      setLoading(false);
     }
   };
 
@@ -62,7 +109,10 @@ console.log(getImages)
           onChange={(e) => setClientTitle(e.target.value)}
           required
         />
-        <UploadImage setGetImages={setGetImages}/>
+        <UploadImage
+          getImages={setGetImages}
+          multiple={false}
+        />
         <textarea
           className="dash-input-form"
           placeholder="Client Review"
@@ -70,10 +120,19 @@ console.log(getImages)
           onChange={(e) => setReviewText(e.target.value)}
           required
         />
-       
-        <Button type="submit" variant="primary" size="lg">
-          Save Testimonial
-        </Button>
+
+        <div className="d-flex align-items-center ">
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            disabled={loading === true}
+          >
+            Save Testimonial
+          </Button>
+
+          {loading && <Spinner className="ms-3" />}
+        </div>
       </form>
     </>
   );

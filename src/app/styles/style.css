@@ -130,6 +130,12 @@ li {
   margin: 0;
 }
 
+button {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 img {
   max-width: 100%;
   display: inline-block;
