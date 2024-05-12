@@ -397,11 +397,14 @@ textarea.dash-input-form {
 =========================================================== */
 
 .dash-upload-img {
-  display: flex;
-  flex-wrap: wrap;
   margin-bottom: 40px;
-  align-items: center;
-  gap: 20px;
+
+  .upload__image-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
 
   .dash-upload-area {
     position: relative;
@@ -432,13 +435,13 @@ textarea.dash-input-form {
     overflow: hidden;
     position: relative;
     padding: 10px;
-    background: #E4E4E4;
+    background: #e4e4e4;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    img{
+    img {
       width: 100%;
       height: auto;
       border-radius: 10px;

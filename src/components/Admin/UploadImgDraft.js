@@ -15,21 +15,19 @@ const UploadImg = ({ getImages = () => {} }) => {
   };
 
   //   HANDLE PREVIEW DATA
-  const handlePreview = (value = []) => {
-    const img = [];
-    value.forEach((file, idex) => {
+  const handlePreview = (value) => {
+    value.forEach((file, index) => {
       if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
           const imageSrc = e.target.result;
-          setPreview([{ image: imageSrc, index: idex }]);
+          setPreview((previousImg) => [...previousImg, { image: imageSrc, index }]);
         };
         reader.readAsDataURL(file);
       }
     });
-  }
+  };
 
-  console.log(preview);
 
   //   HANDLE DELETE
   const handleDelate = (index) => {
@@ -44,12 +42,10 @@ const UploadImg = ({ getImages = () => {} }) => {
   const handleChanged = (e) => {
     const allFiles = e.target.files;
     const imagesArray = Array.from(allFiles);
-    setSelectedImages((prevSelectedImages) => {
-      const newData = [...prevSelectedImages, ...imagesArray];
-      handleFormData(newData);
-      handlePreview(newData);
-      return newData;
-    });
+    const newData = [...selectedImages, ...imagesArray];
+    setSelectedImages(newData);
+    handleFormData(newData);
+    handlePreview(newData);
   };
 
   return (

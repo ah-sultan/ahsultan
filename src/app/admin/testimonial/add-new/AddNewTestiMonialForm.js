@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import React from "react";
 import { toast } from "react-toastify";
-import UploadImg from "@/components/Admin/UploadImg";
 import { replaceString } from "@/lib/helper";
+import UploadImage from "@/components/Admin/UploadImage";
 
 const AddNewTestiMonialForm = () => {
   const [clientName, setClientName] = useState("");
@@ -62,7 +62,7 @@ console.log(getImages)
           onChange={(e) => setClientTitle(e.target.value)}
           required
         />
-        <UploadImg getImages={setGetImages}/>
+        <UploadImage setGetImages={setGetImages}/>
         <textarea
           className="dash-input-form"
           placeholder="Client Review"
