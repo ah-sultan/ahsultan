@@ -3,18 +3,26 @@ import DashboardBreadcrumb from "@/components/Admin/DashboardBreadcrumb";
 import ItemsButtonWrapper from "@/components/Admin/ItemsButtonWrapper";
 import SectionHeader from "@/components/Admin/SectionHeader";
 import TestimonialData from "@/Data/TestimonialData";
+import { getTestimonialData } from "@/lib/getData";
+import TestimonialSchema from "@/models/schema/testimonial";
+import { connectToDB } from "@/utils/database";
 import Image from "next/image";
 
-const page = () => {
+const page = async () => {
+  const data = await getTestimonialData();
+
   return (
     <>
       <section className="dash-testimonial">
         <DashboardBreadcrumb currentPage="Testimonial" />
-        <SectionHeader sectionTitle="testimonial" path="/admin/testimonial/add-new"/>
+        <SectionHeader
+          sectionTitle="testimonial"
+          path="/admin/testimonial/add-new"
+        />
         <ContentWrapper noItems={false}>
           <ul>
-            {Array.isArray(TestimonialData) &&
-              TestimonialData.map((data, index) => {
+            {Array.isArray(data) &&
+              data.map((data, index) => {
                 return (
                   <li className="dash-testimonial-item" key={index}>
                     <div className="card-content">
@@ -22,20 +30,23 @@ const page = () => {
                         width={60}
                         height={60}
                         className="img-fluid"
-                        src={data.authorImg}
-                        alt={data.authorName}
+                        src={data.image}
+                        alt={data.image}
                       />
                       <div className="content-info">
                         <h6>
-                          <b>{data.authorName}</b>
+                          <b>{data.clientName}</b>
                           <span>|</span>
-                          <span>{data.authorDesignation}</span>
+                          <span>{data.clientTitle}</span>
                         </h6>
                         <p>{data.reviewText}</p>
                       </div>
                     </div>
                     <div className="button-area">
-                      <ItemsButtonWrapper />
+                      <ItemsButtonWrapper
+                        modalText="Testimonial"
+                        deleteAPi="/api/testimonial"
+                      />
                     </div>
                   </li>
                 );

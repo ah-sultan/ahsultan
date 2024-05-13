@@ -12,6 +12,7 @@ export const POST = async (req) => {
       clientTitle,
       reviewText,
       publishedDate,
+      image,
     });
     await newTestimonial.save();
 
@@ -27,3 +28,23 @@ export const POST = async (req) => {
     );
   }
 };
+
+export const GET = async (req) => {
+  try {
+    await connectToDB();
+    const testimonials = await TestimonialSchema.find({});
+
+    return NextResponse.json(
+      { message: "success to get testimonials", data: testimonials },
+      { status: 202, statusText: "OK" }
+    );
+  } catch (error) {
+    console.log(error)
+    return NextResponse.json(
+      { message: "Error: this is server side error" },
+      { status: 503, statusText: "ERROR" }
+    );
+  }
+};
+
+
