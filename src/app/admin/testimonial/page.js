@@ -9,7 +9,7 @@ import { connectToDB } from "@/utils/database";
 import Image from "next/image";
 
 const page = async () => {
-  const data = await getTestimonialData();
+  const getData = await getTestimonialData();
 
   return (
     <>
@@ -21,8 +21,8 @@ const page = async () => {
         />
         <ContentWrapper noItems={false}>
           <ul>
-            {Array.isArray(data) &&
-              data.map((data, index) => {
+            {Array.isArray(getData) &&
+              getData.map((data, index) => {
                 return (
                   <li className="dash-testimonial-item" key={index}>
                     <div className="card-content">
@@ -45,7 +45,10 @@ const page = async () => {
                     <div className="button-area">
                       <ItemsButtonWrapper
                         modalText="Testimonial"
-                        deleteAPi="/api/testimonial"
+                        api="/api/testimonial"
+                        
+                        _id={data.id}
+                        image={data.image}
                       />
                     </div>
                   </li>

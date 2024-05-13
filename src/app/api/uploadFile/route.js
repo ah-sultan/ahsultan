@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import path from "path";
 import { writeFile } from "fs/promises";
+import fs from "node:fs";
 
 export const POST = async (req, res) => {
   const formData = await req.formData();
@@ -30,6 +31,43 @@ export const POST = async (req, res) => {
     return NextResponse.json(
       { Message: "Failed To Upload" },
       { status: 500, statusText: "ERROR" }
+    );
+  }
+};
+
+export const DELETE = async (req) => {
+  const { searchParams } = new URL(req.url);
+  const getPath = searchParams.get("filePath");
+  const filePath = `./public${getPath}`;
+
+  try {
+    fs.stat(filePath, function (err, stats) {
+      console.log(err);
+
+      fs.unlink(filePath, function (err) {
+        console.log(err);
+      });
+    });
+
+    return NextResponse.json(
+      {
+        message: "File Deleted Successfully",
+      },
+      {
+        status: 202,
+        statusText: "OK",
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      {
+        message: "Error: File Not Deleted",
+      },
+      {
+        status: 505,
+        statusText: "ERROR",
+      }
     );
   }
 };

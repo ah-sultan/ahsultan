@@ -11,3 +11,13 @@ export const getTestimonialData = async () => {
   }
 };
 
+export const findTestimonial = async (id) => {
+  try {
+    await connectToDB();
+    const res = TestimonialSchema.findById(id);
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+

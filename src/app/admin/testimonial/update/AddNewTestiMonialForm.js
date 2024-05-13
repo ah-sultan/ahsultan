@@ -6,11 +6,11 @@ import { toast } from "react-toastify";
 import UploadImage from "@/components/Admin/UploadImage";
 import { handleRemoveSelectedImg } from "@/lib/helper";
 
-const AddNewTestiMonialForm = () => {
-  const [clientName, setClientName] = useState("");
-  const [clientTitle, setClientTitle] = useState("");
-  const [reviewText, setReviewText] = useState("");
-  const [getImages, setGetImages] = useState([]);
+const AddNewTestiMonialForm = ({data}) => {
+  const [clientName, setClientName] = useState(data.clientName);
+  const [clientTitle, setClientTitle] = useState(data.clientTitle);
+  const [reviewText, setReviewText] = useState(data.reviewText);
+  const [getImages, setGetImages] = useState([data.image]);
   const [loading, setLoading] = useState(false);
 
   // Handle Submit
@@ -112,6 +112,7 @@ const AddNewTestiMonialForm = () => {
         <UploadImage
           getImages={setGetImages}
           multiple={false}
+          prevImage={data.image}
         />
         <textarea
           className="dash-input-form"
@@ -128,7 +129,7 @@ const AddNewTestiMonialForm = () => {
             size="lg"
             disabled={loading === true}
           >
-            Save Testimonial
+            Update 
           </Button>
 
           {loading && <Spinner className="ms-3" />}

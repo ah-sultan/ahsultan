@@ -7,8 +7,9 @@ const UploadImage = ({
   multiple = true,
   maxNumber = 20,
   isSuccess = false,
+  prevImage,
 }) => {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(prevImage ? [{ data_url: prevImage }] : []);
 
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);
@@ -60,30 +61,32 @@ const UploadImage = ({
                 />
               </div>
               {imageList.length > 0 &&
-                imageList.map((image, index) => (
-                  <div key={index} className="image-item dash-selected-img">
-                    <Image
-                      src={image["data_url"]}
-                      alt="UPLOAD IMAGE"
-                      width={300}
-                      height={300}
-                    />
-                    <div className="image-item__btn-wrapper">
-                      <span
-                        className="selected-img-remove"
-                        onClick={() => onImageRemove(index)}
-                      >
-                        X
-                      </span>
-                      <span
-                        className="selected-img-remove bg-primary"
-                        onClick={() => onImageUpdate(index)}
-                      >
-                        ✎
-                      </span>
+                imageList.map((image, index) => {
+                  return (
+                    <div key={index} className="image-item dash-selected-img">
+                      <Image
+                        src={image["data_url"]}
+                        alt="UPLOAD IMAGE"
+                        width={300}
+                        height={300}
+                      />
+                      <div className="image-item__btn-wrapper">
+                        <span
+                          className="selected-img-remove"
+                          onClick={() => onImageRemove(index)}
+                        >
+                          X
+                        </span>
+                        <span
+                          className="selected-img-remove bg-primary"
+                          onClick={() => onImageUpdate(index)}
+                        >
+                          ✎
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
             </div>
           );
         }}

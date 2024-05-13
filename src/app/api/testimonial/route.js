@@ -1,5 +1,6 @@
 import TestimonialSchema from "@/models/schema/testimonial";
 import { connectToDB } from "@/utils/database";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
@@ -21,7 +22,6 @@ export const POST = async (req) => {
       { status: 202, statusText: "OK" }
     );
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { error: "Failed to added" },
       { status: 505, statusText: "ERROR" }
@@ -39,7 +39,6 @@ export const GET = async (req) => {
       { status: 202, statusText: "OK" }
     );
   } catch (error) {
-    console.log(error)
     return NextResponse.json(
       { message: "Error: this is server side error" },
       { status: 503, statusText: "ERROR" }
@@ -47,4 +46,24 @@ export const GET = async (req) => {
   }
 };
 
-
+export const DELETE = async (req) => {
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
+  try {
+    await connectToDB();
+    await TestimonialSchema.findByIdAndDelete(id);
+    return NextResponse.json(
+      {
+        message: "Testimonial Deleted Successfully",
+      },
+      { status: 202, statusText: "OK" }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: "Error: Failed to delete testimonial",
+      },
+      { status: 503, statusText: "ERROR" }
+    );
+  }
+};
