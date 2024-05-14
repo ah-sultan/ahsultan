@@ -1,3 +1,4 @@
+import ImageGallerySchema from "@/models/schema/ImageGallery";
 import TestimonialSchema from "@/models/schema/testimonial";
 import { connectToDB } from "@/utils/database";
 
@@ -21,3 +22,12 @@ export const findTestimonial = async (id) => {
   }
 };
 
+export const getImageGallery = async (id) => {
+  try {
+    await connectToDB();
+    const res = ImageGallerySchema.find();
+    return res;
+  } catch (error) {
+    return error;
+  }
+};

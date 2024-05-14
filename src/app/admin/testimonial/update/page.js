@@ -1,9 +1,7 @@
 import ContentWrapper from "@/components/Admin/ContentWrapper";
 import DashboardBreadcrumb from "@/components/Admin/DashboardBreadcrumb";
-import React from "react";
-import AddNewTestiMonialForm from "./AddNewTestiMonialForm";
-import FileUpload from "./FileUpload";
 import { findTestimonial, getTestimonialData } from "@/lib/getData";
+import UpdateTestiMonialForm from "./UpdateTestiMonialForm";
 const AddNewTestimonial = async ({searchParams}) => {
   const SectionTitle = "Update Testimonial";
   const id  = searchParams.id
@@ -18,7 +16,7 @@ const AddNewTestimonial = async ({searchParams}) => {
         </div>
         <ContentWrapper>
           <div className="dash-testimonial-form">
-            <AddNewTestiMonialForm data={getData}/>
+            <UpdateTestiMonialForm data={getData}/>
           </div>
         </ContentWrapper>
       </section>

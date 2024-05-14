@@ -5,67 +5,67 @@ import React from "react";
 import { toast } from "react-toastify";
 import UploadImage from "@/components/Admin/UploadImage";
 import { handleRemoveSelectedImg } from "@/lib/helper";
+import { useRouter } from "next/navigation";
 
-const AddNewTestiMonialForm = ({data}) => {
+const UpdateTestiMonialForm = ({ data }) => {
   const [clientName, setClientName] = useState(data.clientName);
   const [clientTitle, setClientTitle] = useState(data.clientTitle);
   const [reviewText, setReviewText] = useState(data.reviewText);
   const [getImages, setGetImages] = useState([data.image]);
   const [loading, setLoading] = useState(false);
 
+  // ROUTER
+  const router = useRouter();
+
   // Handle Submit
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
 
-    if (
-      clientName.length > 0 &&
-      reviewText.length > 0 &&
-      getImages.length > 0
-    ) {
-      // CREATE OBJECT DATA
-      const getImgExtension =
-        getImages.length > 0 && getImages[0].type.replace("image/", ".");
-      const createImgName =
-        clientName.length > 0 && clientName.replace(" ", "_");
-      const testimonialData = {
-        clientName: clientName,
-        clientTitle: clientTitle,
-        reviewText: reviewText,
-        image: "/images/testimonials/" + createImgName.toLocaleLowerCase() + getImgExtension,
-      };
+    // CREATE OBJECT DATA
+   
+    const isImgUpdate = data.image === getImages[0].name
+    const imageName = getImages
 
-      try {
-        setLoading(true);
-        // Fetch Api
-        const res = await fetch("/api/testimonial/", {
-          method: "POST",
-          body: JSON.stringify(testimonialData),
-        });
+    // TESTIMONIAL UPDATE DATA
+    const testimonialData = {
+      clientName: clientName,
+      clientTitle: clientTitle,
+      reviewText: reviewText,
+      image: imageName,
+    };
 
-        if (res.statusText === "OK") {
-          handleUploadImage(testimonialData.image);
-        } else {
-          setLoading(false);
+    try {
+      setLoading(true);
+      // Fetch Api
+      const res = await fetch("/api/testimonial/", {
+        method: "PUT",
+        body: JSON.stringify(testimonialData),
+      });
+
+      if (res.statusText === "OK") {
+       
+        if (data.image !== testimonialData.image) {
+          handleUpdateImage(testimonialData.image);
         }
-      } catch (error) {
+      } else {
         setLoading(false);
-        toast.error("Error: Testimonial didn't added");
       }
-    } else {
-      toast.warning("Please Fill required filed");
+    } catch (error) {
       setLoading(false);
+      toast.error("Error: Testimonial didn't added");
     }
   };
 
   // HANDLE UPLOAD IMAGES
-  const handleUploadImage = async (path) => {
+  const handleUpdateImage = async (path) => {
     const formData = new FormData();
     formData.append("file", getImages[0]);
-    formData.append("path", path);
+    formData.append("newPath", path);
+    formData.append("prevPath")
 
     try {
       const res = await fetch("/api/uploadFile", {
-        method: "POST",
+        method: "PUT",
         body: formData,
       });
       if (res.statusText === "OK") {
@@ -77,7 +77,7 @@ const AddNewTestiMonialForm = ({data}) => {
         setClientTitle("");
         setReviewText("");
         setGetImages([]);
-        handleRemoveSelectedImg()
+        handleRemoveSelectedImg();
       } else {
         setLoading(false);
       }
@@ -92,7 +92,7 @@ const AddNewTestiMonialForm = ({data}) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleUpdate}>
         <input
           type="text"
           className="dash-input-form"
@@ -129,7 +129,7 @@ const AddNewTestiMonialForm = ({data}) => {
             size="lg"
             disabled={loading === true}
           >
-            Update 
+            Update
           </Button>
 
           {loading && <Spinner className="ms-3" />}
@@ -139,4 +139,4 @@ const AddNewTestiMonialForm = ({data}) => {
   );
 };
 
-export default AddNewTestiMonialForm;
+export default UpdateTestiMonialForm;

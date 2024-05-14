@@ -3,11 +3,12 @@ import DashboardBreadcrumb from "@/components/Admin/DashboardBreadcrumb";
 import React from "react";
 import AddNewTestiMonialForm from "./AddNewTestiMonialForm";
 import FileUpload from "./FileUpload";
+import ImageGallery from "@/components/ImageGallery/ImageGallery";
 const AddNewTestimonial = () => {
   const SectionTitle = "Add New Testimonial";
 
   return (
-    <>
+    <> 
       <section className="dash-testimonial-crude">
         <DashboardBreadcrumb currentPage={SectionTitle} />
         <div className="section-header">
@@ -20,6 +21,7 @@ const AddNewTestimonial = () => {
           </div>
         </ContentWrapper>
       </section>
+      <ImageGallery/>
     </>
   );
 };

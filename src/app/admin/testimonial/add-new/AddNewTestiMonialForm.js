@@ -22,16 +22,14 @@ const AddNewTestiMonialForm = () => {
       reviewText.length > 0 &&
       getImages.length > 0
     ) {
+      
       // CREATE OBJECT DATA
-      const getImgExtension =
-        getImages.length > 0 && getImages[0].type.replace("image/", ".");
-      const createImgName =
-        clientName.length > 0 && clientName.replace(" ", "_");
+      const createImgName = "/images/testimonials/"+getImages[0].name.replace(" ", "_")
       const testimonialData = {
         clientName: clientName,
         clientTitle: clientTitle,
         reviewText: reviewText,
-        image: "/images/testimonials/" + createImgName.toLocaleLowerCase() + getImgExtension,
+        image: createImgName,
       };
 
       try {

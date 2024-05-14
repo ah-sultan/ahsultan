@@ -1,5 +1,5 @@
 import { getDateAndTime } from "@/lib/getDateAndTime";
-import ImgCloudSchema from "@/models/schema/imgCloud";
+import ImgCloudSchema from "@/models/schema/ImageGallery";
 import { connectToDB } from "@/utils/database";
 import { NextResponse } from "next/server";
 
