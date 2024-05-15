@@ -16,8 +16,7 @@ const UploadImages = () => {
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);
     const getFiles = imageList.map((img) => {
-      img.file.album = album
-      return img.file
+      return img.file;
     });
     setFiles(getFiles);
     console.log(getFiles);
@@ -32,9 +31,10 @@ const UploadImages = () => {
   //    HANDLE UPLOAD
   const handleUpload = async () => {
     const formData = new FormData();
-    
+    formData.append("albumName", JSON.stringify(album))
     files.forEach((file) => {
       formData.append("file", file);
+      
     });
 
     try {
@@ -76,7 +76,11 @@ const UploadImages = () => {
               {Array.isArray(albumList) &&
                 albumList.map((data, index) => {
                   return (
-                    <option className="text-capitalize" key={index} onClick={() => setAlbum(data)}>
+                    <option
+                      className="text-capitalize"
+                      key={index}
+                      onClick={() => setAlbum(data)}
+                    >
                       {data.name}
                     </option>
                   );

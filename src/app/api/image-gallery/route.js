@@ -8,9 +8,8 @@ export const POST = async (req, res) => {
   const formData = await req.formData();
 
   const files = formData.getAll("file");
-  const albumName = formData.get("album");
-
-  console.log(files);
+  const album = formData.get("albumName");
+  const albumName = JSON.parse(album);
 
   if (!files.length) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
@@ -43,7 +42,7 @@ export const POST = async (req, res) => {
         image: "/images/image-gallery/" + filename,
         publishDate,
         publishTime,
-        albumName: { _id: "albumName._id", name: "albumName.name" },
+        albumName: { _id: albumName._id, name: albumName.name },
       });
       await newImage.save();
 
