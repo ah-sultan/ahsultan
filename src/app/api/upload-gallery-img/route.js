@@ -8,14 +8,15 @@ export const POST = async () => {
   const files = formData.getAll("file");
   if (!files) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
-
-    
-
   }
 
   try {
-    files.forEach((file) => {
-        
-    })
+    files.forEach(async (file) => {
+      const buffer = Buffer.from(await file.arrayBuffer());
+      const filename = Date.now() + file.name.replaceAll(" ", "_");
+
+      
+      
+    });
   } catch (error) {}
 };
