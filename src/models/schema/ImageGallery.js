@@ -14,6 +14,6 @@ const ImageGallery = new Schema({
 });
 
 const ImageGallerySchema =
-  models.ImgCloudSchema || model("ImageGallerySchema", ImageGallery);
+  models.ImageGallerySchema || model("ImageGallerySchema", ImageGallery);
 
 export default ImageGallerySchema;

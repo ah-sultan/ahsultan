@@ -9,7 +9,7 @@ const SingleImage = ({ _id, image, name }) => {
         style={{ borderColor: "f5f5f5", borderRadius: "10px" }}
       >
         <Image
-          src={"image"}
+          src={image}
           width={400}
           height={400}
           style={{
