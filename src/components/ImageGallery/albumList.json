@@ -1,0 +1,23 @@
+[
+    {
+        "_id": "01",
+        "name": "all"
+    },
+    {
+        "_id": "02",
+        "name": "testimonials"
+    },
+    {
+        "_id": "03",
+        "name": "blogs"
+    },
+    {
+        "_id": "04",
+        "name": "service"
+    },
+    {
+        "_id": "05",
+        "name": "portfolios"
+    }
+    
+]

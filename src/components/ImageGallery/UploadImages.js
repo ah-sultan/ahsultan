@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import albumList from "./albumList";
 import { Button, Modal, Spinner } from "react-bootstrap";
-import UploadImage from "../Admin/UploadImage";
 import ReactImageUploading from "react-images-uploading";
 import Image from "next/image";
 
 const UploadImages = () => {
+  const [album, setAlbum] = useState(albumList[0]);
   const [showModal, setShowModal] = useState(false);
   const [images, setImages] = useState([]);
   const [files, setFiles] = useState([]);
@@ -13,9 +14,13 @@ const UploadImages = () => {
 
   //   HANDLE ONCHANGE
   const onChange = (imageList, addUpdateIndex) => {
-    const getFiles = imageList.map((img) => img.file);
-
+    setImages(imageList);
+    const getFiles = imageList.map((img) => {
+      img.file.album = album
+      return img.file
+    });
     setFiles(getFiles);
+    console.log(getFiles);
   };
 
   //   HANDLE CANCEL
@@ -27,14 +32,18 @@ const UploadImages = () => {
   //    HANDLE UPLOAD
   const handleUpload = async () => {
     const formData = new FormData();
-    formData.append('file', files)
+    
+    files.forEach((file) => {
+      formData.append("file", file);
+    });
+
     try {
-      const res = await fetch("/api/upload-gallery-img", {
+      const res = await fetch("/api/image-gallery", {
         method: "POST",
-        body: JSON.parse(formData)
+        body: formData,
       });
 
-      console.log(res)
+      console.log(res);
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -55,10 +64,25 @@ const UploadImages = () => {
         backdrop="static"
         data-bs-theme="dark"
       >
-        <Modal.Header>
+        <Modal.Header className="d-flex items-center">
           <Modal.Title id="contained-modal-title-vcenter">
             Upload images
           </Modal.Title>
+          {
+            <select
+              className="col-3 dash-input-form mb-0 text-capitalize"
+              style={{ width: "250px" }}
+            >
+              {Array.isArray(albumList) &&
+                albumList.map((data, index) => {
+                  return (
+                    <option className="text-capitalize" key={index} onClick={() => setAlbum(data)}>
+                      {data.name}
+                    </option>
+                  );
+                })}
+            </select>
+          }
         </Modal.Header>
         <Modal.Body className="gallery-img-upload-zone">
           <ReactImageUploading
@@ -130,9 +154,7 @@ const UploadImages = () => {
           </Button>
           <Button
             disabled={images.length <= 0}
-            onClick={() => {
-              handleUpload();
-            }}
+            onClick={() => handleUpload()}
             variant="warning"
           >
             Upload

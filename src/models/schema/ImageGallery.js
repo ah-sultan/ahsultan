@@ -6,10 +6,13 @@ const ImageGallery = new Schema({
     type: String,
     required: [true, "Select Album"],
   },
-  date: String,
   name: {
     type: String,
     required: [true, "Image Name is required"],
+  },
+  publishDate: {
+    _id : String,
+    name: String
   },
 });
 

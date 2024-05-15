@@ -12,7 +12,7 @@ const ImageList = ({}) => {
     const getPublishDates = getImages.map((img) => img.publishDate);
     const uniquePublishDate = [...new Set(getPublishDates)];
     setPublishDate(uniquePublishDate);
-  }, [getImages, publishDate]);
+  }, [setPublishDate]);
 
   return (
     <>
