@@ -1,13 +1,41 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Spinner } from "react-bootstrap";
 import ImageList from "./ImageList";
 import Image from "next/image";
 import UploadImages from "./UploadImages";
+import { toast } from "react-toastify";
+import { getDateAndTime } from "@/lib/getDateAndTime";
 
 const ImageGallery = ({}) => {
+  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
-  const [images, setImages] = useState(["/images/blogs/blog-details.jpg","/images/blogs/blog-details.jpg"]);
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [images, setImages] = useState([
+    "/images/blogs/blog-details.jpg",
+    "/images/blogs/blog-details.jpg",
+  ]);
+
+  const handleShow = async () => {
+    setShow(true);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/image-gallery", {
+        method: "GET",
+      });
+
+      const data = await res.json();
+      setLoading(false);
+      if (res.ok) {
+        setGalleryImages(data.data);
+      } else {
+        setGalleryImages([]);
+      }
+    } catch (error) {
+      setGalleryImages([]);
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -20,35 +48,35 @@ const ImageGallery = ({}) => {
               src="/images/dashboard/upload-img-btn.png"
               alt="UPLOAD IMG"
               className="cursor-pointer"
-              onClick={() => setShow(true)}
+              onClick={() => handleShow()}
             />
           </div>
           {Array.isArray(images) &&
             images.map((img, index) => {
-              return(
+              return (
                 <div key={index} className="image-gallery-uploaded-img">
-                <Image
-                  src={img}
-                  alt="UPLOAD IMAGE"
-                  width={300}
-                  height={300}
-                />
-                <div className="image-item__btn-wrapper">
-                  <span
-                    className="selected-img-remove"
-                    onClick={() => onImageRemove(index)}
-                  >
-                    X
-                  </span>
-                  <span
-                    className="selected-img-remove bg-primary"
-                    onClick={() => onImageUpdate(index)}
-                  >
-                    ✎
-                  </span>
+                  <Image
+                    src={img}
+                    alt="UPLOAD IMAGE"
+                    width={300}
+                    height={300}
+                  />
+                  <div className="image-item__btn-wrapper">
+                    <span
+                      className="selected-img-remove"
+                      onClick={() => onImageRemove(index)}
+                    >
+                      X
+                    </span>
+                    <span
+                      className="selected-img-remove bg-primary"
+                      onClick={() => onImageUpdate(index)}
+                    >
+                      ✎
+                    </span>
+                  </div>
                 </div>
-              </div>
-              )
+              );
             })}
         </div>
         <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
@@ -57,11 +85,15 @@ const ImageGallery = ({}) => {
               <div className="d-flex align-items-center justify-content-between">
                 <h3>Image Gallery</h3>
                 <div className="d-flex align-items-center justify-content-end gap-2">
-                  <UploadImages/>
+                  <UploadImages handleShow={handleShow}/>
                   <Button variant="primary" size="sm">
                     Select Image
                   </Button>
-                  <Button variant="danger" size="sm">
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => setShow(false)}
+                  >
                     Close
                   </Button>
                 </div>
@@ -69,7 +101,21 @@ const ImageGallery = ({}) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ImageList />
+            {!loading && galleryImages.length === 0 && (
+              <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                <div>
+                  <h4>Images Not Found</h4>
+                  <Button variant="secondary">Try Again</Button>
+                </div>
+              </div>
+            )}
+            {loading ? (
+              <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                <Spinner />
+              </div>
+            ) : (
+              <ImageList galleryImages={galleryImages} />
+            )}
           </Modal.Body>
         </Modal>
       </div>

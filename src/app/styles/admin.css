@@ -498,3 +498,31 @@ textarea.dash-input-form {
     }
   }
 }
+
+.image-gallery-single-image {
+  position: relative;
+}
+
+.image-gallery-single-image .image-item__btn-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  top: 10px;
+  right: 10px;
+}
+
+.image-gallery-single-image .btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}

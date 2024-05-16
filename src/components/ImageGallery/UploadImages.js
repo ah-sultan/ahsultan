@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import albumList from "./albumList";
-import { Button, Modal, Spinner } from "react-bootstrap";
+import { Button, Modal, Overlay, Spinner } from "react-bootstrap";
 import ReactImageUploading from "react-images-uploading";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-const UploadImages = () => {
+const UploadImages = ({ handleShow }) => {
   const [album, setAlbum] = useState(albumList[0]);
   const [showModal, setShowModal] = useState(false);
   const [images, setImages] = useState([]);
@@ -30,11 +31,11 @@ const UploadImages = () => {
 
   //    HANDLE UPLOAD
   const handleUpload = async () => {
+    setLoading(true);
     const formData = new FormData();
-    formData.append("albumName", JSON.stringify(album))
+    formData.append("albumName", JSON.stringify(album));
     files.forEach((file) => {
       formData.append("file", file);
-      
     });
 
     try {
@@ -43,7 +44,13 @@ const UploadImages = () => {
         body: formData,
       });
 
-      console.log(res);
+      if (res.ok) {
+        handleShow();
+        setLoading(false);
+        setShowModal(false);
+      }else{
+        setLoading(false)
+      }
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -150,9 +157,10 @@ const UploadImages = () => {
               </div>
             )}
           </ReactImageUploading>
+
+          
         </Modal.Body>
         <Modal.Footer>
-          {loading && <Spinner />}
           <Button onClick={() => handleCancel()} variant="danger">
             Cancel
           </Button>
@@ -164,6 +172,13 @@ const UploadImages = () => {
             Upload
           </Button>
         </Modal.Footer>
+        {/* IS LOADING ON UPLOADING */}
+        {loading && (
+            <div className="position-absolute left-0 right-0 top-0 bottom-0 w-100 h-100 d-flex align-items-center justify-content-center" style={{background:"rgba(0,0,0,0.7)"}}>
+                <Spinner />
+              
+            </div>
+          )}
       </Modal>
     </div>
   );

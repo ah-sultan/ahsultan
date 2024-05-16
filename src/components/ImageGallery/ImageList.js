@@ -4,12 +4,12 @@ import SingleImage from "./SingleImage";
 import getImages from "./imageData";
 import { useEffect, useState } from "react";
 
-const ImageList = ({}) => {
-  const [images, setImages] = useState(getImages);
+const ImageList = ({galleryImages}) => {
+  const [images, setImages] = useState(galleryImages);
   const [publishDate, setPublishDate] = useState([]);
 
   useEffect(() => {
-    const getPublishDates = getImages.map((img) => img.publishDate);
+    const getPublishDates = images.map((img) => img.publishDate);
     const uniquePublishDate = [...new Set(getPublishDates)];
     setPublishDate(uniquePublishDate);
   }, [setPublishDate]);

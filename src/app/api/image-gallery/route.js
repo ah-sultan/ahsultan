@@ -3,13 +3,18 @@ import path from "path";
 import { writeFile } from "fs/promises";
 import { connectToDB } from "@/utils/database";
 import ImageGallerySchema from "@/models/schema/ImageGallery";
+import { getDateAndTime } from "@/lib/getDateAndTime";
 
+// POST METHOD
 export const POST = async (req, res) => {
   const formData = await req.formData();
 
+  
+  // GET FILES AN PATH NAME
   const files = formData.getAll("file");
   const album = formData.get("albumName");
   const albumName = JSON.parse(album);
+
 
   if (!files.length) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
@@ -18,9 +23,8 @@ export const POST = async (req, res) => {
   const uploadPromises = files.map(async (file) => {
     // GET DATE
 
-    const date = new Date();
-    const publishDate = `${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`;
-    const publishTime = `H: ${date.getHours()} - M: ${date.getMinutes()} - S: ${date.getSeconds()}`;
+    const publishDate = getDateAndTime("date");
+    const publishTime = getDateAndTime("time");
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
@@ -33,6 +37,8 @@ export const POST = async (req, res) => {
         path.join(process.cwd(), "public/images/image-gallery/" + filename),
         buffer
       );
+
+      
 
       // MONGO DB DATABASE
 
@@ -67,4 +73,34 @@ export const POST = async (req, res) => {
     { message: "All files uploaded successfully", results },
     { statusText: "OK", status: 201 }
   );
+};
+
+// GET METHOD
+export const GET = async () => {
+  try {
+    await connectToDB();
+    const images = await ImageGallerySchema.find({});
+
+    return NextResponse.json(
+      {
+        message: "Success to fetch data",
+        data: images,
+      },
+      {
+        status: 202,
+        statusText: "OK",
+      }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: "Error: Data fetch failed",
+        error : error
+      },
+      {
+        status: 503,
+        statusText: "ERROR",
+      }
+    );
+  }
 };
