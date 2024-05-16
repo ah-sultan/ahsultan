@@ -4,17 +4,16 @@ import { writeFile } from "fs/promises";
 import { connectToDB } from "@/utils/database";
 import ImageGallerySchema from "@/models/schema/ImageGallery";
 import { getDateAndTime } from "@/lib/getDateAndTime";
+import { fstat, unlink } from "fs";
 
 // POST METHOD
 export const POST = async (req, res) => {
   const formData = await req.formData();
 
-  
   // GET FILES AN PATH NAME
   const files = formData.getAll("file");
   const album = formData.get("albumName");
   const albumName = JSON.parse(album);
-
 
   if (!files.length) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
@@ -38,10 +37,7 @@ export const POST = async (req, res) => {
         buffer
       );
 
-      
-
-      // MONGO DB DATABASE
-
+      // ADD TO DATABASE
       await connectToDB();
       const newImage = new ImageGallerySchema({
         name: file.name,
@@ -95,12 +91,58 @@ export const GET = async () => {
     return NextResponse.json(
       {
         message: "Error: Data fetch failed",
-        error : error
+        error: error,
       },
       {
         status: 503,
         statusText: "ERROR",
       }
+    );
+  }
+};
+
+export const DELETE = async (req) => {
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
+
+  try {
+
+    // DELETE FROM DATABASE
+    await connectToDB();
+    const findImage = await ImageGallerySchema.findById(id);
+
+    if (!findImage) {
+      return NextResponse.json(
+        { message: "Error: Image Not Found" },
+        { status: 505, statusText: "ERROR" }
+      );
+    }
+
+    const filePath = path.join(process.cwd(), "public" + findImage.image);
+
+    unlink(filePath, async (err) => {
+      console.log(filePath)
+      if (err) {
+        
+        return NextResponse.json(
+          { message: "Error: Image Not Found on Local directory" },
+          { status: 505, statusText: "ERROR" }
+        );
+      }
+    });
+
+    await ImageGallerySchema.findByIdAndDelete(id);
+    return NextResponse.json(
+      { message: "Image deleted Successfully" },
+      { status: 303, statusText: "OK" }
+    );
+
+
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { message: "Error: Image did not delete" },
+      { status: 505, statusText: "ERROR" }
     );
   }
 };
