@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
           <SideBar />
           {children}
           <Footer />
-          <ToastContainer/>
+          <ToastContainer theme="dark"/>
         </div>
       </body>
     </html>

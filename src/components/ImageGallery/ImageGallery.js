@@ -5,20 +5,22 @@ import ImageList from "./ImageList";
 import Image from "next/image";
 import UploadImages from "./UploadImages";
 import { toast } from "react-toastify";
-import { getDateAndTime } from "@/lib/getDateAndTime";
 
-const ImageGallery = ({}) => {
+const ImageGallery = ({
+  prevImages,
+  getSingleImage = () => {},
+  handleRemoveImage = () => {},
+}) => {
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [galleryImages, setGalleryImages] = useState([]);
-  const [images, setImages] = useState([
-    "/images/blogs/blog-details.jpg",
-    "/images/blogs/blog-details.jpg",
-  ]);
+  const [selectedImage, setSelectedImage] = useState(false);
 
+  // HANDLE SHOW IMAGE GALLERY
   const handleShow = async () => {
     setShow(true);
     setLoading(true);
+    setSelectedImage(false);
     try {
       const res = await fetch("/api/image-gallery", {
         method: "GET",
@@ -37,6 +39,16 @@ const ImageGallery = ({}) => {
     }
   };
 
+  // HANDLE SELECT IMAGE
+  const handleSelectImage = () => {
+    if (selectedImage) {
+      getSingleImage(selectedImage);
+      setShow(false);
+    } else {
+      toast.error("Please Selected any Image");
+    }
+  };
+
   return (
     <>
       <div className="image-gallery">
@@ -51,8 +63,9 @@ const ImageGallery = ({}) => {
               onClick={() => handleShow()}
             />
           </div>
-          {Array.isArray(images) &&
-            images.map((img, index) => {
+          {prevImages &&
+            Array.isArray(prevImages) &&
+            prevImages.map((img, index) => {
               return (
                 <div key={index} className="image-gallery-uploaded-img">
                   <Image
@@ -64,13 +77,13 @@ const ImageGallery = ({}) => {
                   <div className="image-item__btn-wrapper">
                     <span
                       className="selected-img-remove"
-                      onClick={() => onImageRemove(index)}
+                      onClick={() => handleRemoveImage()}
                     >
                       X
                     </span>
                     <span
                       className="selected-img-remove bg-primary"
-                      onClick={() => onImageUpdate(index)}
+                      onClick={() => handleShow()}
                     >
                       ✎
                     </span>
@@ -85,8 +98,12 @@ const ImageGallery = ({}) => {
               <div className="d-flex align-items-center justify-content-between">
                 <h3>Image Gallery</h3>
                 <div className="d-flex align-items-center justify-content-end gap-2">
-                  <UploadImages handleShow={handleShow}/>
-                  <Button variant="primary" size="sm">
+                  <UploadImages handleShow={handleShow} />
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={handleSelectImage}
+                  >
                     Select Image
                   </Button>
                   <Button
@@ -114,7 +131,12 @@ const ImageGallery = ({}) => {
                 <Spinner />
               </div>
             ) : (
-              <ImageList galleryImages={galleryImages} />
+              <ImageList
+                galleryImages={galleryImages}
+                handleShow={handleShow}
+                selectedImage={selectedImage}
+                setSelectedImage={setSelectedImage}
+              />
             )}
           </Modal.Body>
         </Modal>

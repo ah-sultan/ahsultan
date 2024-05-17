@@ -4,27 +4,34 @@ import { useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-const SingleImage = ({ _id, image, name }) => {
+const SingleImage = ({
+  _id,
+  image,
+  name,
+  handleShow,
+  selectedImage,
+  setSelectedImage,
+}) => {
   const [loading, setLoading] = useState();
-  const router = useRouter();
+  const [file, setFile] = useState(0);
 
+  // HANDLE DELETE
   const handleDelete = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       const res = await fetch(`/api/image-gallery?id=${_id}`, {
         method: "DELETE",
         body: JSON.stringify({
           _id,
           image,
-          name
-        })
+          name,
+        }),
       });
 
-
-      if (res.ok) {
+      if (res.ok || res.statusText === "OK") {
         setLoading(false);
         toast.success("Image Deleted Successfully");
-        router.refresh();
+        handleShow();
       } else {
         setLoading(false);
       }
@@ -32,6 +39,41 @@ const SingleImage = ({ _id, image, name }) => {
     } catch (error) {
       toast.error("Error: Something went wrong try again");
       setLoading(false);
+    }
+  };
+
+  // HANDLE UPDATE IMAGE
+  const handleChange = async (getFiles) => {
+    setLoading(true);
+    const file = getFiles[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+      const res = await fetch(`/api/image-gallery?id=${_id}`, {
+        method: "PATCH",
+        body: formData,
+      });
+
+      if (res.ok || res.statusText === "OK") {
+        handleShow();
+        setLoading(false);
+        setFile(null);
+      } else {
+        setLoading(false);
+        setFile(null);
+      }
+    } catch (error) {
+      toast.error("Failed to update image");
+      setFile[null];
+    }
+  };
+
+  // HANDLE SELECT IMAGE
+  const handleSelectImage = (e) => {
+    if (e.target.checked) {
+      setSelectedImage(image);
+    } else {
+      setSelectedImage("");
     }
   };
 
@@ -54,8 +96,18 @@ const SingleImage = ({ _id, image, name }) => {
           alt={name}
         />
         <div className="image-item__btn-wrapper">
-          <Button variant="primary" onClick={() => onImageRemove(index)}>
+          <Button variant="primary" className="position-relative">
             ✎
+            <input
+              type="file"
+              name="update-image-gallery-file"
+              className="position-absolute w-100 h-100 left-0 top-0 p-0"
+              style={{ opacity: 0 }}
+              onChange={(e) => {
+                handleChange(e.target.files);
+                setFile(e.target.files);
+              }}
+            />
           </Button>
           <Button variant="danger" onClick={() => handleDelete()}>
             X
@@ -70,6 +122,14 @@ const SingleImage = ({ _id, image, name }) => {
             <Spinner />
           </div>
         )}
+
+        <input
+          type="checkbox"
+          checked={selectedImage === image}
+          onChange={handleSelectImage}
+          className="position-absolute"
+          style={{ left: 10, top: 10, width: 20, height: 20 }}
+        />
       </div>
     </>
   );

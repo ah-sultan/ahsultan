@@ -1,12 +1,13 @@
 import ContentWrapper from "@/components/Admin/ContentWrapper";
 import DashboardBreadcrumb from "@/components/Admin/DashboardBreadcrumb";
 import { findTestimonial, getTestimonialData } from "@/lib/getData";
-import UpdateTestiMonialForm from "./UpdateTestiMonialForm";
-const AddNewTestimonial = async ({searchParams}) => {
+import TestiMonialForm from "../TestiMonialForm";
+
+const UpdateTestimonial = async ({ searchParams }) => {
   const SectionTitle = "Update Testimonial";
-  const id  = searchParams.id
-  const getData = await findTestimonial(id)
-  
+  const id = searchParams.id;
+  const data = await findTestimonial(id);
+
   return (
     <>
       <section className="dash-testimonial-crude">
@@ -16,7 +17,15 @@ const AddNewTestimonial = async ({searchParams}) => {
         </div>
         <ContentWrapper>
           <div className="dash-testimonial-form">
-            <UpdateTestiMonialForm data={getData}/>
+            <TestiMonialForm
+              isUpdate={true}
+              _id={data.id}
+              reviewText={data.reviewText}
+              clientName={data.clientName}
+              clientTitle={data.clientTitle}
+              publishDate={data.publishDate}
+              image={data.image}
+            />
           </div>
         </ContentWrapper>
       </section>
@@ -24,4 +33,4 @@ const AddNewTestimonial = async ({searchParams}) => {
   );
 };
 
-export default AddNewTestimonial;
+export default UpdateTestimonial;

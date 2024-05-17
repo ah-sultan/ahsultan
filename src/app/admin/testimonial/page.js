@@ -31,7 +31,7 @@ const page = async () => {
                         height={60}
                         className="img-fluid"
                         src={data.image}
-                        alt={data.image}
+                        alt={data.clientName}
                       />
                       <div className="content-info">
                         <h6>
@@ -46,7 +46,6 @@ const page = async () => {
                       <ItemsButtonWrapper
                         modalText="Testimonial"
                         api="/api/testimonial"
-                        
                         _id={data.id}
                         image={data.image}
                       />

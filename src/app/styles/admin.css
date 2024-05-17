@@ -173,6 +173,10 @@ textarea.dash-input-form {
   min-height: 400px;
   height: fit-content;
 }
+.dash-input-form::placeholder,
+textarea.dash-input-form::placeholder{
+  color: #818186;
+}
 
 /* ===========================================================
     SIDE BAR CSS

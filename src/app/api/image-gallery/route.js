@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import path from "path";
+import fs from 'fs/promises'
 import { writeFile } from "fs/promises";
 import { connectToDB } from "@/utils/database";
 import ImageGallerySchema from "@/models/schema/ImageGallery";
 import { getDateAndTime } from "@/lib/getDateAndTime";
-import { fstat, unlink } from "fs";
+import { fstat, unlink } from "fs/promises";
 
 // POST METHOD
 export const POST = async (req, res) => {
@@ -101,14 +102,15 @@ export const GET = async () => {
   }
 };
 
+// DELETE METHOD
 export const DELETE = async (req) => {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
 
   try {
-
-    // DELETE FROM DATABASE
     await connectToDB();
+
+    // FIND IMAGE ON DATABASE
     const findImage = await ImageGallerySchema.findById(id);
 
     if (!findImage) {
@@ -118,31 +120,106 @@ export const DELETE = async (req) => {
       );
     }
 
+    // MAKE IMAGE FILE DIRECTORY
     const filePath = path.join(process.cwd(), "public" + findImage.image);
 
-    unlink(filePath, async (err) => {
-      console.log(filePath)
-      if (err) {
-        
-        return NextResponse.json(
-          { message: "Error: Image Not Found on Local directory" },
-          { status: 505, statusText: "ERROR" }
-        );
-      }
-    });
+    // DELETE IMAGE FROM  LOCAL DIRECTORY
+    try {
+      await unlink(filePath);
+    } catch (error) {
+      console.log(error);
+      return NextResponse.json(
+        { message: "Error: Image Not Found on Local directory" },
+        { status: 505, statusText: "ERROR" }
+      );
+    }
 
+    await connectToDB();
+    // DELETE IMAGE FROM DATABASE
     await ImageGallerySchema.findByIdAndDelete(id);
+
     return NextResponse.json(
       { message: "Image deleted Successfully" },
-      { status: 303, statusText: "OK" }
+      { status: 200, statusText: "OK" }
     );
-
-
   } catch (error) {
+    // IF DID NOT DELETE IMAGE FROM DATABASE
     console.log(error);
     return NextResponse.json(
       { message: "Error: Image did not delete" },
       { status: 505, statusText: "ERROR" }
+    );
+  }
+};
+
+
+// PATCH METHOD
+export const PATCH = async (req) => {
+  const formData = await req.formData();
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
+  const file = formData.get("file");
+
+  try {
+    await connectToDB();
+    // FIND IMAGE ON DATABASE
+    const findImage = await ImageGallerySchema.findById(id);
+
+    if (!findImage) {
+      return NextResponse.json(
+        { message: "Error: Image Not Found" },
+        { status: 404, statusText: "NOT FOUND" }
+      );
+    }
+
+    // HANDLE UPLOAD IMAGE
+    const handleUpload = async () => {
+      // CREATE FILE BUFFER
+      const buffer = Buffer.from(await file.arrayBuffer());
+
+      // CREATE FILE NAME
+      const filename =
+        "date-" + Date.now() + "--name-" + file.name.replaceAll(" ", "_");
+
+      // UPLOAD NEW FILE
+      try {
+        await fs.writeFile(
+          path.join(process.cwd(), "public/images/image-gallery", filename),
+          buffer
+        );
+
+        // Update the image path in the database
+        findImage.image = `/images/image-gallery/${filename}`;
+      } catch (error) {
+        console.error("File upload error:", error);
+        throw new Error("File upload failed");
+      }
+    };
+
+    // DELETE AND UPDATE IMAGE
+    try {
+      const filePath = path.join(process.cwd(), "public", findImage.image);
+      await fs.unlink(filePath);
+    } catch (error) {
+      console.error("File delete error:", error);
+      // If file delete fails, continue to upload the new file
+    }
+
+    await handleUpload();
+    await findImage.save();
+
+    return NextResponse.json(
+      { message: "Image updated successfully" },
+      {
+        status: 202,
+        statusText: "ACCEPTED",
+      }
+    );
+  } catch (error) {
+    console.error("Server side error:", error);
+    return NextResponse.json(
+      { message: "Error: Server side problem" },
+      { status: 500, statusText: "INTERNAL SERVER ERROR" }
     );
   }
 };

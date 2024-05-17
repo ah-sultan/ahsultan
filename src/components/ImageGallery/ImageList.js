@@ -4,7 +4,12 @@ import SingleImage from "./SingleImage";
 import getImages from "./imageData";
 import { useEffect, useState } from "react";
 
-const ImageList = ({galleryImages}) => {
+const ImageList = ({
+  galleryImages,
+  handleShow,
+  selectedImage,
+  setSelectedImage,
+}) => {
   const [images, setImages] = useState(galleryImages);
   const [publishDate, setPublishDate] = useState([]);
 
@@ -12,7 +17,7 @@ const ImageList = ({galleryImages}) => {
     const getPublishDates = images.map((img) => img.publishDate);
     const uniquePublishDate = [...new Set(getPublishDates)];
     setPublishDate(uniquePublishDate);
-  }, [setPublishDate]);
+  }, []);
 
   return (
     <>
@@ -24,15 +29,20 @@ const ImageList = ({galleryImages}) => {
                 <h6>{date}</h6>
                 <hr />
                 <div className="row g-3 mb-4 pb-4">
-                {Array.isArray(images) &&
-                  images.map((data, idx) => {
-                    return (
-                      <div key={idx} className="col-lg-2">
-                        <SingleImage {...data} />
-                      </div>
-                    );
-                  })}
-                  </div>
+                  {Array.isArray(images) &&
+                    images.map((data, idx) => {
+                      return (
+                        <div key={idx} className="col-lg-2">
+                          <SingleImage
+                            {...data}
+                            handleShow={handleShow}
+                            selectedImage={selectedImage}
+                            setSelectedImage={setSelectedImage}
+                          />
+                        </div>
+                      );
+                    })}
+                </div>
               </div>
             );
           })}

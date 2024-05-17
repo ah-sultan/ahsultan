@@ -1,14 +1,12 @@
 import ContentWrapper from "@/components/Admin/ContentWrapper";
 import DashboardBreadcrumb from "@/components/Admin/DashboardBreadcrumb";
 import React from "react";
-import AddNewTestiMonialForm from "./AddNewTestiMonialForm";
-import FileUpload from "./FileUpload";
-import ImageGallery from "@/components/ImageGallery/ImageGallery";
+import TestiMonialForm from "../TestiMonialForm";
 const AddNewTestimonial = () => {
   const SectionTitle = "Add New Testimonial";
 
   return (
-    <> 
+    <>
       <section className="dash-testimonial-crude">
         <DashboardBreadcrumb currentPage={SectionTitle} />
         <div className="section-header">
@@ -16,12 +14,10 @@ const AddNewTestimonial = () => {
         </div>
         <ContentWrapper>
           <div className="dash-testimonial-form">
-            <AddNewTestiMonialForm />
-            {/* <FileUpload/> */}
+            <TestiMonialForm isPost={true} />
           </div>
         </ContentWrapper>
       </section>
-      <ImageGallery/>
     </>
   );
 };

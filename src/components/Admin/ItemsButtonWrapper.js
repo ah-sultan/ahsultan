@@ -19,15 +19,16 @@ const ItemsButtonWrapper = ({
 
   // HANDLE DELETE ITEMS FROM DATABASE
   const handleDelete = async () => {
-    setShow(true)
+    setShow(true);
     try {
       const res = await fetch(`${api}?id=${_id}`, {
         method: "DELETE",
       });
 
       if (res.statusText === "OK") {
-        handleDeleteImg();
         router.refresh();
+        setShow(false)
+        toast.success("Testimonial Deleted Successfully");
       }
     } catch (error) {
       if (error) {
@@ -36,28 +37,9 @@ const ItemsButtonWrapper = ({
     }
   };
 
-
-  // HANDLE DELETE IMG FROM LOCAL HOST
-  const handleDeleteImg = async () => {
-    try {
-      const res = await fetch(`/api/uploadFile?filePath=${image}`, {
-        method: "DELETE",
-      });
-
-      if (res.statusText === "OK") {
-        toast.success(`${modalText} deleted Successfully`);
-      }
-    } catch (error) {
-      toast.error(`${modalText} deleted but image didn't deleted`);
-    }
-  };
-
   return (
     <>
       <div className="item-btn-wrapper">
-        <Link className="bg-primary" href="/">
-          View
-        </Link>
         <Link
           className="bg-success"
           href={{
@@ -73,7 +55,7 @@ const ItemsButtonWrapper = ({
           Delete
         </Button>
         {/* MODAL SECTION */}
-        <Modal show={show}>
+        <Modal show={show} onHide={setShow}>
           <Modal.Header closeButton>
             <Modal.Title>{modalText}</Modal.Title>
           </Modal.Header>

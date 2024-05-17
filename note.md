@@ -1,0 +1,1 @@
+I have a ImageSchema there have a image Property. and have one testimonialSchema and there have one clientImg property. now I want to connect image property of ImageScheme with clientImg the property of testimonialSchema. if i changed image Property value anytime clientImg property value will be automatically changed. create a mongoose populate

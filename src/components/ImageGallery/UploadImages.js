@@ -20,7 +20,6 @@ const UploadImages = ({ handleShow }) => {
       return img.file;
     });
     setFiles(getFiles);
-    console.log(getFiles);
   };
 
   //   HANDLE CANCEL
@@ -53,7 +52,6 @@ const UploadImages = ({ handleShow }) => {
       }
     } catch (error) {
       setLoading(false);
-      console.log(error);
     }
   };
 
