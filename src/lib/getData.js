@@ -6,7 +6,7 @@ import { connectToDB } from "@/utils/database";
 export const getTestimonialData = async () => {
   try {
     await connectToDB();
-    const res = TestimonialSchema.find({});
+    const res = await TestimonialSchema.find({});
     return res;
   } catch (error) {
     return new Error("Testimonial Did not found");
@@ -16,7 +16,7 @@ export const getTestimonialData = async () => {
 export const findTestimonial = async (id) => {
   try {
     await connectToDB();
-    const res = TestimonialSchema.findById(id);
+    const res = await TestimonialSchema.findById(id);
     return res;
   } catch (error) {
     return new Error(id + " This Testimonial Did not found");
@@ -26,7 +26,7 @@ export const findTestimonial = async (id) => {
 export const getImageGallery = async (id) => {
   try {
     await connectToDB();
-    const res = ImageGallerySchema.find();
+    const res = await ImageGallerySchema.find();
     return res;
   } catch (error) {
     return new Error("Gallery Images are not found");
@@ -36,7 +36,7 @@ export const getImageGallery = async (id) => {
 export const getBlogCatagories = async () => {
   try {
     await connectToDB();
-    const res = BlogCategorySchema.find();
+    const res = await BlogCategorySchema.find();
     return res;
   } catch (error) {
     return new Error("Gallery Images are not found");

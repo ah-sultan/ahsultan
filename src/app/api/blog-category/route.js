@@ -12,6 +12,7 @@ export const POST = async (req) => {
     const newCategory = await BlogCategorySchema({
       title: data.title,
       date: getDateAndTime(),
+      blogs: [],
       subCategory: [],
     });
 

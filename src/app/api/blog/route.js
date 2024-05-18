@@ -1,30 +1,39 @@
-import TestimonialSchema from "@/models/schema/testimonial";
+import { getDateAndTime } from "@/lib/getDateAndTime";
+import BlogSchema from "@/models/schema/blog";
+import BlogCategorySchema from "@/models/schema/blogCategory";
 import { connectToDB } from "@/utils/database";
-import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 // POST METHOD
 export const POST = async (req) => {
-  const { clientName, clientTitle, reviewText, image } = await req.json();
-  const publishedDate = Date.now();
+  const { title, thumbnail, blogBanner, category, body, keywords, comments } =
+    await req.json();
+  const publishedDate = getDateAndTime("date");
   try {
     await connectToDB();
-    const newTestimonial = new TestimonialSchema({
-      clientName,
-      clientTitle,
-      reviewText,
+    const newBlog = new BlogSchema({
+      title,
+      thumbnail,
+      blogBanner,
+      category,
+      body,
+      keywords,
+      comments,
       publishedDate,
-      image,
     });
-    await newTestimonial.save();
+    await newBlog.save();
+
+    const findCategory = await BlogCategorySchema.findById(category._id);
+    findCategory.blogs.push(newBlog._id);
+    await findCategory.save()
 
     return NextResponse.json(
-      { success: "New Testimonial Added Successfully" },
+      { success: "Blog Added Successfully" },
       { status: 202, statusText: "OK" }
     );
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to added" },
+      { error: "Failed to added new blog" },
       { status: 505, statusText: "ERROR" }
     );
   }

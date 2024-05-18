@@ -11,14 +11,12 @@ const modules = {
     [{ script: "sub" }, { script: "super" }],
     ["blockquote", "code-block"],
     [{ list: "ordered" }, { list: "bullet" }],
-    ["link", "image", ],
+    ["link", "image"],
     ["clean"],
   ],
 };
 
-const DescriptionEditor = () => {
-  const [value, setValue] = useState("");
-
+const DescriptionEditor = ({ setValue = () => {}, value = "" }) => {
   return (
     <>
       <div>

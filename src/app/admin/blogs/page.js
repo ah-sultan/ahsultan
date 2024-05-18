@@ -3,14 +3,16 @@ import DashboardBreadcrumb from "@/components/Admin/DashboardBreadcrumb";
 import ItemsButtonWrapper from "@/components/Admin/ItemsButtonWrapper";
 import SectionHeader from "@/components/Admin/SectionHeader";
 import BlogData from "@/Data/BlogsData";
+import { getBlogCatagories } from "@/lib/getData";
 import Image from "next/image";
 
-const page = () => {
+const page = async () => {
+
   return (
     <>
       <section className="dash-blog">
         <DashboardBreadcrumb currentPage="All blogs" />
-        <SectionHeader sectionTitle="blog" />
+        <SectionHeader sectionTitle="blog" path="/admin/blogs/add-new"/>
         <ContentWrapper noItems={false}>
           <ul>
             {Array.isArray(BlogData) &&

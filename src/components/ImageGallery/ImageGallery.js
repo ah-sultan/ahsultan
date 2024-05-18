@@ -10,6 +10,7 @@ const ImageGallery = ({
   prevImages,
   getSingleImage = () => {},
   handleRemoveImage = () => {},
+  gridCols = 7,
 }) => {
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
@@ -52,7 +53,10 @@ const ImageGallery = ({
   return (
     <>
       <div className="image-gallery">
-        <div className="image-gallery-header">
+        <div
+          className="image-gallery-header"
+          style={{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }}
+        >
           <div className="image-gallery-upload-btn">
             <Image
               width={300}

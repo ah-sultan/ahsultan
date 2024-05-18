@@ -6,10 +6,12 @@ const BlogCategory = new Schema({
     required: [true, "title is required"],
   },
   date: String,
-  subCategory : Array
+  subCategory : Array,
+  blogs: [{ type: Schema.Types.ObjectId, ref: 'BlogSchema' }]
 });
 
 const BlogCategorySchema =
   models.BlogCategorySchema || model("BlogCategorySchema", BlogCategory);
 
 export default BlogCategorySchema;
+
