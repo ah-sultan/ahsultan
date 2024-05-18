@@ -1,39 +1,29 @@
 import ContentWrapper from "@/components/Admin/ContentWrapper";
 import DashboardBreadcrumb from "@/components/Admin/DashboardBreadcrumb";
 import { Button } from "react-bootstrap";
-import BlogCategory from "@/Data/BlogCategory";
 import CategoryItem from "./CategoryItem";
+import AddNewCategory from "./AddNewCategory";
+import { getBlogCatagories } from "@/lib/getData";
 
-const page = () => {
+const Page = async () => {
+  const categories = await getBlogCatagories();
+
   return (
     <>
       <section className="dash-blog-category">
-        
         <DashboardBreadcrumb currentPage="Blog Category" />
         <div className="section-header">
           <h2 className="section-title">Blog Categories</h2>
         </div>
         <ContentWrapper>
-          <div className="add-category-block">
-            <div>
-              <label htmlFor="addCategory">Add New Category</label>
-              <input
-                type="text"
-                placeholder="Add New Category"
-                className="dash-input-form"
-                name="addCategory"
-              />
-            </div>
-            <Button type="button" variant="primary">
-              Add Now
-            </Button>
-          </div>
+          <AddNewCategory />
           <ul className="dash-category-list">
-            {Array.isArray(BlogCategory) &&
-              BlogCategory.map((data, index) => {
+            {categories &&
+              Array.isArray(categories) &&
+              categories.map((data, index) => {
                 return (
                   <li key={index}>
-                    <CategoryItem {...data} />
+                    <CategoryItem _id={data._id} title={data.title} />
                   </li>
                 );
               })}
@@ -44,4 +34,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

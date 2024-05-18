@@ -1,4 +1,5 @@
 import ImageGallerySchema from "@/models/schema/ImageGallery";
+import BlogCategorySchema from "@/models/schema/blogCategory";
 import TestimonialSchema from "@/models/schema/testimonial";
 import { connectToDB } from "@/utils/database";
 
@@ -26,6 +27,16 @@ export const getImageGallery = async (id) => {
   try {
     await connectToDB();
     const res = ImageGallerySchema.find();
+    return res;
+  } catch (error) {
+    return new Error("Gallery Images are not found");
+  }
+};
+
+export const getBlogCatagories = async () => {
+  try {
+    await connectToDB();
+    const res = BlogCategorySchema.find();
     return res;
   } catch (error) {
     return new Error("Gallery Images are not found");

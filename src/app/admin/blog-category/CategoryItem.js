@@ -1,14 +1,31 @@
 "use client";
 import AdminModal from "@/components/Admin/AdminModal";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
-const CategoryItem = ({ title }) => {
-  const [value, setValue] = useState("");
+const CategoryItem = ({ title, _id }) => {
+  const [value, setValue] = useState(title);
   const [showModal, setShowModal] = useState(false);
 
-  const handleDelete = () => {
-    setShowModal(false);
+  const router = useRouter();
+
+
+  const handleDelete = async () => {
+    try {
+      const res = await fetch(`/api/blog-category?id=${_id}`, {
+        method: "DELETE",
+      });
+
+      if (res.ok || res.statusText === "OK") {
+        router.refresh();
+        setShowModal(false);
+        toast.success("Category deleted successfully");
+      }
+    } catch (error) {
+      toast.success("failed to delete category");
+    }
   };
   return (
     <>
@@ -24,12 +41,6 @@ const CategoryItem = ({ title }) => {
         }
       </div>
       <div className="button-wrapper">
-        <Button size="sm" variant="primary">
-          Edit
-        </Button>
-        <Button size="sm" variant="success">
-          Update
-        </Button>
         <Button size="sm" variant="danger" onClick={() => setShowModal(true)}>
           Delete
         </Button>
