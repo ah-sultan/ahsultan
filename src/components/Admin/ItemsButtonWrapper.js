@@ -26,12 +26,12 @@ const ItemsButtonWrapper = ({
       });
       if (res.ok) {
         router.refresh();
-        setShow(false)
-        toast.success("Testimonial Deleted Successfully");
+        setShow(false);
+        toast.success(`${modalText} Deleted Successfully`);
       }
     } catch (error) {
       if (error) {
-        toast.error("Error: Testimonial didn't delete");
+        toast.error(`Error: ${modalText} didn't delete`);
       }
     }
   };
