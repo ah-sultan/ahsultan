@@ -33,7 +33,7 @@ const BlogDetails = () => {
                     </Link>
                   </div>
                   <div className="author-date-share mb-40 wow fadeInUp delay-0-4s">
-                                        <div className="text">
+                    <div className="text">
                       <span>Published</span>
                       <h5>September 25, 2023</h5>
                     </div>
