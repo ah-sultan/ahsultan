@@ -2,8 +2,10 @@
 
 import DescriptionEditor from "@/components/Admin/DescriptionEditor";
 import ImageGallery from "@/components/ImageGallery/ImageGallery";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const BlogForm = ({
   type,
@@ -23,6 +25,11 @@ const BlogForm = ({
   const [newKeywords, setNewKeywords] = useState(keywords);
   const [loading, setLoading] = useState(false);
 
+
+
+  // Router
+  const router = useRouter()
+
   useEffect(() => {
     // Get BlogCategories Data
     fetch("/api/blog-category", {
@@ -35,12 +42,12 @@ const BlogForm = ({
   // HANDLE POST
   const handlePost = async () => {
     if (
-      title.length > 0 &&
-      category.length > 0 &&
-      thumbnail.length > 0 &&
-      blogBanner.length > 0 &&
-      body.length > 0 &&
-      keywords.length > 0
+      newTitle.length > 0 &&
+      newCategory &&
+      newThumbnail.length > 0 &&
+      newBlogBanner.length > 0 &&
+      newBody.length > 0 &&
+      newKeywords.length > 0
     ) {
       const blogData = {
         title: newTitle,
@@ -53,12 +60,32 @@ const BlogForm = ({
 
       try {
         setLoading(true);
-        const res = await fetch("/api/blogs/", {
+        const res = await fetch("/api/blog", {
           method: "POST",
           body: JSON.stringify(blogData),
         });
-      } catch (error) {}
+
+
+
+        if (res.ok) {
+          setLoading(false);
+          setNewTitle("")
+          setNewCategory("")
+          setNewThumbnail("")
+          setNewBlogBanner("")
+          setNewBody("")
+          setNewKeywords("")
+          toast.success("Blog Created Successfully")
+          router.refresh()
+        } else {
+          setLoading(false);
+        }
+      } catch (error) {
+        toast.error("Something went wrong please try agin")
+        setLoading(false)
+      }
     } else {
+      toast.warning("Please fill required filed");
     }
   };
 
@@ -91,6 +118,7 @@ const BlogForm = ({
               placeholder="Write BLog Title"
               required
               onChange={(e) => setNewTitle(e.target.value)}
+              value={newTitle}
             />
           </div>
 
@@ -113,12 +141,20 @@ const BlogForm = ({
         <div className="row mt-4">
           <div className="col-6">
             <label htmlFor="BlogThumbnail">Add Blog Thumbnail</label>
-            <ImageGallery gridCols={4} getSingleImage={setNewThumbnail} />
+            <ImageGallery
+              gridCols={4}
+              getSingleImage={setNewThumbnail}
+              prevImages={newThumbnail && [newThumbnail]}
+            />
           </div>
 
           <div className="col-6">
             <label htmlFor="BlogBanner">Add Banner Image</label>
-            <ImageGallery gridCols={4} getSingleImage={setNewBlogBanner} />
+            <ImageGallery
+              gridCols={4}
+              getSingleImage={setNewBlogBanner}
+              prevImages={newBlogBanner && [newBlogBanner]}
+            />
           </div>
         </div>
 
@@ -139,16 +175,16 @@ const BlogForm = ({
             className="dash-input-form"
             style={{ minHeight: "100px" }}
             placeholder="Write Keywords"
+            value={newKeywords}
+            onChange={(e) => setNewKeywords(e.target.value)}
           />
         </div>
         {/* BUTTON AREA */}
-        <div className="flex align-items-center mt-4">
-          <Button type="button" variant="primary" size="lg" className="me-3">
-            Save Blog
-          </Button>
-          <Button type="button" variant="success" size="lg">
+        <div className="d-flex align-items-center mt-4">
+          <Button disabled={loading} type="submit" variant="success" size="lg" className="me-3">
             Published
           </Button>
+          {loading && <Spinner/> }
         </div>
       </form>
     </>
