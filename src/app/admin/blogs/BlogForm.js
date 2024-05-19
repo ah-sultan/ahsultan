@@ -131,7 +131,8 @@ const BlogForm = ({
     }
   };
 
-  console.log(newCategory);
+ const arr = ["april", "april", "may", "JULM"]
+
   return (
     <>
       <form className="dash-add-blog-from" onSubmit={handleSubmit}>
@@ -212,7 +213,7 @@ const BlogForm = ({
             className="dash-input-form"
             style={{ minHeight: "100px" }}
             placeholder="Write Keywords"
-            value={newKeywords.toString()}
+            value={newKeywords?.toString()}
             onChange={(e) => setNewKeywords(e.target.value.toString())}
           />
         </div>

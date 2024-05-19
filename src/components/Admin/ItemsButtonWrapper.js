@@ -24,7 +24,7 @@ const ItemsButtonWrapper = ({
       const res = await fetch(`${api}?id=${_id}`, {
         method: "DELETE",
       });
-      if (res.statusText === "OK") {
+      if (res.ok) {
         router.refresh();
         setShow(false)
         toast.success("Testimonial Deleted Successfully");

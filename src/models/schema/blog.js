@@ -13,7 +13,11 @@ const blogContent = new Schema({
   },
 
   category: {
-    _id: String,
+    _id: {
+      type: Schema.Types.ObjectId,
+      ref: "BlogCategorySchema",
+      required: true,
+    },
     title: String,
   },
   body: {

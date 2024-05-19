@@ -11,19 +11,21 @@ export const POST = async (req) => {
   const publishedDate = getDateAndTime("date");
   try {
     await connectToDB();
+    const findCategory = await BlogCategorySchema.findById(category._id);
     const newBlog = new BlogSchema({
       title,
       thumbnail,
       blogBanner,
-      category,
       body,
       keywords,
       comments: [],
       publishedDate,
     });
+
+    newBlog.category = findCategory;
+
     await newBlog.save();
 
-    const findCategory = await BlogCategorySchema.findById(category._id);
     findCategory.blogs.push(newBlog._id);
     await findCategory.save();
 
@@ -32,6 +34,7 @@ export const POST = async (req) => {
       { status: 202, statusText: "OK" }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to added new blog" },
       { status: 505, statusText: "ERROR" }
@@ -63,7 +66,18 @@ export const DELETE = async (req) => {
   const id = searchParams.get("id");
   try {
     await connectToDB();
+    const findBlog = await BlogSchema.findById(id);
+    const findCategory = await BlogCategorySchema.findById(
+      findBlog.category._id
+    );
+    const updateCategory = findCategory.blogs.filter(
+      (blogId) => blogId.toString() !== findBlog._id.toString()
+    );
+
+    findCategory.blogs = updateCategory;
+    await findCategory.save()
     await BlogSchema.findByIdAndDelete(id);
+
     return NextResponse.json(
       {
         message: "Blog Deleted Successfully",
@@ -71,6 +85,7 @@ export const DELETE = async (req) => {
       { status: 202, statusText: "OK" }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       {
         message: "Error: Failed to delete blog",
@@ -95,19 +110,18 @@ export const PATCH = async (req) => {
     );
     const findNewCategory = await BlogCategorySchema.findById(category._id);
 
-    if (prevCategory._id !== category._id) {
+    if (prevCategory._id.toString() !== findNewCategory._id.toString()) {
       // UPDATE PREVIOUS CATEGORY
       const updatePrevCategory = prevCategory.blogs.filter(
-        (id) => id !== findBlog._id
+        (blogId) => blogId.toString() !== findBlog._id.toString()
       );
       prevCategory.blogs = updatePrevCategory;
-      
 
       // UPDATE NEW CATEGORY
-      findNewCategory.blogs.push(findBlog._id)
+      findNewCategory.blogs.push(findBlog._id);
 
       await prevCategory.save();
-      await findNewCategory.save()
+      await findNewCategory.save();
     }
 
     findBlog.title = title;
