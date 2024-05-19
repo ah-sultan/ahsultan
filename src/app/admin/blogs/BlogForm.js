@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 const BlogForm = ({
   type,
+  _id,
   title,
   category,
   thumbnail,
@@ -25,10 +26,8 @@ const BlogForm = ({
   const [newKeywords, setNewKeywords] = useState(keywords);
   const [loading, setLoading] = useState(false);
 
-
-
   // Router
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     // Get BlogCategories Data
@@ -55,7 +54,7 @@ const BlogForm = ({
         thumbnail: newThumbnail,
         blogBanner: newBlogBanner,
         body: newBody,
-        keywords: newKeywords,
+        keywords: newKeywords.split(","),
       };
 
       try {
@@ -65,24 +64,22 @@ const BlogForm = ({
           body: JSON.stringify(blogData),
         });
 
-
-
         if (res.ok) {
           setLoading(false);
-          setNewTitle("")
-          setNewCategory("")
-          setNewThumbnail("")
-          setNewBlogBanner("")
-          setNewBody("")
-          setNewKeywords("")
-          toast.success("Blog Created Successfully")
-          router.refresh()
+          setNewTitle("");
+          setNewCategory("");
+          setNewThumbnail("");
+          setNewBlogBanner("");
+          setNewBody("");
+          setNewKeywords("");
+          toast.success("Blog Created Successfully");
+          router.refresh();
         } else {
           setLoading(false);
         }
       } catch (error) {
-        toast.error("Something went wrong please try agin")
-        setLoading(false)
+        toast.error("Something went wrong please try agin");
+        setLoading(false);
       }
     } else {
       toast.warning("Please fill required filed");
@@ -90,7 +87,36 @@ const BlogForm = ({
   };
 
   // HANDLE UPDATE
-  const handleUpdate = async () => {};
+  const handleUpdate = async () => {
+    setLoading(true);
+
+    const blogData = {
+      title: newTitle,
+      category: newCategory,
+      thumbnail: newThumbnail,
+      blogBanner: newBlogBanner,
+      body: newBody,
+      keywords: newKeywords.toString().split(","),
+    };
+
+    try {
+      const res = await fetch(`/api/blog?id=${_id}`, {
+        method: "PATCH",
+        body: JSON.stringify(blogData),
+      });
+      if (res.ok) {
+        setLoading(false);
+        toast.success("Blog Updated successfully");
+        router.refresh();
+      } else {
+        setLoading(false);
+        toast.error("Failed to update blog");
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error("Failed to update blog");
+    }
+  };
 
   // HANDLE SUBMIT
   const handleSubmit = (e) => {
@@ -104,6 +130,8 @@ const BlogForm = ({
       handleUpdate();
     }
   };
+
+  console.log(newCategory);
   return (
     <>
       <form className="dash-add-blog-from" onSubmit={handleSubmit}>
@@ -125,11 +153,20 @@ const BlogForm = ({
           {/* Blog Categories */}
           <div className="col-4">
             <label htmlFor="PublishedDate">Select Category:</label>
-            <select name="PublishedDate" className="dash-input-form">
+            <select
+              name="PublishedDate"
+              className="dash-input-form"
+              onChange={(e) => setNewCategory(e.target.value)}
+            >
               {Array.isArray(blogCategories) &&
                 blogCategories.map((data, index) => {
                   return (
-                    <option key={index} onClick={() => setNewCategory(data)}>
+                    <option
+                      key={index}
+                      value={newCategory}
+                      selected={data._id === newCategory?._id}
+                      onClick={() => setNewCategory(data)}
+                    >
                       {data.title}
                     </option>
                   );
@@ -175,16 +212,22 @@ const BlogForm = ({
             className="dash-input-form"
             style={{ minHeight: "100px" }}
             placeholder="Write Keywords"
-            value={newKeywords}
-            onChange={(e) => setNewKeywords(e.target.value)}
+            value={newKeywords.toString()}
+            onChange={(e) => setNewKeywords(e.target.value.toString())}
           />
         </div>
         {/* BUTTON AREA */}
         <div className="d-flex align-items-center mt-4">
-          <Button disabled={loading} type="submit" variant="success" size="lg" className="me-3">
+          <Button
+            disabled={loading}
+            type="submit"
+            variant="success"
+            size="lg"
+            className="me-3"
+          >
             Published
           </Button>
-          {loading && <Spinner/> }
+          {loading && <Spinner />}
         </div>
       </form>
     </>

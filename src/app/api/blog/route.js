@@ -57,59 +57,83 @@ export const POST = async (req) => {
 //   }
 // };
 
-// // DELETE METHOD
-// export const DELETE = async (req) => {
-//   const { searchParams } = new URL(req.url);
-//   const id = searchParams.get("id");
-//   try {
-//     await connectToDB();
-//     await TestimonialSchema.findByIdAndDelete(id);
-//     return NextResponse.json(
-//       {
-//         message: "Testimonial Deleted Successfully",
-//       },
-//       { status: 202, statusText: "OK" }
-//     );
-//   } catch (error) {
-//     return NextResponse.json(
-//       {
-//         message: "Error: Failed to delete testimonial",
-//       },
-//       { status: 503, statusText: "ERROR" }
-//     );
-//   }
-// };
+// DELETE METHOD
+export const DELETE = async (req) => {
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
+  try {
+    await connectToDB();
+    await BlogSchema.findByIdAndDelete(id);
+    return NextResponse.json(
+      {
+        message: "Blog Deleted Successfully",
+      },
+      { status: 202, statusText: "OK" }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: "Error: Failed to delete blog",
+      },
+      { status: 503, statusText: "ERROR" }
+    );
+  }
+};
 
-// // PATH METHOD
-// export const PATCH = async (req) => {
-//   const data = await req.json();
-//   const { searchParams } = new URL(req.url);
-//   const id = searchParams.get("id");
-//   try {
-//     await connectToDB();
-//     const findTestimonial = await TestimonialSchema.findById(id);
-//     findTestimonial.clientName = data.clientName;
-//     findTestimonial.clientTitle = data.clientTitle;
-//     findTestimonial.reviewText = data.reviewText;
-//     findTestimonial.image = data.image;
+// PATH METHOD
+export const PATCH = async (req) => {
+  const { title, thumbnail, blogBanner, category, body, keywords } =
+    await req.json();
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
 
-//     await findTestimonial.save();
+  try {
+    await connectToDB();
+    const findBlog = await BlogSchema.findById(id);
+    const prevCategory = await BlogCategorySchema.findById(
+      findBlog.category._id
+    );
+    const findNewCategory = await BlogCategorySchema.findById(category._id);
 
-//     return NextResponse.json(
-//       { message: "Testimonial updated successfully" },
-//       {
-//         status: 202,
-//         statusText: "OK",
-//       }
-//     );
-//   } catch (error) {
-//     console.log(error);
-//     return NextResponse.json(
-//       { message: "Error: Testimonial did not updated" },
-//       {
-//         status: 505,
-//         statusText: "ERROR",
-//       }
-//     );
-//   }
-// };
+    if (prevCategory._id !== category._id) {
+      // UPDATE PREVIOUS CATEGORY
+      const updatePrevCategory = prevCategory.blogs.filter(
+        (id) => id !== findBlog._id
+      );
+      prevCategory.blogs = updatePrevCategory;
+      
+
+      // UPDATE NEW CATEGORY
+      findNewCategory.blogs.push(findBlog._id)
+
+      await prevCategory.save();
+      await findNewCategory.save()
+    }
+
+    findBlog.title = title;
+    findBlog.thumbnail = thumbnail;
+    findBlog.blogBanner = blogBanner;
+    findBlog.category = category;
+    findBlog.body = body;
+    findBlog.keywords = keywords;
+
+    await findBlog.save();
+
+    return NextResponse.json(
+      { message: "Blog updated successfully" },
+      {
+        status: 202,
+        statusText: "OK",
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { message: "Error: Blog did not updated" },
+      {
+        status: 505,
+        statusText: "ERROR",
+      }
+    );
+  }
+};
