@@ -35,7 +35,6 @@ const SingleImage = ({
       } else {
         setLoading(false);
       }
-      console.log(res);
     } catch (error) {
       toast.error("Error: Something went wrong try again");
       setLoading(false);

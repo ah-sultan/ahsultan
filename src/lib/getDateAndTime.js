@@ -36,10 +36,8 @@ export function getDateAndTime(value) {
   if (value === "date") {
     return date;
   } else if (value === "time") {
+    return time;
   } else {
     return dateTime;
   }
 }
-
-// Example usage
-console.log(getDateAndTime());

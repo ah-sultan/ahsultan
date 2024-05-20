@@ -1,6 +1,5 @@
 import TestimonialSchema from "@/models/schema/testimonial";
 import { connectToDB } from "@/utils/database";
-import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 // POST METHOD

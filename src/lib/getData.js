@@ -1,6 +1,7 @@
 import ImageGallerySchema from "@/models/schema/ImageGallery";
 import BlogSchema from "@/models/schema/blog";
 import BlogCategorySchema from "@/models/schema/blogCategory";
+import ProjectSchema from "@/models/schema/project";
 import ServiceSchema from "@/models/schema/service";
 import TestimonialSchema from "@/models/schema/testimonial";
 import { connectToDB } from "@/utils/database";
@@ -80,6 +81,25 @@ export const findService = async (id) => {
   try {
     await connectToDB();
     const res = await ServiceSchema.findById(id);
+    return res;
+  } catch (error) {
+    return new Error("Blog is not found");
+  }
+};
+
+export const getProjects = async (id) => {
+  try {
+    await connectToDB();
+    const res = await ProjectSchema.find();
+    return res;
+  } catch (error) {
+    return new Error("Blog is not found");
+  }
+};
+export const findProject = async (id) => {
+  try {
+    await connectToDB();
+    const res = await ProjectSchema.findById(id);
     return res;
   } catch (error) {
     return new Error("Blog is not found");

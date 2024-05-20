@@ -17,7 +17,6 @@ const page = async () => {
           <ul>
             {Array.isArray(blogsData) &&
               blogsData.map((data, index) => {
-                console.log(data.title);
                 return (
                   <li className="dash-blog-item" key={index}>
                     <div className="card-content">

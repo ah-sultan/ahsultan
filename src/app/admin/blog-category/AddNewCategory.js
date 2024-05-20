@@ -21,7 +21,6 @@ const AddNewCategory = () => {
         method: "POST",
         body: JSON.stringify(data),
       });
-      //   console.log(res)
       if (res.ok || res.statusText === "OK") {
         toast.success("Category created successfully");
         router.refresh();

@@ -19,9 +19,7 @@ const FileUpload = () => {
         formData,
       });
 
-      console.log(await res.json());
     } catch (error) {
-      console.log(error);
     }
   };
 

@@ -6,9 +6,7 @@ const CreateFolder = () => {
       const res = await fetch("/api/create", {
         method : "POST"
       });
-      console.log(await res.json());
     } catch (error) {
-      console.log(error);
     }
   };
   return (<>

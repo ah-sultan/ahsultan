@@ -11,7 +11,7 @@ const projectContent = new Schema({
     require: true,
   },
 
-  shortDescription: {
+  summary: {
     type: String,
     require: true,
   },
@@ -36,7 +36,7 @@ const projectContent = new Schema({
     require: true,
   },
 
-  Technologies: {
+  technologies: {
     type: String,
     require: true,
   },

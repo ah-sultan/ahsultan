@@ -101,7 +101,6 @@ const TestiMonialForm = ({
     } catch (error) {
       toast.error("Testimonial Did Not update");
       setLoading(false);
-      console.log(error);
     }
   };
 

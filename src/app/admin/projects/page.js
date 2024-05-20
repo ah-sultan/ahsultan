@@ -3,18 +3,23 @@ import DashboardBreadcrumb from "@/components/Admin/DashboardBreadcrumb";
 import ItemsButtonWrapper from "@/components/Admin/ItemsButtonWrapper";
 import SectionHeader from "@/components/Admin/SectionHeader";
 import ProjectsData from "@/Data/ProjectsData";
+import { getProjects } from "@/lib/getData";
 import Image from "next/image";
 
-const page = () => {
+const page = async () => {
+  const projectsData = await getProjects();
   return (
     <>
       <section className="dash-projects">
         <DashboardBreadcrumb currentPage="All Projects" />
-        <SectionHeader sectionTitle="All Projects" path="/admin/projects/add-project" />
+        <SectionHeader
+          sectionTitle="All Projects"
+          path="/admin/projects/add-new"
+        />
         <ContentWrapper noItems={false}>
           <ul>
-            {Array.isArray(ProjectsData) &&
-              ProjectsData.map((data, index) => {
+            {Array.isArray(projectsData) &&
+              projectsData.map((data, index) => {
                 return (
                   <li className="dash-projects-item" key={index}>
                     <div className="card-content">
@@ -26,7 +31,11 @@ const page = () => {
                       </p>
                     </div>
                     <div className="button-area">
-                      <ItemsButtonWrapper />
+                      <ItemsButtonWrapper
+                        _id={data.id}
+                        api="/api/project"
+                        modalText="Project"
+                      />
                     </div>
                   </li>
                 );
