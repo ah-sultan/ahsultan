@@ -32,8 +32,8 @@ const page = async () => {
                     </div>
                     <div className="col-4">
                       <ItemsButtonWrapper
-                        modalText="Testimonial"
-                        api="/api/testimonial"
+                        modalText="User"
+                        api="/api/user"
                         _id={data.id}
                         image={data.image}
                       />

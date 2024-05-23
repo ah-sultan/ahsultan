@@ -84,11 +84,11 @@ const UserForm = ({
   // HANDLE UPDATE
   const handleUpdate = async () => {
     if (
-      (newFullName !== fullName,
-      newUserName !== userName,
-      newEmail !== email,
-      newPassword !== password,
-      newRole !== role)
+      newFullName !== fullName ||
+      newUserName !== userName ||
+      newEmail !== email ||
+      newPassword !== password ||
+      newRole !== role
     ) {
       try {
         setLoading(true);
@@ -98,14 +98,9 @@ const UserForm = ({
           body: JSON.stringify(userData),
         });
         const data = await res.json();
-        if (res.statusText === "OK") {
+        if (res.ok) {
           setLoading(false);
           toast.success(data.message);
-          setNewFulName("");
-          setNewRole("");
-          setNewEmail("");
-          setNewPassword("");
-          setNewUserName("");
           router.refresh();
         } else {
           setLoading(false);

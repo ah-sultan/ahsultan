@@ -57,10 +57,10 @@ export const POST = async (req) => {
 export const GET = async (req) => {
   try {
     await connectToDB();
-    const testimonials = await TestimonialSchema.find({});
+    const users = await UserSchema.find({});
 
     return NextResponse.json(
-      { message: "success to get testimonials", data: testimonials },
+      { message: "success to get user", data: users },
       { status: 202, statusText: "OK" }
     );
   } catch (error) {
@@ -77,17 +77,17 @@ export const DELETE = async (req) => {
   const id = searchParams.get("id");
   try {
     await connectToDB();
-    await TestimonialSchema.findByIdAndDelete(id);
+    await UserSchema.findByIdAndDelete(id);
     return NextResponse.json(
       {
-        message: "Testimonial Deleted Successfully",
+        message: "User Deleted Successfully",
       },
       { status: 202, statusText: "OK" }
     );
   } catch (error) {
     return NextResponse.json(
       {
-        message: "Error: Failed to delete testimonial",
+        message: "Error: Failed to delete",
       },
       { status: 503, statusText: "ERROR" }
     );
@@ -96,21 +96,49 @@ export const DELETE = async (req) => {
 
 // PATH METHOD
 export const PATCH = async (req) => {
-  const data = await req.json();
+  const { fullName, userName, email, password, role, image } = await req.json();
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
   try {
     await connectToDB();
-    const findTestimonial = await TestimonialSchema.findById(id);
-    findTestimonial.clientName = data.clientName;
-    findTestimonial.clientTitle = data.clientTitle;
-    findTestimonial.reviewText = data.reviewText;
-    findTestimonial.image = data.image;
 
-    await findTestimonial.save();
+    // Verify Unique user
+    const existEmail = await UserSchema.findOne({ email });
+    const existUserName = await UserSchema.findOne({ userName });
+    const findUser = await UserSchema.findById(id);
+
+
+    if (existEmail && findUser.email !== email) {
+      return NextResponse.json(
+        { message: "This email already exist" },
+        { status: 500, statusText: "ERROR" }
+      );
+    }
+    if (existUserName && findUser.userName !== userName) {
+      return NextResponse.json(
+        { message: "This username already exist" },
+        { status: 500, statusText: "ERROR" }
+      );
+    }
+
+    // UPDATE USER
+
+    const hashPassword =
+      findUser.password === password
+        ? password
+        : await bcrypt.hash(password, 16);
+
+    findUser.fullName = fullName;
+    findUser.userName = userName;
+    findUser.email = email;
+    findUser.password = hashPassword;
+    findUser.role = role;
+    findUser.image = image;
+
+    await findUser.save();
 
     return NextResponse.json(
-      { message: "Testimonial updated successfully" },
+      { message: "User updated successfully" },
       {
         status: 202,
         statusText: "OK",
