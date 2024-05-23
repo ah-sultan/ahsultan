@@ -1,6 +1,6 @@
 import "@/app/styles/auth.css";
 import { auth, signIn } from "@/auth";
-import AuthBlock from "@/components/Auth/RegisterBox";
+import AuthBlock from "@/components/Auth/AuthBlock";
 import PageBanner from "@/components/PageBanner";
 
 const page = async () => {

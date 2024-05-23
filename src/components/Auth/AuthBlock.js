@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SocialMediaAuth from "./SocialMediaAuth";
-import AuthForm from "./AuthForm";
+import RegisterForm from "./RegisterForm";
 
 const AuthBlock = ({ type }) => {
   return (
@@ -15,7 +15,7 @@ const AuthBlock = ({ type }) => {
         </p>
         <hr />
         <br />
-        <AuthForm type={type} />
+        <RegisterForm/>
         <br />
         <SocialMediaAuth />
       </div>
