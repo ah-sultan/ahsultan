@@ -6,6 +6,11 @@
     },
     {
         "id": "0",
+        "title": "User",
+        "path": "/admin/user"
+    },
+    {
+        "id": "0",
         "title": "Services",
         "path": "/admin/services"
     },

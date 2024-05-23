@@ -397,6 +397,39 @@ textarea.dash-input-form::placeholder{
 }
 
 /* ===========================================================
+    Users
+=========================================================== */
+
+.dash-users {
+  .dash-user-list{
+    border-bottom: 1px solid #f5f5f5;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    align-items: center;
+  }
+
+  .dash-user-list h6{
+    font-size: 20px;
+    font-family: var(--font-primary);
+  }
+
+  .dash-user-list span {
+    display: inline-block;
+    margin-right: 10px;
+    text-transform: lowercase;
+  }
+  .dash-user-list span::after {
+    content: "•";
+    display: inline-block;
+    margin-left: 10px;
+    color: #27272a;
+  }
+  .dash-user-list span:last-child::after{
+    display: none;
+  }
+}
+
+/* ===========================================================
    UPLOADED IMG
 =========================================================== */
 

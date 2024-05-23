@@ -4,6 +4,7 @@ import BlogCategorySchema from "@/models/schema/blogCategory";
 import ProjectSchema from "@/models/schema/project";
 import ServiceSchema from "@/models/schema/service";
 import TestimonialSchema from "@/models/schema/testimonial";
+import UserSchema from "@/models/schema/user";
 import { connectToDB } from "@/utils/database";
 
 export const getTestimonialData = async () => {
@@ -100,6 +101,25 @@ export const findProject = async (id) => {
   try {
     await connectToDB();
     const res = await ProjectSchema.findById(id);
+    return res;
+  } catch (error) {
+    return new Error("Blog is not found");
+  }
+};
+
+export const getUsers = async (id) => {
+  try {
+    await connectToDB();
+    const res = await UserSchema.find();
+    return res;
+  } catch (error) {
+    return new Error("Blog is not found");
+  }
+};
+export const findUser = async (id) => {
+  try {
+    await connectToDB();
+    const res = await UserSchema.findById(id);
     return res;
   } catch (error) {
     return new Error("Blog is not found");
