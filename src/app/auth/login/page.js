@@ -1,11 +1,13 @@
 import "@/app/styles/auth.css";
+import { auth } from "@/auth";
 import LoginForm from "@/components/Auth/LoginForm";
 import SocialMediaAuth from "@/components/Auth/SocialMediaAuth";
 import PageBanner from "@/components/PageBanner";
 import Image from "next/image";
 import Link from "next/link";
 
-const page = () => {
+const page = async ({}) => {
+  const session = await auth();
   return (
     <>
       <main className="login-page">
@@ -23,7 +25,7 @@ const page = () => {
                 </p>
                 <hr />
                 <br />
-                <LoginForm/>
+                <LoginForm session={session} />
                 <br />
                 <SocialMediaAuth />
               </div>

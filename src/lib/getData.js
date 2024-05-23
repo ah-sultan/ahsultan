@@ -67,7 +67,6 @@ export const findBlog = async (id) => {
   }
 };
 
-
 export const getServices = async () => {
   try {
     await connectToDB();
@@ -125,3 +124,5 @@ export const findUser = async (id) => {
     return new Error("Blog is not found");
   }
 };
+
+

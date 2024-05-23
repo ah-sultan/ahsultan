@@ -1,9 +1,8 @@
 import { getDateAndTime } from "@/lib/getDateAndTime";
-import TestimonialSchema from "@/models/schema/testimonial";
 import UserSchema from "@/models/schema/user";
 import { connectToDB } from "@/utils/database";
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs-react";
 
 // POST METHOD
 export const POST = async (req) => {
@@ -106,7 +105,6 @@ export const PATCH = async (req) => {
     const existEmail = await UserSchema.findOne({ email });
     const existUserName = await UserSchema.findOne({ userName });
     const findUser = await UserSchema.findById(id);
-
 
     if (existEmail && findUser.email !== email) {
       return NextResponse.json(

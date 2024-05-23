@@ -1,29 +1,18 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { authenticate } from "@/lib/actions";
 import { Spinner } from "react-bootstrap";
-import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { useFormState, useFormStatus } from "react-dom";
 
 const LoginForm = () => {
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState(false);
-  const [password, setPassword] = useState(false);
+  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+  const { pending } = useFormStatus();
 
   // Handle Submit
-  const handleSubmit = async () => {
-    const formData = {
-      email,
-      name,
-      redirect: false,
-    };
-    try {
-      const res = await signIn("credentials", formData);
-    } catch (error) {}
-  };
+
   return (
     <>
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="login-form" action={dispatch}>
         {/* Email Address */}
         <label htmlFor="loginFormEmail">
           <span>Email Address *</span>
@@ -32,8 +21,6 @@ const LoginForm = () => {
             type="email"
             placeholder="example@domain.com"
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
         </label>
         {/* Password */}
@@ -44,17 +31,15 @@ const LoginForm = () => {
             type="password"
             placeholder="Minimum 8 Characters"
             required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
           />
         </label>
         {/* Button */}
         <button
-          disabled={loading}
+          disabled={pending}
           className="form-button text-center d-flex align-items-center justify-content-center"
           type="submit"
         >
-          Login {loading && <Spinner style={{ width: 20, height: 20 }} />}
+          Login {pending && <Spinner style={{ width: 20, height: 20 }} />}
         </button>
       </form>
     </>

@@ -24,6 +24,6 @@ const userContent = new Schema({
   registerDate: String,
 });
 
-const UserSchema = models.UserSchema || model("UserSchema", userContent);
+const UserSchema = models?.UserSchema || model("UserSchema", userContent);
 
 export default UserSchema;

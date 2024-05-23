@@ -1,14 +1,11 @@
-"use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import Logo from "./Header/Logo";
+import { auth } from "@/auth";
+import SignOutBtn from "../Auth/SignOutBtn";
 
-const Footer = () => {
-  const [date, setDate] = useState();
-  useEffect(() => {
-    setDate(new Date().getFullYear());
-  }, []);
-
+const Footer = async () => {
+  const session = await auth();
+  console.log(session);
   return (
     <footer className="main-footer rel z-1">
       <div className="footer-top-wrap bgc-black pt-100 pb-75">
@@ -17,8 +14,8 @@ const Footer = () => {
             <div className="col-lg-2 col-md-12">
               <div className="footer-widget widget_logo wow fadeInUp delay-0-2s">
                 <div className="footer-logo">
-                  <Link  href="/">
-                    <Logo/>
+                  <Link href="/">
+                    <Logo />
                   </Link>
                 </div>
               </div>
@@ -28,29 +25,19 @@ const Footer = () => {
                 <h6 className="footer-title">Quick Link</h6>
                 <ul>
                   <li>
-                    <Link  href="services">
-                      Service
-                    </Link>
+                    <Link href="services">Service</Link>
                   </li>
                   <li>
-                    <Link  href="projects">
-                      Projects
-                    </Link>
+                    <Link href="projects">Projects</Link>
                   </li>
                   <li>
-                    <Link  href="services#pricing">
-                      Pricing
-                    </Link>
+                    <Link href="services#pricing">Pricing</Link>
                   </li>
                   <li>
-                    <Link  href="about#faqs">
-                      Faqs
-                    </Link>
+                    <Link href="about#faqs">Faqs</Link>
                   </li>
                   <li>
-                    <Link  href="contact">
-                      Contact
-                    </Link>
+                    <Link href="contact">Contact</Link>
                   </li>
                 </ul>
               </div>
@@ -89,6 +76,11 @@ const Footer = () => {
                     <i className="far fa-phone" />{" "}
                     <Link href="callto:+880(123)45688">+880 (123) 456 88</Link>
                   </li>
+                  {session && (
+                    <li>
+                      <SignOutBtn />
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -101,11 +93,8 @@ const Footer = () => {
             <div className="col-lg-6">
               <div className="copyright-text">
                 <p>
-                  Copyright @{date},{" "}
-                  <Link  href="/">
-                    Noxfolio
-                  </Link>{" "}
-                  All Rights Reserved
+                  Copyright by <Link href="/">Ah Sultan</Link> All Rights
+                  Reserved
                 </p>
               </div>
             </div>

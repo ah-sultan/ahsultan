@@ -16,6 +16,6 @@ const ImageGallery = new Schema({
 });
 
 const ImageGallerySchema =
-  models.ImageGallerySchema || model("ImageGallerySchema", ImageGallery);
+  models?.ImageGallerySchema || model("ImageGallerySchema", ImageGallery);
 
 export default ImageGallerySchema;
