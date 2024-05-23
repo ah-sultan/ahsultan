@@ -1,7 +1,9 @@
 import "@/app/styles/auth.css";
 import LoginForm from "@/components/Auth/LoginForm";
+import SocialMediaAuth from "@/components/Auth/SocialMediaAuth";
 import PageBanner from "@/components/PageBanner";
 import Image from "next/image";
+import Link from "next/link";
 
 const page = () => {
   return (
@@ -11,7 +13,20 @@ const page = () => {
         <section className="login-wrapper">
           <div className="container">
             <div className="col-6 mx-auto">
-              <LoginForm />
+              <div className="login-form-body">
+                <h3>Login</h3>
+                <p>
+                  Dose not have and account yet?{" "}
+                  <Link href="/auth/register" className="text-primary">
+                    Sign In
+                  </Link>
+                </p>
+                <hr />
+                <br />
+                <LoginForm/>
+                <br />
+                <SocialMediaAuth />
+              </div>
             </div>
           </div>
         </section>
