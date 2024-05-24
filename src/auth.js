@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { authUser } from "./lib/authUser";
 import { signInSchema } from "./lib/zod";
@@ -13,7 +12,6 @@ const authConfig = {
 export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: "/auth/login",
-    
   },
   ...authConfig,
   providers: [
@@ -72,4 +70,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
+
 });

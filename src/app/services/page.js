@@ -7,12 +7,14 @@ import Link from "next/link";
 import whatIDoImg1 from "../../../public/images/about/what-i-do1.jpg";
 import whatIDoImg2 from "../../../public/images/about/what-i-do2.jpg";
 import Image from "next/image";
+import { getServices } from "@/lib/getData";
 
 export const metadata = {
   title: "Services",
 };
 
-const ServicePage = () => {
+const ServicePage = async () => {
+  const getData = await getServices()
   return (
     <main>
       <PageBanner pageName={"Popular Service"} />
@@ -76,7 +78,7 @@ const ServicePage = () => {
       {/* What I Do Area end */}
       <Services extraClass={"bgc-black "} />
       {/* Pricing Area start */}
-      <Pricing extraClass={"pb-100 mt-0 pt-0"} />
+      {/* <Pricing extraClass={"pb-100 mt-0 pt-0"} /> */}
     </main>
   );
 };

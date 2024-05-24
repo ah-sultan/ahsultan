@@ -10,6 +10,7 @@ import { Button } from "react-bootstrap";
 
 const page = async ({}) => {
   const session = await auth();
+
   return (
     <>
       <main className="login-page">

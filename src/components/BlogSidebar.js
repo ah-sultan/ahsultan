@@ -1,54 +1,41 @@
 import Link from "next/link";
 import BlogData from "@/Data/BlogsData";
 import Image from "next/image";
+import { getBlogCatagories, getBlogs } from "@/lib/getData";
 
-const BlogSidebar = () => {
-  const latestImg = BlogData.splice(1, 3);
+const BlogSidebar = async () => {
+  const category = await getBlogCatagories();
+  const getBlog = await getBlogs();
+  const latestBlogs = await getBlog?.splice(0, 3);
 
   return (
     <div className="main-sidebar rmt-65">
       <div className="widget widget-search wow fadeInUp delay-0-2s">
         <h4 className="widget-title">Search</h4>
         <form action="#" className="default-search-form">
-          <input type="text" placeholder="Keywords" required="" />
+          <input type="text" placeholder="Keywords" required="" disabled />
           <button type="submit" className="searchbutton far fa-search" />
         </form>
       </div>
       <div className="widget widget-category wow fadeInUp delay-0-4s">
         <h4 className="widget-title">Category</h4>
         <ul>
-          <li>
-            <i className="far fa-angle-right" />{" "}
-            <Link href="blog">Web Design</Link>
-          </li>
-          <li>
-            <i className="far fa-angle-right" />{" "}
-            <Link href="blog">Mobile Apps Design</Link>
-          </li>
-          <li>
-            <i className="far fa-angle-right" />{" "}
-            <Link href="blog">Brand Identity Design</Link>
-          </li>
-          <li>
-            <i className="far fa-angle-right" />{" "}
-            <Link href="blog">Motion Graphic Design</Link>
-          </li>
-          <li>
-            <i className="far fa-angle-right" />{" "}
-            <Link href="blog">Web Development</Link>
-          </li>
-          <li>
-            <i className="far fa-angle-right" />{" "}
-            <Link href="blog">Digital Marketing</Link>
-          </li>
+          {Array.isArray(category) &&
+            category.map((data, index) => {
+              return (
+                <li key={index}>
+                  <i className="far fa-angle-right" />{" "}
+                  <Link href="blog">{data.title}</Link>
+                </li>
+              );
+            })}
         </ul>
       </div>
       <div className="widget widget-recent-news wow fadeInUp delay-0-2s">
         <h4 className="widget-title">Latest News</h4>
         <ul>
- 
-          {Array.isArray(latestImg) &&
-            latestImg.map((data, index) => {
+          {Array.isArray(latestBlogs) &&
+            latestBlogs.map((data, index) => {
               return (
                 <li key={index}>
                   <div className="image">
@@ -66,11 +53,14 @@ const BlogSidebar = () => {
                   <div className="content">
                     <div className="blog-meta mb-5">
                       <span className="date" href="#">
-                        <i className="far fa-calendar-alt" /> {data.publishDate}
+                        <i className="far fa-calendar-alt" />{" "}
+                        {data.publishedDate}
                       </span>
                     </div>
-                    <h5>
-                      <Link href="blog-details">{data.title}</Link>
+                    <h5 className="line-clamp-2">
+                      <Link href={`/blogDetails/${data._id}`}>
+                        {data.title}
+                      </Link>
                     </h5>
                   </div>
                 </li>
@@ -78,7 +68,7 @@ const BlogSidebar = () => {
             })}
         </ul>
       </div>
-      <div className="widget widget-tag-cloud wow fadeInUp delay-0-2s">
+      <div className="widget widget-tag-cloud wow fadeInUp delay-0-2s d-none">
         <h4 className="widget-title">Popular Tags</h4>
         <div className="tag-coulds">
           <Link href="blog">Design</Link>

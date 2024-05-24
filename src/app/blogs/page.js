@@ -1,13 +1,15 @@
+import BlogCard from "@/components/BlogCard";
 import BlogSidebar from "@/components/BlogSidebar";
 import PageBanner from "@/components/PageBanner";
 import BlogData from "@/Data/BlogsData";
-import BlogCard from "@/components/BlogCard";
+import { getBlogs } from "@/lib/getData";
 
 export const metadata = {
   title: "My Blogs",
 };
 
-const BlogPage = () => {
+const BlogPage = async () => {
+  const blogData = await getBlogs();
   return (
     <main>
       <PageBanner pageName={"Explore My Blogs"} />
@@ -17,11 +19,16 @@ const BlogPage = () => {
             <div className="col-lg-8">
               <div className="blog-standard-wrap">
                 <div className="row g-4">
-                  {Array.isArray(BlogData) &&
-                    BlogData.map((data, index) => {
+                  {Array.isArray(blogData) &&
+                    blogData.map((data, index) => {
                       return (
                         <div className="col-md-6 mb-4" key={index}>
-                          <BlogCard {...data} />
+                          <BlogCard
+                            _id={data._id}
+                            thumbnail={data.thumbnail}
+                            category={data.category}
+                            title={data.title}
+                          />
                         </div>
                       );
                     })}

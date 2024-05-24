@@ -20,7 +20,7 @@ const page = async () => {
       <section className="dash-projects">
         <DashboardBreadcrumb currentPage="All Services" />
         <SectionHeader
-          sectionTitle="All Projects"
+          sectionTitle="All Services"
           path="/admin/services/add-new"
         />
         <ContentWrapper noItems={false}>

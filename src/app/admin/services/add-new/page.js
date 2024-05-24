@@ -8,9 +8,9 @@ const AddService = async () => {
   return (
     <>
       <section className="dash-add-blog-page">
-        <DashboardBreadcrumb currentPage="Add New Blog" />
+        <DashboardBreadcrumb currentPage="Add New Service" />
         <div className="section-header">
-          <h2 className="section-title">Write New Blog</h2>
+          <h2 className="section-title">Add New Service</h2>
         </div>
         <ContentWrapper>
           <ServiceForm type="post" />

@@ -11,6 +11,7 @@ import Skill from "@/components/Skill";
 import Testimonial from "@/components/Testimonial";
 
 export default function Home() {
+
   return (
     <main>
       <Hero />

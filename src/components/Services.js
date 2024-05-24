@@ -1,38 +1,8 @@
+import { getServices } from "@/lib/getData";
 import Link from "next/link";
 
-const Services = ({ extraClass }) => {
-  const services = [
-    {
-      id: 1,
-      title: "Brand Identity Design",
-      text: "Dignissimos ducimus blanditiis praesen",
-    },
-    {
-      id: 2,
-      title: "Website Design",
-      text: "Dignissimos ducimus blanditiis praesen",
-    },
-    {
-      id: 3,
-      title: "Mobile Application Design",
-      text: "Dignissimos ducimus blanditiis praesen",
-    },
-    {
-      id: 4,
-      title: "Motion Graphics Design",
-      text: "Dignissimos ducimus blanditiis praesen",
-    },
-    {
-      id: 5,
-      title: "Website Development",
-      text: "Dignissimos ducimus blanditiis praesen",
-    },
-    {
-      id: 6,
-      title: "SEO & Digital Marketing",
-      text: "Dignissimos ducimus blanditiis praesen",
-    },
-  ];
+const Services = async ({ extraClass }) => {
+  const services = await getServices();
   return (
     <section
       id="services"
@@ -50,22 +20,21 @@ const Services = ({ extraClass }) => {
           </div>
         </div>
         <div className="row">
-          {services.map((service) => (
-            <div className="col-lg-6" key={service.id}>
-              <div className="service-item wow fadeInUp delay-0-2s">
-                <div className="number">
-                  {service.id >= 9 ? service.id : `0${service.id}`}.
+          {Array.isArray(services) &&
+            services.map((data) => (
+              <div className="col-lg-6" key={data._id}>
+                <div className="service-item wow fadeInUp delay-0-2s">
+                  <div className="number">{data.serviceNo}</div>
+                  <div className="content">
+                    <h4>{data.title}</h4>
+                    <p>{data.description}</p>
+                  </div>
+                  <Link href="/" className="details-btn">
+                    <i className="fas fa-arrow-right" />
+                  </Link>
                 </div>
-                <div className="content">
-                  <h4>{service.title}</h4>
-                  <p>{service.text}</p>
-                </div>
-                <Link  href="/#" className="details-btn">
-                  <i className="fas fa-arrow-right" />
-                </Link>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
       <div className="bg-lines">
