@@ -2,10 +2,10 @@ import "@/app/styles/auth.css";
 import { auth, signIn } from "@/auth";
 import AuthBlock from "@/components/Auth/AuthBlock";
 import PageBanner from "@/components/PageBanner";
+import { useRouter } from "next/navigation";
 
 const page = async () => {
   const session = await auth();
-  console.log(session)
 
   return (
     <main className="login-page">

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Fragment } from "react";
 const SideBar = () => {
   const toggleSidebar = () => {
-    console.log("hi");
     document.querySelector("body").classList.remove("side-content-visible");
   };
   return (

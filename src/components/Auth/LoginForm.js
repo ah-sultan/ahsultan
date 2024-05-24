@@ -1,14 +1,22 @@
 "use client";
 
 import { authenticate } from "@/lib/actions";
-import { Spinner } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useFormState, useFormStatus } from "react-dom";
+import SignOutBtn from "./SignOutBtn";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-const LoginForm = () => {
+const LoginForm = ({ session }) => {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
-  const { pending } = useFormStatus();
+console.log(errorMessage)
+  const router = useRouter();
 
-  // Handle Submit
+  if (session?.user) {
+    router.push("/");
+    return null; // Early return to prevent unnecessary rendering
+  }
 
   return (
     <>
@@ -33,17 +41,33 @@ const LoginForm = () => {
             required
           />
         </label>
+        {errorMessage && <p>{errorMessage}</p>}
         {/* Button */}
-        <button
-          disabled={pending}
-          className="form-button text-center d-flex align-items-center justify-content-center"
-          type="submit"
-        >
-          Login {pending && <Spinner style={{ width: 20, height: 20 }} />}
-        </button>
+        <LoginButton />
       </form>
     </>
   );
 };
 
 export default LoginForm;
+
+function LoginButton() {
+  const { pending, data, method, action } = useFormStatus();
+
+  const handleClick = (event) => {
+    if (pending) {
+      event.preventDefault();
+    }
+  };
+
+  return (
+    <button
+      className="form-button text-center d-flex align-items-center justify-content-center"
+      aria-disabled={pending}
+      type="submit"
+      onClick={handleClick}
+    >
+      Login {pending && <Spinner style={{ width: 20, height: 20 }} />}
+    </button>
+  );
+}

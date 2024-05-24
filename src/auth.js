@@ -3,6 +3,7 @@ import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { authUser } from "./lib/authUser";
 import { signInSchema } from "./lib/zod";
+import { ZodError } from "zod";
 
 const authConfig = {
   //...
@@ -12,6 +13,7 @@ const authConfig = {
 export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: "/auth/login",
+    
   },
   ...authConfig,
   providers: [
@@ -36,7 +38,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if (!user) {
             throw new Error("User not found.");
           }
-          console.log(user);
           // return json object with the user data
           return user;
         } catch (error) {

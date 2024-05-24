@@ -5,7 +5,6 @@ import SignOutBtn from "../Auth/SignOutBtn";
 
 const Footer = async () => {
   const session = await auth();
-  console.log(session);
   return (
     <footer className="main-footer rel z-1">
       <div className="footer-top-wrap bgc-black pt-100 pb-75">
