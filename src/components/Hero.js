@@ -3,26 +3,23 @@ import Counter from "./Counter";
 import React from "react";
 
 const counterData = [
-  { id: 1, text: "Years Of Experience", value: "13", valueType: "plus" },
-  { id: 2, text: "Project Complete", value: "8", valueType: "k-plus" },
+  { id: 1, text: "Months Of Experience", value: "36", valueType: "plus" },
+  { id: 2, text: "Project Complete", value: "10", valueType: "plus" },
   { id: 3, text: "Client Satisfactions", value: "99", valueType: "percent" },
 ];
 
 const expertTitle = [
   "Web Designer",
   "Web Developer",
+  "Wordpress Expert",
   "Front End Developer",
   "React Js Developer",
   "Next Js Developer",
-  "UI/UX Design",
+  "UI/UX Designer",
   "Redux Expert",
 ];
 
-
-
 const Hero = () => {
-
-
   return (
     <section id="home" className="main-hero-area pt-150 pb-80 rel z-1">
       <div className="container container-1620">
@@ -34,11 +31,11 @@ const Hero = () => {
                 <b>Sultan Ahmed</b> <br /> web designer
               </h1>
               <p className="hero-desc">
-                We denounce with righteous indignation dislike demoralized by
-                the charms of pleasure. We denounce with righteous indignation
-                dislike demoralized by the charms of pleasure. We denounce with
-                righteous indignation dislike demoralized by the charms of
-                pleasure
+                I love building websites that are attractive, useful, and easy
+                to use. I can design websites for all sorts of needs, like
+                portfolios, blogs, businesses, real estate agents, doctors, and
+                even personal websites. I make sure they look great, work
+                smoothly, and are free of mistakes.
               </p>
               <div className="hero-btns">
                 <Link href="/contact" className="theme-btn">

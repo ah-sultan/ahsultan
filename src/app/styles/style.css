@@ -4985,8 +4985,8 @@ h6,
 .hero-slider .slider-slide {
   flex-shrink: 0;
   display: flex;
-  animation: infiniteSlide 30s linear infinite;
-  -webkit-animation: infiniteSlide 30s linear infinite;
+  animation: infiniteSlide 40s linear infinite;
+  -webkit-animation: infiniteSlide 40s linear infinite;
 }
 
 .hero-slider .slider-slide li{
@@ -4995,7 +4995,7 @@ h6,
   margin: 0 20px;
   font-weight: 800;
   color: var(--heading-color);
-  text-transform: uppercase;
+  text-transform: capitalize;
   
 }
 
