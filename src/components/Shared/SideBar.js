@@ -1,10 +1,54 @@
 "use client";
+import { getDateAndTime } from "@/lib/getDateAndTime";
 import Link from "next/link";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import { toast } from "react-toastify";
 const SideBar = () => {
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const toggleSidebar = () => {
     document.querySelector("body").classList.remove("side-content-visible");
   };
+
+  // Handle Submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const date = getDateAndTime();
+
+    const contactData = {
+      name,
+      email,
+      subject: "Subject For Appointment",
+      message,
+      date,
+    };
+
+    try {
+      const res = await fetch("/api/contact/", {
+        method: "POST",
+        body: JSON.stringify(contactData),
+      });
+      if (res.ok) {
+        setLoading(false);
+        toast.success("Message send successfully");
+        setName("");
+        setEmail("");
+        setMessage("");
+        toggleSidebar();
+      } else {
+        setLoading(false);
+        toast.success("Message not send please try again");
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error("something went error");
+    }
+  };
+
   return (
     <Fragment>
       {/*Form Back Drop*/}
@@ -20,20 +64,15 @@ const SideBar = () => {
           </div>
           {/*Appointment Form*/}
           <div className="appointment-form">
-            <form
-              method="post"
-              onSubmit={(e) => {
-                e.preventDefault();
-                toggleSidebar();
-              }}
-            >
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <input
                   type="text"
                   name="text"
-                  defaultValue=""
                   placeholder="Name"
-                  required=""
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -41,16 +80,24 @@ const SideBar = () => {
                   type="email"
                   name="email"
                   defaultValue=""
-                  placeholder="Email Address"
-                  required=""
+                  placeholder="Email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="form-group">
-                <textarea placeholder="Message" rows={5} defaultValue={""} />
+                <textarea
+                  placeholder="Message"
+                  rows={5}
+                  required
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                />
               </div>
               <div className="form-group">
                 <button type="submit" className="theme-btn">
-                  Submit now
+                  {loading ? "Loading..." : " Submit now"}
                 </button>
               </div>
             </form>

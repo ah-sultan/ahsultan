@@ -5,7 +5,7 @@ import Contact from "@/components/Contact";
 import Hero from "@/components/Hero";
 import Pricing from "@/components/Pricing";
 import Projects from "@/components/Projects";
-import Resume from "@/components/Resume";
+import WorkingProcess from "@/components/WorkingProcess";
 import Services from "@/components/Services";
 import Skill from "@/components/Skill";
 import Testimonial from "@/components/Testimonial";
@@ -16,7 +16,7 @@ export default function Home() {
     <main>
       <Hero />
       <About />
-      <Resume />
+      <WorkingProcess />
       <Services />
       <Skill />
       <Projects />

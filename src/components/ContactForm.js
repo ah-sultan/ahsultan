@@ -32,7 +32,6 @@ const ContactForm = () => {
         method: "POST",
         body: JSON.stringify(contactData),
       });
-      console.log(res);
       if (res.ok) {
         setLoading(false);
         toast.success("Message send successfully");

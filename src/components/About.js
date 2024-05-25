@@ -8,6 +8,7 @@ import btnImg1 from "../../public/images/about/btn-image1.png";
 import btnImg2 from "../../public/images/about/btn-image2.png";
 import aboutDotShape from "../../public/images/shape/about-dot.png";
 import circleLogoImg from "../../public/images/shape/circle-logo.png";
+import { contactInfo, socialMedia } from "@/Data/contactData";
 
 const About = () => {
   return (
@@ -20,40 +21,43 @@ const About = () => {
                 <div className="section-title mb-35 wow fadeInUp delay-0-2s">
                   <span className="sub-title mb-15">About Me</span>
                   <h2>
-                    Professional <span>Problem Solutions</span> For Digital
-                    Products
+                    I solve problems{" "}
+                    <span>for agencies and individual clients</span> by building
+                    websites.
                   </h2>
                   <p>
-                    At vero eos et accusamus etodio dignissimos ducimus
-                    praesentium voluptatum corrupti quos dolores quas molestias
-                    excepturi sint occaecati cupiditate provident qui officia
-                    deserunt mollitia animi, id est laborum et dolorum
+                    As a front-end developer, I&apos;m passionate about creating
+                    beautiful, functional, and user-friendly web applications.
+                    With skills in HTML, CSS, JavaScript, Tailwind, Bootstrap,
+                    Jquery, React.js, and Next.js, I have a solid foundation in
+                    the latest web development technologies.
                   </p>
                 </div>
                 <ul className="list-style-one two-column wow fadeInUp delay-0-2s">
-                  <li>Branding &amp; Design</li>
-                  <li>Digital Marketing</li>
-                  <li>Web Development</li>
-                  <li>Product Design</li>
+                  <li>All time support</li>
+                  <li>Bug Free Solution</li>
+                  <li>Pixel Perfect design </li>
+                  <li>Use latest technology</li>
                 </ul>
-                <div className="about-info-box mt-25 wow fadeInUp delay-0-2s">
+                <hr />
+                <div className="about-info-box mt-25 wow fadeInUp delay-0-2s p-0 border-0 bg-transparent">
                   <div className="info-box-item">
                     <i className="far fa-envelope" />
                     <div className="content">
                       <span>Email Us</span>
                       <br />
-                      <Link href="mailto:support@gmail.com">
-                        support@gmail.com
+                      <Link href={`mailto:${contactInfo?.email}`}>
+                        {contactInfo?.email}
                       </Link>
                     </div>
                   </div>
                   <div className="info-box-item">
-                    <i className="far fa-phone" />
+                    <i className="fab fa-whatsapp" />
                     <div className="content">
                       <span>Make A Call</span>
                       <br />
-                      <Link href="callto:+000(123)45688">
-                        +880 (123) 456 88
+                      <Link href={socialMedia?.whatsapp}>
+                        {contactInfo?.phone}
                       </Link>
                     </div>
                   </div>
@@ -62,13 +66,17 @@ const About = () => {
             </div>
             <div className="col-lg-5">
               <div className="about-image-part wow fadeInUp delay-0-3s">
-                <Image src={aboutImg} alt="About Me" className="mt-4 md-mt-0 img-fluid"/>
+                <Image
+                  src={aboutImg}
+                  alt="About Me"
+                  className="mt-4 md-mt-0 img-fluid"
+                />
                 <div className="about-btn btn-one wow fadeInRight delay-0-4s">
                   <Image src={btnImg1} alt="Image" />
                   <h6>Experience Designer</h6>
                   <i className="fas fa-arrow-right" />
                 </div>
-                <div className="about-btn btn-two wow fadeInRight delay-0-5s">
+                <div className="about-btn btn-two wow fadeInRight delay-0-5s d-none">
                   <Image src={btnImg2} alt="Image" />
                   <h6>Mark J. Collins</h6>
                   <i className="fas fa-arrow-right" />
