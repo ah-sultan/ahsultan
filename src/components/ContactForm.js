@@ -1,6 +1,54 @@
+"use client";
 
-"use client"
+import { getDateAndTime } from "@/lib/getDateAndTime";
+import { useState } from "react";
+import { Spinner } from "react-bootstrap";
+import { toast } from "react-toastify";
+
 const ContactForm = () => {
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  // Handle submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true)
+
+    const date = getDateAndTime();
+
+    const contactData = {
+      name,
+      email,
+      subject,
+      message,
+      date,
+    };
+
+    try {
+      const res = await fetch("/api/contact/", {
+        method: "POST",
+        body: JSON.stringify(contactData),
+      });
+      console.log(res);
+      if (res.ok) {
+        setLoading(false);
+        toast.success("Message send successfully");
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+      } else {
+        setLoading(false);
+        toast.success("Message not send please try again");
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error("something went error");
+    }
+  };
   return (
     <form
       id="contactForm"
@@ -8,6 +56,7 @@ const ContactForm = () => {
       name="contactForm"
       action="assets/php/form-process.php"
       method="post"
+      onSubmit={handleSubmit}
     >
       <div className="row">
         <div className="col-md-6">
@@ -15,13 +64,13 @@ const ContactForm = () => {
             <label htmlFor="name">Full Name</label>
             <input
               type="text"
-              id="name"
               name="name"
               className="form-control"
-              defaultValue=""
               placeholder="Richard D. Hammond"
-              required=""
+              required
               data-error="Please enter your Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <label htmlFor="name" className="for-icon">
               <i className="far fa-user" />
@@ -34,13 +83,13 @@ const ContactForm = () => {
             <label htmlFor="email">Email Address</label>
             <input
               type="email"
-              id="email"
               name="email"
               className="form-control"
-              defaultValue=""
               placeholder="support@gmail.com"
-              required=""
               data-error="Please enter your Email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <label htmlFor="email" className="for-icon">
               <i className="far fa-envelope" />
@@ -48,37 +97,18 @@ const ContactForm = () => {
             <div className="help-block with-errors" />
           </div>
         </div>
-        <div className="col-md-6">
-          <div className="form-group">
-            <label htmlFor="phone_number">Phone Number</label>
-            <input
-              type="text"
-              id="phone_number"
-              name="phone_number"
-              className="form-control"
-              defaultValue=""
-              placeholder="+880 (123) 456 88"
-              required=""
-              data-error="Please enter your Phone Number"
-            />
-            <label htmlFor="phone_number" className="for-icon">
-              <i className="far fa-phone" />
-            </label>
-            <div className="help-block with-errors" />
-          </div>
-        </div>
-        <div className="col-md-6">
+        <div className="col-md-12">
           <div className="form-group">
             <label htmlFor="subject">Subject</label>
             <input
               type="text"
-              id="subject"
               name="subject"
               className="form-control"
-              defaultValue=""
               placeholder="Subject"
-              required=""
+              required
               data-error="Please enter your Subject"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
             />
             <label htmlFor="subject" className="for-icon">
               <i className="far fa-text" />
@@ -90,24 +120,24 @@ const ContactForm = () => {
           <div className="form-group">
             <label htmlFor="message">Message</label>
             <textarea
-              name="message"
               id="message"
               className="form-control"
               rows={4}
               placeholder="write message"
-              required=""
+              required
               data-error="Please enter your Message"
-              defaultValue={""}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             />
             <div className="help-block with-errors" />
           </div>
         </div>
         <div className="col-md-12">
-          <div className="form-group mb-0">
-            <button type="submit" className="theme-btn">
+          <div className="form-group mb-0 d-flex align-items-center">
+            <button type="submit" className="theme-btn me-4" disabled={loading}>
               Send Us Message <i className="far fa-angle-right" />
             </button>
-            <div id="msgSubmit" className="hidden" />
+            {loading && <Spinner />}
           </div>
         </div>
       </div>
