@@ -11,9 +11,9 @@ const page = () => {
       <ContentWrapper noItems={false}>
         <div className="row">
           {Array.isArray(SideNavData) &&
-            SideNavData.map((data) => {
+            SideNavData.map((data, index) => {
               return (
-                <div className="col-lg-4 col-xl-3">
+                <div key={index} className="col-lg-4 col-xl-3">
                   <div className="p-4 border mb-4 rounded-2">
                     <h5 style={{ marginBottom: 60 }}>{data?.title}</h5>
                     <Link href={data?.path}>View All 🡵</Link>

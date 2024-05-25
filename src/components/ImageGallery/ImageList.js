@@ -17,7 +17,7 @@ const ImageList = ({
     const getPublishDates = images.map((img) => img.publishDate);
     const uniquePublishDate = [...new Set(getPublishDates)];
     setPublishDate(uniquePublishDate);
-  }, []);
+  }, [images]);
 
   return (
     <>

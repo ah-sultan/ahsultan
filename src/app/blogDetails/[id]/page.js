@@ -8,7 +8,7 @@ import Comments from "@/components/Comments";
 import PageBanner from "@/components/PageBanner";
 import { Suspense } from "react";
 import Loading from "@/app/loading";
-import { findBlog } from "@/lib/getData";
+import { findBlog, getBlogs } from "@/lib/getData";
 import BlogNavigation from "@/components/BlogDetails/BlogNavigation";
 
 export const generateMetadata = async ({ params }) => {
@@ -93,3 +93,5 @@ const BlogDetails = async ({ params }) => {
   );
 };
 export default BlogDetails;
+
+

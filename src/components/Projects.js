@@ -15,6 +15,7 @@ const Projects = async () => {
           projectData.map((data, index) => {
             return (
               <ProjectsCard
+              key={index}
                 _id={data._id}
                 index={index}
                 title={data.title}
