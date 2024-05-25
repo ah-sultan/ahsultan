@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Pricing = ({ extraClass }) => {
   return (
-    <section className={`pricing-area pt-130 rpt-100 rel z-1 ${extraClass}`}>
+    <section className={`pricing-area pt-130 rpt-100 rel z-1 ${extraClass} d-none` }>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-5 col-lg-8">

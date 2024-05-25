@@ -11,7 +11,7 @@ const BlogCard = ({ _id, thumbnail, publishedDate, category, title }) => {
       <div className="card-items">
         <span>{publishedDate}</span>
         <span>•</span>
-        <span>{category.title}</span>
+        <span>{category?.title}</span>
       </div>
 
       <h6 className="card-title">

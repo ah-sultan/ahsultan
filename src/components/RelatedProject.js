@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const RelatedProject = ({ projectData }) => {
+const RelatedProject = ({ data }) => {
+  const projectData = data && JSON.parse(data);
   return (
     <>
       <Swiper
@@ -28,16 +29,16 @@ const RelatedProject = ({ projectData }) => {
                     <Image
                       width={630}
                       height={500}
-                      src={data.thumbnail}
-                      alt={data.title || "Projects"}
+                      src={data?.thumbnail}
+                      alt={data?.title || "Projects"}
                       className="img-fluid"
                     />
                   </div>
                   <div className="project-content">
-                    <span className="sub-title">{data.category}</span>
-                    <h4>
-                      <Link href="project-details">{data.title}</Link>
-                    </h4>
+                    <span className="sub-title">{data?.category}</span>
+                    <Link href="project-details">
+                      <h4>{data?.title}</h4>
+                    </Link>
                   </div>
                 </div>
               </SwiperSlide>

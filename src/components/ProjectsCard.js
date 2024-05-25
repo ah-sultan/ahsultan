@@ -1,21 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const ProjectsCard = (props) => {
+const ProjectsCard = ({
+  index,
+  _id,
+  title,
+  thumbnail,
+  category,
+  summary
+}) => {
   return (
     <>
       <div className="row align-items-center pb-25">
         <div
           className={`col-lg-6 ${
-            props.index % 2 === 0 ? "order-lg-first" : "order-lg-last"
+            index % 2 === 0 ? "order-lg-first" : "order-lg-last"
           } `}
         >
           <div className="project-image wow fadeInLeft delay-0-2s">
             <Image
               width={630}
               height={500}
-              src={props.thumbnail}
-              alt={props.title || "Projects"}
+              src={thumbnail}
+              alt={title || "Projects"}
               className="
               img-fluid"
             />
@@ -23,12 +30,12 @@ const ProjectsCard = (props) => {
         </div>
         <div className="col-lg-6">
           <div className="project-content wow fadeInRight delay-0-2s">
-            <span className="sub-title">{props.category}</span>
+            <span className="sub-title">{category}</span>
             <h2>
-              <Link href="project-details">{props.title}</Link>
+              <Link href={`/projectDetails/${_id}`}>{title}</Link>
             </h2>
-            <p>{props.description}</p>
-            <Link href="/project-details" className="details-btn">
+            <p>{summary}</p>
+            <Link href={`/projectDetails/${_id}`} className="details-btn">
               <i className="far fa-arrow-right" />
             </Link>
           </div>

@@ -38,7 +38,7 @@ const RegisterForm = () => {
         });
 
         const status = await res.json();
-        console.log(res);
+
         if (res.ok) {
           toast.success("your registration is completed");
           setLoading(false);

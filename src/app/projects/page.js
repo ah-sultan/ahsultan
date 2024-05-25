@@ -1,45 +1,43 @@
 import PageBanner from "@/components/PageBanner";
 import Link from "next/link";
-import ProjectData from "@/Data/ProjectsData";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
+import { getProjects } from "@/lib/getData";
 
 export const metadata = {
-  title: "Projects Masonry",
+  title: "View my all projects",
 };
 
-const ProjectMasonry = () => {
+const ProjectMasonry = async () => {
+  const projectData = await getProjects();
   return (
     <main>
       <PageBanner pageName={"My All Project "} />
       <section className="projects-masonry-area pt-40 pb-130 rpb-100 rel z-1">
         <div className="container">
           <div className="row">
-            {Array.isArray(ProjectData) &&
-              ProjectData.map((data, index) => {
+            {Array.isArray(projectData) &&
+              projectData.map((data, index) => {
                 return (
                   <div className="col-xl-4 col-md-6 item" key={index}>
                     <div className="project-item style-three wow fadeInUp delay-0-2s">
                       <div className="project-image">
                         <Image
-                          src={data.thumbnail}
-                          alt={data.title}
+                          src={data?.thumbnail}
+                          alt={data?.title}
                           width={700}
                           height={1200}
                           className="img-fluid h-auto"
                         />
                       </div>
                       <div className="project-content">
-                        <Link className="project-btn" href="/project-details">
+                      <Link href={`projectDetails/${data?._id}`}>
                           <i className="far fa-arrow-right" />
                         </Link>
-                        <span className="sub-title">{data.category}</span>
-                        <h4>
-                          <Link  href="project-details">
-                            {data.title}
-                          </Link>
-                        </h4>
+                        <span className="sub-title">{data?.category}</span>
+                        <Link href={`projectDetails/${data?._id}`}>
+                          <h4>{data?.title}</h4>
+                        </Link>
                       </div>
                     </div>
                   </div>

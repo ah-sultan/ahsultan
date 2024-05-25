@@ -2,7 +2,7 @@ import { getDateAndTime } from "@/lib/getDateAndTime";
 import UserSchema from "@/models/schema/user";
 import { connectToDB } from "@/utils/database";
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs-react";
+import bcrypt from "bcryptjs-react"
 
 // POST METHOD
 export const POST = async (req) => {

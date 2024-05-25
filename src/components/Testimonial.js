@@ -1,9 +1,10 @@
-"use client";
-import TestimonialData from "@/data/TestimonialData";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-const Testimonial = () => {
+import { getTestimonialData } from "@/lib/getData";
+import TestimonialSlider from "./TestimonialSlider";
+
+const Testimonial = async () => {
+  const testimonials = await getTestimonialData();
+  const hasTestimonials = Array.isArray(testimonials);
+
   return (
     <>
       <section className="testimonials-area rel z-1">
@@ -24,11 +25,11 @@ const Testimonial = () => {
                       eaque inventore veritatis
                     </p>
                   </div>
-                  <div className="slider-arrows">
-                    <button className="testimonial-prev-btn slick-arrow">
+                  <div className="slider-arrows d-flex">
+                    <button className="testimonial-prev-btn d-flex align-items-center justify-content-center slick-arrow">
                       <i className="fal fa-arrow-left" />
                     </button>
-                    <button className="testimonial-next-btn slick-arrow">
+                    <button className="testimonial-next-btn d-flex align-items-center justify-content-center slick-arrow">
                       <i className="fal fa-arrow-right" />
                     </button>
                   </div>
@@ -36,46 +37,11 @@ const Testimonial = () => {
               </div>
               <div className="col-lg-6 col-xl-8">
                 <div className="testimonials-wrap"></div>
-
-                <Swiper
-                  slidesPerView={1}
-                  spaceBetween={24}
-                  modules={[Navigation]}
-                  navigation={{
-                    nextEl: ".testimonial-next-btn",
-                    prevEl: ".testimonial-prev-btn",
-                  }}
-                  breakpoints={{
-                    1199: {
-                      slidesPerView: 2,
-                      spaceBetween:24,
-                    },
-                  }}
-                >
-                  {Array.isArray(TestimonialData) &&
-                    TestimonialData.map((data, index) => {
-                      return (
-                        <SwiperSlide key={index}>
-                          <div className="testimonial-item wow fadeInUp delay-0-2s">
-                            <div className="author">
-                              <Image
-                                width={85}
-                                height={85}
-                                className="img-fluid"
-                                src={data.authorImg}
-                                alt={data.authorName}
-                              />
-                            </div>
-                            <div className="text">{data.reviewText}</div>
-                            <div className="testi-des">
-                              <h5>{data.authorName}</h5>
-                              <span>{data.authorDesignation}</span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      );
-                    })}
-                </Swiper>
+                {hasTestimonials ? (
+                  <TestimonialSlider data={JSON.stringify(testimonials)} />
+                ) : (
+                  <h3>Testimonials Not Found</h3>
+                )}
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Clients = () => {
   return (
-    <div className="client-logo-area rel z-1 pt-130 rpt-100 pb-60">
+    <div className="client-logo-area rel z-1 pt-130 rpt-100 pb-60 d-none">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-12">

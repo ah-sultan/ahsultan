@@ -51,18 +51,18 @@ const ProjectForm = ({
   //   Handle Post
   const handlePost = async () => {
     if (
-      (newTitle.length &&
-        newThumbnail.length &&
-        newSummary.length &&
-        newBannerImage.length &&
-        newCategory.length &&
-        newViewProject.length &&
-        newDuration.length &&
-        newTechnologies.length &&
-        newPublishedDate.length &&
-        newBody.length) > 0
+      (newTitle?.length &&
+        newThumbnail?.length &&
+        newSummary?.length &&
+        newBannerImage?.length &&
+        newCategory?.length &&
+        newViewProject?.length &&
+        newDuration?.length &&
+        newTechnologies?.length &&
+        newPublishedDate?.length &&
+        newBody?.length) > 0
     ) {
-      setLoading(true)
+      setLoading(true);
       try {
         const res = await fetch("/api/project", {
           method: "POST",
@@ -207,7 +207,7 @@ const ProjectForm = ({
         <div className="row mb-4">
           {/* Thumbnail */}
           <div className="col-6">
-            <label htmlFor="ProjectBanner">Add Thumbnail</label>
+            <label htmlFor="ProjectBanner">Add Thumbnail 1290 X 590</label>
             <ImageGallery
               gridCols={4}
               getSingleImage={setNewThumbnail}
