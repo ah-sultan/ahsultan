@@ -1,37 +1,37 @@
 [
     {
         "id": "0",
-        "title": "Home",
+        "title": "🏠 Home",
         "path": "/admin"
     },
     {
         "id": "0",
-        "title": "User",
+        "title": "👥 User",
         "path": "/admin/user"
     },
     {
         "id": "0",
-        "title": "Services",
+        "title": "🛠️ Services",
         "path": "/admin/services"
     },
     {
         "id": "1",
-        "title": "Blogs",
+        "title": "✍️ Blogs",
         "path": "/admin/blogs"
     },
     {
         "id": "1",
-        "title": "blog category",
+        "title": "📝 blog category",
         "path": "/admin/blog-category"
     },
     {
         "id": "2",
-        "title": "Projects",
+        "title": "🎯 Projects",
         "path": "/admin/projects"
     },
     {
         "id": "3",
-        "title": "Testimonial",
+        "title": "⭐ Testimonial",
         "path": "/admin/testimonial"
     }
 ]

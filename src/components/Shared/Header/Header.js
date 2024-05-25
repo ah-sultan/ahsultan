@@ -7,6 +7,7 @@ import MultiMenu, { OnePageMenu } from "./HeaderMenu";
 import HeaderMenu from "./HeaderMenu";
 import Image from "next/image";
 import Logo from "./Logo";
+import { usePathname } from "next/navigation";
 
 const Header = ({ onePageMenu }) => {
   useEffect(() => {
@@ -27,7 +28,7 @@ const Header = ({ onePageMenu }) => {
           <div className="header-inner rel d-flex align-items-center">
             <div className="logo-outer">
               <div className="logo">
-                <Link  href="/">
+                <Link href="/">
                   <Logo />
                 </Link>
               </div>
@@ -37,7 +38,7 @@ const Header = ({ onePageMenu }) => {
               <nav className="main-menu navbar-expand-lg">
                 <div className="navbar-header">
                   <div className="mobile-logo my-15">
-                    <Link  href="/">
+                    <Link href="/">
                       <Logo />
                     </Link>
                   </div>

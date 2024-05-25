@@ -7,7 +7,7 @@ const SignOutBtn = ({ className, style }) => {
       style={(style, { cursor: "pointer" })}
       onClick={() => signOut()}
     >
-      Sign Out
+      🔓 Sign Out
     </span>
   );
 };

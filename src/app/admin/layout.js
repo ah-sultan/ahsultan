@@ -1,6 +1,7 @@
 import "@/app/styles/admin.css";
 import { auth } from "@/auth";
 import SideNav from "@/components/Admin/SideNav";
+
 import { redirect } from "next/navigation";
 const layout = async ({ children }) => {
   const session = await auth();

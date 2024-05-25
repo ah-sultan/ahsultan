@@ -6,7 +6,7 @@ import { Navigation } from "swiper/modules";
 
 const TestimonialSlider = ({data}) => {
   const testimonialData = data && JSON.parse(data)
-  console.log(testimonialData)
+
   return (
     <>
       <Swiper
