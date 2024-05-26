@@ -18,11 +18,11 @@ const Testimonial = async () => {
                       Clients Testimonials
                     </span>
                     <h2>
-                      I’ve 1253+ Clients <span>Feedback</span>
+                      what my <span>Clients Say</span>
                     </h2>
                     <p>
-                      Sed ut perspiciatis unde omnin natus totam rem aperiam
-                      eaque inventore veritatis
+                      When client notification is our top priority, their
+                      feedback is consistently awesome
                     </p>
                   </div>
                   <div className="slider-arrows d-flex">

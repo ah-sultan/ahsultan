@@ -1,6 +1,7 @@
 export const contactInfo = {
   email: "ah.sultan.dev@gmail.com",
   phone: "+88 01608 626057",
+  address : "South Surma, sylhet - 3100, Bangladesh"
 };
 
 export const socialMedia = {
@@ -9,4 +10,5 @@ export const socialMedia = {
   x: "https://x.com/AhSultanDev",
   pinterest: "https://www.pinterest.com/",
   whatsapp: "https://wa.me/8801608626057",
+  facebook : ""
 };

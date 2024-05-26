@@ -10,9 +10,9 @@ import aboutDotShape from "../../public/images/shape/about-dot.png";
 import circleLogoImg from "../../public/images/shape/circle-logo.png";
 import { contactInfo, socialMedia } from "@/Data/contactData";
 
-const About = () => {
+const About = ({className}) => {
   return (
-    <section id="about" className="about-area rel z-1">
+    <section id="about" className={`about-area rel z-1 ${className}`}>
       <div className="for-bgc-black py-130 rpy-100">
         <div className="container">
           <div className="row gap-100 align-items-center">

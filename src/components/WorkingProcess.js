@@ -36,7 +36,7 @@ const WorkingProcess = () => {
               <div className="col-xl-8 col-lg-9">
                 <div className="section-title mb-60 wow fadeInUp delay-0-2s">
                   <span className="sub-title mb-15">Working Process</span>
-                  <h2>
+                  <h2 className="text-capitalize">
                     {/* How i make plan to <span>Solve problem</span> with my Experience */}
                     Here&apos;s how I use my experience to plan for{" "}
                     <span>solving problems</span>
@@ -60,7 +60,7 @@ const WorkingProcess = () => {
                   <div className="item-wrapper wow fadeInUp delay-0-3s col-lg-6">
                     <div className="icon">{index + 1}</div>
                     <div className="content">
-                      <h4 className="mb-4">{data?.title}</h4>
+                      <h4 className="mb-4 text-capitalize">{data?.title}</h4>
                       <p>{data?.body}</p>
                     </div>
                   </div>

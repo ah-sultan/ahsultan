@@ -1,4 +1,5 @@
 "use client";
+import { socialMedia } from "@/Data/contactData";
 import { getDateAndTime } from "@/lib/getDateAndTime";
 import Link from "next/link";
 import { Fragment, useState } from "react";
@@ -104,17 +105,14 @@ const SideBar = () => {
           </div>
           {/*Social Icons*/}
           <div className="social-style-one">
-            <Link href="#">
-              <i className="fab fa-twitter" />
+            <Link target="blank" href={socialMedia?.linkedin}>
+              <i className="fab fa-linkedin" />
             </Link>
-            <Link href="#">
-              <i className="fab fa-facebook-f" />
+            <Link target="blank" href={socialMedia?.whatsapp}>
+              <i className="fab fa-whatsapp" />
             </Link>
-            <Link href="#">
-              <i className="fab fa-instagram" />
-            </Link>
-            <Link href="#">
-              <i className="fab fa-pinterest-p" />
+            <Link target="blank" href={socialMedia?.github}>
+              <i className="fab fa-github" />
             </Link>
           </div>
         </div>

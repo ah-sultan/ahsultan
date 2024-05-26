@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "./Header/Logo";
 import { auth } from "@/auth";
 import SignOutBtn from "../Auth/SignOutBtn";
+import { contactInfo, socialMedia } from "@/Data/contactData";
 
 const Footer = async () => {
   const session = await auth();
@@ -15,7 +16,7 @@ const Footer = async () => {
               <div className="footer-widget widget_logo wow fadeInUp delay-0-2s">
                 <div className="footer-logo">
                   <Link href="/">
-                    <Logo />
+                    <Logo type="dark" />
                   </Link>
                 </div>
               </div>
@@ -24,21 +25,19 @@ const Footer = async () => {
               <div className="footer-widget widget_nav_menu wow fadeInUp delay-0-4s">
                 <h6 className="footer-title">Quick Link</h6>
                 <ul>
-                  <li>
-                    <Link href="services">Service</Link>
-                  </li>
-                  <li>
-                    <Link href="projects">Projects</Link>
-                  </li>
-                  <li>
-                    <Link href="services#pricing">Pricing</Link>
-                  </li>
-                  <li>
-                    <Link href="about#faqs">Faqs</Link>
-                  </li>
-                  <li>
-                    <Link href="contact">Contact</Link>
-                  </li>
+                  {[
+                    { title: "Home", path: "/" },
+                    { title: "About", path: "/about" },
+                    { title: "Portfolio", path: "/portfolio" },
+                    { title: "Blog", path: "/blogs" },
+                    { title: "Contact", path: "/contact" },
+                  ].map((data, index) => {
+                    return (
+                      <li key={index}>
+                        <Link href={data?.path}>{data?.title}</Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <div className="footer-widget widget_newsletter wow fadeInUp delay-0-4s">
@@ -53,7 +52,8 @@ const Footer = async () => {
                     required=""
                   />
                   <button>
-                    Sign Up <i className="far fa-angle-right" />
+                    Subscribe
+                    <i className="far fa-angle-right" />
                   </button>
                 </form>
               </div>
@@ -63,18 +63,20 @@ const Footer = async () => {
                 <h6 className="footer-title">Address</h6>
                 <ul>
                   <li>
-                    <i className="far fa-map-marker-alt" /> 55 Main Street, 2nd
-                    block, New York City
+                    <i className="far fa-map-marker-alt" />{" "}
+                    {contactInfo?.address}
                   </li>
                   <li>
                     <i className="far fa-envelope" />{" "}
-                    <Link href="mailto:support@gmail.com">
-                      support@gmail.com
+                    <Link target="_blank" href={`mailto:${contactInfo?.email}`}>
+                      {contactInfo?.email}
                     </Link>
                   </li>
                   <li>
                     <i className="far fa-phone" />{" "}
-                    <Link href="callto:+880(123)45688">+880 (123) 456 88</Link>
+                    <Link target="_blank" href={`callto:${contactInfo?.phone}`}>
+                      {contactInfo?.phone}
+                    </Link>
                   </li>
                   {session && (
                     <li>
@@ -101,16 +103,24 @@ const Footer = async () => {
             <div className="col-lg-6 text-lg-end">
               <ul className="footer-bottom-nav">
                 <li>
-                  <Link href="#">Facebook</Link>
+                  <Link target="_blank" href={socialMedia?.github}>
+                    Github
+                  </Link>
                 </li>
                 <li>
-                  <Link href="#">Twitter</Link>
+                  <Link target="_blank" href={socialMedia?.linkedin}>
+                    linkedin
+                  </Link>
                 </li>
                 <li>
-                  <Link href="#">Instagram</Link>
+                  <Link target="_blank" href={socialMedia?.x}>
+                    Twitter-X
+                  </Link>
                 </li>
                 <li>
-                  <Link href="#">LinkedIn</Link>
+                  <Link target="_blank" href={socialMedia?.whatsapp}>
+                    Whatsapp
+                  </Link>
                 </li>
               </ul>
             </div>

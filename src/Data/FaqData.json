@@ -1,23 +1,22 @@
 [
     {
         "id": 0,
-        "question": "what Services we provide",
-        "answer": "To take a trivial example which undertakes laborious physical exercise except to obtain some advantage pleasure annoying consequences"
+        "question": "What kind of websites do you design?",
+        "answer": "I can develop any kind of website, including portfolios, real estate websites, e-commerce stores, and more."
     },
     {
         "id": 1,
-        "question": "what Services we provide",
-        "answer": "To take a trivial example which undertakes laborious physical exercise except to obtain some advantage pleasure annoying consequences"
+        "question": "Will my website be mobile-friendly?",
+        "answer": "Absolutely! Your website will be built with a 100% responsive layout, ensuring a user-friendly experience on any device, whether it's a desktop computer, tablet, or smartphone."
     },
     {
         "id": 2,
-        "question": "what Services we provide",
-        "answer": "To take a trivial example which undertakes laborious physical exercise except to obtain some advantage pleasure annoying consequences"
+        "question": "How much does a website cost?",
+        "answer": "The exact timeframe for building your website will vary depending on a few things, like the type of website, the amount of content you have, and the desired design complexity. But no worries, during our consultation, we can discuss your specific needs and give you a realistic timeline."
     },
     {
         "id": 3,
-        "question": "what Services we provide",
-        "answer": "To take a trivial example which undertakes laborious physical exercise except to obtain some advantage pleasure annoying consequences"
+        "question": "Can you help me upload this file to the server?",
+        "answer": "Don't worry about the technical side of things! I can handle deploying your website to a server for you. This ensures your website is accessible to the world."
     }
-
 ]

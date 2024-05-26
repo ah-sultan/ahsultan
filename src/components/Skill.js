@@ -17,12 +17,11 @@ const Skill = () => {
                 <div className="section-title mb-40">
                   <span className="sub-title mb-15">My Skills</span>
                   <h2>
-                    Let’s Explore Popular <span>Skills &amp; Experience</span>
+                    Let&apos;s Explore Popular{" "}
+                    <span>Skills &amp; Experience</span>
                   </h2>
                   <p>
-                    Sed ut perspiciatis unde omnis iste natus to voluptatem
-                    accusantium doloremque laudantium, totam rem aperiamc eaque
-                    ipsa quae ab illo inventore veritatis
+                  I have a solid foundation in these technologies. I am able to solve any type of problem related to the web design and development industries.
                   </p>
                 </div>
                 <Link href="/about">
@@ -110,7 +109,13 @@ export const Skill2 = () => {
                       <div className="col-md-4 col-sm-4 col-6" key={item.id}>
                         <div className="skill-item-two wow fadeInUp delay-0-3s">
                           <div className="icon-percent">
-                            <Image width={100} height={100} src={item.image} alt="Skill" className="img-fluid"/>
+                            <Image
+                              width={100}
+                              height={100}
+                              src={item.image}
+                              alt="Skill"
+                              className="img-fluid"
+                            />
                             <span className="percent">{item.value}%</span>
                           </div>
                           <h5 className="title">{item.name}</h5>
