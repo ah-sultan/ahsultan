@@ -8,6 +8,7 @@ const Logo = ({ type }) => {
           viewBox="0 0 196 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className="logo"
         >
           <g clip-path="url(#clip0_1318_1593)">
             <path
@@ -66,7 +67,7 @@ const Logo = ({ type }) => {
           height="40"
           viewBox="0 0 196 40"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="http://www.w3.org/2000/svg" className="logo"
         >
           <g clip-path="url(#clip0_1318_1604)">
             <path

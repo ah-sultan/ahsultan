@@ -81,6 +81,10 @@ body {
   --border-color: rgba(255, 255, 255, 0.1);
 }
 
+
+.logo{
+  max-width: 160px;
+}
 a {
   color: var(--base-color);
   cursor: pointer;
