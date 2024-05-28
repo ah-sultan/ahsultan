@@ -13,7 +13,12 @@ export const getTestimonialData = async () => {
     const res = await TestimonialSchema.find({});
     return res;
   } catch (error) {
-    return new Error("Testimonial Did not found");
+    return {
+      message: "Testimonials not found",
+      status: 503,
+      ok: false,
+      error: error,
+    };
   }
 };
 
@@ -23,7 +28,12 @@ export const findTestimonial = async (id) => {
     const res = await TestimonialSchema.findById(id);
     return res;
   } catch (error) {
-    return new Error(id + " This Testimonial Did not found");
+    return {
+      message: "Testimonials not found",
+      status: 503,
+      ok: false,
+      error: error,
+    };
   }
 };
 
@@ -33,7 +43,12 @@ export const getImageGallery = async (id) => {
     const res = await ImageGallerySchema.find();
     return res;
   } catch (error) {
-    return new Error("Gallery Images are not found");
+    return {
+      message : "Gallery Image not found",
+      status : 503,
+      ok : false,
+      error : error,
+    };
   }
 };
 
@@ -43,7 +58,12 @@ export const getBlogCatagories = async () => {
     const res = await BlogCategorySchema.find();
     return res;
   } catch (error) {
-    return new Error("Gallery Images are not found");
+    return  {
+      message : "Blog Category not found",
+      status : 503,
+      ok : false,
+      error : error,
+    };
   }
 };
 
@@ -53,7 +73,12 @@ export const getBlogs = async () => {
     const res = await BlogSchema.find();
     return res;
   } catch (error) {
-    return new Error("Blogs are not found");
+    return {
+      message : "Blogs not found",
+      status : 503,
+      ok : false,
+      error : error,
+    };
   }
 };
 
@@ -63,7 +88,12 @@ export const findBlog = async (id) => {
     const res = await BlogSchema.findById(id);
     return res;
   } catch (error) {
-    return new Error("Blog is not found");
+    return {
+      message : "Blogs not found",
+      status : 503,
+      ok : false,
+      error : error,
+    };
   }
 };
 
@@ -73,7 +103,12 @@ export const getServices = async () => {
     const res = await ServiceSchema.find();
     return res;
   } catch (error) {
-    return new Error("Blog is not found");
+    return {
+      message : "Services not found",
+      status : 503,
+      ok : false,
+      error : error,
+    };
   }
 };
 
@@ -83,7 +118,12 @@ export const findService = async (id) => {
     const res = await ServiceSchema.findById(id);
     return res;
   } catch (error) {
-    return new Error("Blog is not found");
+    return {
+      message : "Service not found",
+      status : 503,
+      ok : false,
+      error : error,
+    };
   }
 };
 
@@ -93,7 +133,12 @@ export const getProjects = async (id) => {
     const res = await ProjectSchema.find();
     return res;
   } catch (error) {
-    return new Error("Blog is not found");
+    return {
+      message : "Projects not found",
+      status : 503,
+      ok : false,
+      error : error,
+    };
   }
 };
 export const findProject = async (id) => {
@@ -102,7 +147,12 @@ export const findProject = async (id) => {
     const res = await ProjectSchema.findById(id);
     return res;
   } catch (error) {
-    return new Error("Blog is not found");
+    return {
+      message : "Project not found",
+      status : 503,
+      ok : false,
+      error : error,
+    };
   }
 };
 
@@ -112,7 +162,12 @@ export const getUsers = async (id) => {
     const res = await UserSchema.find();
     return res;
   } catch (error) {
-    return new Error("Blog is not found");
+    return {
+      message : "Users not found",
+      status : 503,
+      ok : false,
+      error : error,
+    };
   }
 };
 export const findUser = async (id) => {
@@ -121,8 +176,11 @@ export const findUser = async (id) => {
     const res = await UserSchema.findById(id);
     return res;
   } catch (error) {
-    return new Error("Blog is not found");
+    return {
+      message : "User not found",
+      status : 503,
+      ok : false,
+      error : error,
+    };
   }
 };
-
-

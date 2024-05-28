@@ -22,4 +22,4 @@ const Error = ({ error, reset }) => {
   );
 };
 
-export default Error;
+export default Error
