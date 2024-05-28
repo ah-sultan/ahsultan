@@ -1,5 +1,4 @@
 "use client";
-import TestimonialData from "@/data/TestimonialData";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
