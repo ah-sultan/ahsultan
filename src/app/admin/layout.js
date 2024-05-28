@@ -5,7 +5,7 @@ import SideNav from "@/components/Admin/SideNav";
 import { redirect } from "next/navigation";
 const layout = async ({ children }) => {
   const session = await auth();
-  if (true) {
+  if (session?.user?.role === "admin") {
     return (
       <>
         <main className="admin-page">
@@ -17,7 +17,7 @@ const layout = async ({ children }) => {
       </>
     );
   } else {
-    redirect("/auth/login")
+    redirect("/auth/login");
   }
 };
 

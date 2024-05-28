@@ -4,6 +4,10 @@ import DashboardBreadcrumb from "@/components/Admin/DashboardBreadcrumb";
 import SideNavData from "@/components/Admin/data/SideNavData";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Admin - Sultan Ahmed Portfolio Website",
+};
+
 const page = () => {
   return (
     <>

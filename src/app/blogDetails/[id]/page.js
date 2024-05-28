@@ -25,6 +25,7 @@ const BlogDetails = async ({ params }) => {
   return (
     <main>
       <PageBanner pageName={"Blog Details"} />
+      
       <section className="blog-details-area pb-70 rpb-40 pb-130 rpb-100 rel z-1">
         <div className="container">
           <div className="row">

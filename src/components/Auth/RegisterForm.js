@@ -54,7 +54,6 @@ const RegisterForm = () => {
           toast.error(status.message);
         }
       } catch (error) {
-        console.log(error);
         setLoading(false);
         toast.error("registration failed please try aging");
       }

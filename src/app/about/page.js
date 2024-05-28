@@ -6,14 +6,13 @@ import Link from "next/link";
 import Image from "next/image";
 import About from "@/components/About";
 
-
 // IMAGES ----------------
 import aboutPageImg from "../../../public/images/about/about-page.jpg";
 import Testimonial from "@/components/Testimonial";
 import FaqSection from "@/components/FaqSection";
 
 export const metadata = {
-  title: "About Me",
+  title: "About Me - Sultan Ahmed Portfolio Website",
 };
 
 const AboutPage = () => {
@@ -35,7 +34,7 @@ const AboutPage = () => {
       <Services extraClass={"bgc-black "} />
       {/* Services Area end */}
       {/* FAQs Area start */}
-      <FaqSection className="pb-80"/>
+      <FaqSection className="pb-80" />
       <Testimonial />
       <Clients />
     </main>

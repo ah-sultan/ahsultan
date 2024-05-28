@@ -1,9 +1,10 @@
+import { contactInfo, socialMedia } from "@/Data/contactData";
 import ContactForm from "@/components/ContactForm";
 import PageBanner from "@/components/PageBanner";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Contact",
+  title: "Contact -  Sultan Ahmed Portfolio Website",
 };
 
 const page = () => {
@@ -22,40 +23,44 @@ const page = () => {
                     Let’s Talk For your <span>Next Projects</span>
                   </h2>
                   <p>
-                    Sed ut perspiciatis unde omnin natus totam rem aperiam eaque
-                    inventore veritatis
+                    Hi, if you have any project or have any question please feel
+                    free and contact with me
                   </p>
                 </div>
-                <h6>Main Office</h6>
+                <h6>Contact info</h6>
                 <div className="widget_contact_info mb-35">
                   <ul>
                     <li>
-                      <i className="far fa-map-marker-alt" /> 55 Main Street,
-                      2nd block,
-                      <br /> New York City
+                      <i className="far fa-map-marker-alt" />{" "}
+                      {contactInfo?.address}
                     </li>
                     <li>
                       <i className="far fa-envelope" />{" "}
-                      <Link href="mailto:support@gmail.com">support@gmail.com</Link>
+                      <Link href={`mailto:${contactInfo?.email}`}>
+                        {contactInfo?.email}
+                      </Link>
                     </li>
                     <li>
                       <i className="far fa-phone" />{" "}
-                      <Link href="callto:+880(123)45688">+880 (123) 456 88</Link>
+                      <Link href={`callto:${contactInfo?.phone}`}>
+                        {contactInfo?.phone}
+                      </Link>
                     </li>
                   </ul>
                 </div>
                 <h5>Follow Me</h5>
                 <div className="social-style-one mt-10">
-                  <Link href="#">
-                    <i className="fab fa-facebook-f" />
-                  </Link>
-                  <Link href="#">
-                    <i className="fab fa-twitter" />
-                  </Link>
-                  <Link href="#">
+                  <Link target="_blank" href={socialMedia?.linkedin}>
                     <i className="fab fa-linkedin-in" />
                   </Link>
-                  <Link href="#">
+                  <Link target="_blank" href={socialMedia?.whatsapp}>
+                    <i className="fab fa-whatsapp" />
+                  </Link>
+                  <Link target="_blank" href={socialMedia?.x}>
+                    <i className="fab fa-twitter" />
+                  </Link>
+
+                  <Link target="_blank" href={socialMedia?.github}>
                     <i className="fab fa-instagram" />
                   </Link>
                 </div>
@@ -63,7 +68,7 @@ const page = () => {
             </div>
             <div className="col-lg-8">
               <div className="contact-page-form contact-form form-style-one wow fadeInUp delay-0-2s">
-                <ContactForm/>
+                <ContactForm />
               </div>
             </div>
           </div>
@@ -83,7 +88,7 @@ const page = () => {
       </section>
       {/* Contact Page Area end */}
       {/* Location Map Area Start */}
-      <div className="contact-page-map pb-120 rpb-90 wow fadeInUp delay-0-2s">
+      <div className="contact-page-map pb-120 rpb-90 wow fadeInUp delay-0-2s d-none">
         <div className="container">
           <div className="our-location">
             <iframe

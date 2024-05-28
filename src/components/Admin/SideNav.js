@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo from "../Shared/Header/Logo";
+import Logo from "../Shared/Logo";
 import SideNavData from "./data/SideNavData";
 import SignOutBtn from "../Auth/SignOutBtn";
 

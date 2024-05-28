@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo from "./Header/Logo";
+import Logo from "./Logo";
 import { auth } from "@/auth";
 import SignOutBtn from "../Auth/SignOutBtn";
 import { contactInfo, socialMedia } from "@/Data/contactData";

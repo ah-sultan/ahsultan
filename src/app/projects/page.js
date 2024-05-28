@@ -3,9 +3,10 @@ import Link from "next/link";
 
 import Image from "next/image";
 import { getProjects } from "@/lib/getData";
+import { ItemsNotFound } from "@/components/ItemsNotFound";
 
 export const metadata = {
-  title: "View my all projects",
+  title: "All Projects - Sultan Ahmed Portfolio Website",
 };
 
 const ProjectMasonry = async () => {
@@ -16,6 +17,7 @@ const ProjectMasonry = async () => {
       <section className="projects-masonry-area pt-40 pb-130 rpb-100 rel z-1">
         <div className="container">
           <div className="row">
+            {!Array.isArray(projectData) && <ItemsNotFound items="Projects" />}
             {Array.isArray(projectData) &&
               projectData.map((data, index) => {
                 return (
@@ -31,7 +33,7 @@ const ProjectMasonry = async () => {
                         />
                       </div>
                       <div className="project-content">
-                      <Link href={`projectDetails/${data?._id}`}>
+                        <Link href={`projectDetails/${data?._id}`}>
                           <i className="far fa-arrow-right" />
                         </Link>
                         <span className="sub-title">{data?.category}</span>

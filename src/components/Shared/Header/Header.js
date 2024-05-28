@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import MultiMenu, { OnePageMenu } from "./HeaderMenu";
 import HeaderMenu from "./HeaderMenu";
 import Image from "next/image";
-import Logo from "./Logo";
+import Logo from "../Logo";
 import { usePathname } from "next/navigation";
 
 const Header = ({ onePageMenu }) => {
@@ -29,7 +29,7 @@ const Header = ({ onePageMenu }) => {
             <div className="logo-outer">
               <div className="logo">
                 <Link href="/">
-                  <Logo />
+                  <Logo type="light" />
                 </Link>
               </div>
             </div>
@@ -39,7 +39,7 @@ const Header = ({ onePageMenu }) => {
                 <div className="navbar-header">
                   <div className="mobile-logo my-15">
                     <Link href="/">
-                      <Logo />
+                      <Logo type="light"/>
                     </Link>
                   </div>
                   {/* Toggle Button */}

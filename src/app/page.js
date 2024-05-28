@@ -10,8 +10,11 @@ import Services from "@/components/Services";
 import Skill from "@/components/Skill";
 import Testimonial from "@/components/Testimonial";
 
-export default function Home() {
+export const metadata = {
+  title: "Home - Sultan Ahmed Portfolio Website",
+};
 
+export default function Home() {
   return (
     <main>
       <Hero />

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata = {
-  title: "404 Error",
+  title: "404 Error - Sultan Ahmed Portfolio Website",
 };
 
 const E404 = () => {

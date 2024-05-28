@@ -6,14 +6,20 @@ import { getBlogCatagories, getBlogs } from "@/lib/getData";
 const BlogSidebar = async () => {
   const category = await getBlogCatagories();
   const getBlog = await getBlogs();
-  const latestBlogs = await getBlog?.splice(0, 3);
+  const latestBlogs =
+    Array.isArray(getBlog) && getBlog.length > 0 ? getBlog.splice(0, 3) : [];
 
   return (
     <div className="main-sidebar rmt-65">
       <div className="widget widget-search wow fadeInUp delay-0-2s">
         <h4 className="widget-title">Search</h4>
         <form action="#" className="default-search-form">
-          <input type="text" placeholder="Keywords" required="" disabled />
+          <input
+            type="text"
+            placeholder="Search option is not available"
+            required=""
+            disabled
+          />
           <button type="submit" className="searchbutton far fa-search" />
         </form>
       </div>
@@ -33,40 +39,44 @@ const BlogSidebar = async () => {
       </div>
       <div className="widget widget-recent-news wow fadeInUp delay-0-2s">
         <h4 className="widget-title">Latest News</h4>
-        <ul>
-          {Array.isArray(latestBlogs) &&
-            latestBlogs.map((data, index) => {
-              return (
-                <li key={index}>
-                  <div className="image">
-                    <Image
-                      width={65}
-                      height={65}
-                      src={data.thumbnail}
-                      alt={data.title}
-                      style={{
-                        width: "65px",
-                        height: "65px",
-                      }}
-                    />
-                  </div>
-                  <div className="content">
-                    <div className="blog-meta mb-5">
-                      <span className="date" href="#">
-                        <i className="far fa-calendar-alt" />{" "}
-                        {data.publishedDate}
-                      </span>
+        {latestBlogs ? (
+          <ul>
+            {Array.isArray(latestBlogs) &&
+              latestBlogs.map((data, index) => {
+                return (
+                  <li key={index}>
+                    <div className="image">
+                      <Image
+                        width={65}
+                        height={65}
+                        src={data.thumbnail}
+                        alt={data.title}
+                        style={{
+                          width: "65px",
+                          height: "65px",
+                        }}
+                      />
                     </div>
-                    <h5 className="line-clamp-2">
-                      <Link href={`/blogDetails/${data._id}`}>
-                        {data.title}
-                      </Link>
-                    </h5>
-                  </div>
-                </li>
-              );
-            })}
-        </ul>
+                    <div className="content">
+                      <div className="blog-meta mb-5">
+                        <span className="date" href="#">
+                          <i className="far fa-calendar-alt" />{" "}
+                          {data.publishedDate}
+                        </span>
+                      </div>
+                      <h5 className="line-clamp-2">
+                        <Link href={`/blogDetails/${data._id}`}>
+                          {data.title}
+                        </Link>
+                      </h5>
+                    </div>
+                  </li>
+                );
+              })}
+          </ul>
+        ) : (
+          <h6>Blogs not found</h6>
+        )}
       </div>
       <div className="widget widget-tag-cloud wow fadeInUp delay-0-2s d-none">
         <h4 className="widget-title">Popular Tags</h4>

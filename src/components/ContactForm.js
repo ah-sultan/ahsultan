@@ -15,7 +15,7 @@ const ContactForm = () => {
   // Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
     const date = getDateAndTime();
 
@@ -41,7 +41,7 @@ const ContactForm = () => {
         setMessage("");
       } else {
         setLoading(false);
-        toast.success("Message not send please try again");
+        toast.error("Message not send please try again");
       }
     } catch (error) {
       setLoading(false);
@@ -134,7 +134,7 @@ const ContactForm = () => {
         <div className="col-md-12">
           <div className="form-group mb-0 d-flex align-items-center">
             <button type="submit" className="theme-btn me-4" disabled={loading}>
-              Send Us Message <i className="far fa-angle-right" />
+              Send Message <i className="far fa-angle-right" />
             </button>
             {loading && <Spinner />}
           </div>

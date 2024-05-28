@@ -1,5 +1,6 @@
 import { getServices } from "@/lib/getData";
 import Link from "next/link";
+import { ItemsNotFound } from "./ItemsNotFound";
 
 const Services = async ({ extraClass }) => {
   const services = await getServices();
@@ -20,6 +21,7 @@ const Services = async ({ extraClass }) => {
           </div>
         </div>
         <div className="row">
+          {!Array.isArray(services) && <ItemsNotFound items="Services" />}
           {Array.isArray(services) &&
             services.map((data) => (
               <div className="col-lg-6" key={data._id}>

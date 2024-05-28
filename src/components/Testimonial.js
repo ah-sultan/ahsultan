@@ -1,5 +1,6 @@
 import { getTestimonialData } from "@/lib/getData";
 import TestimonialSlider from "./TestimonialSlider";
+import { ItemsNotFound } from "./ItemsNotFound";
 
 const Testimonial = async () => {
   const testimonials = await getTestimonialData();
@@ -40,7 +41,7 @@ const Testimonial = async () => {
                 {hasTestimonials ? (
                   <TestimonialSlider data={JSON.stringify(testimonials)} />
                 ) : (
-                  <h3>Testimonials Not Found</h3>
+                  <ItemsNotFound items="Testimonials"/>
                 )}
               </div>
             </div>

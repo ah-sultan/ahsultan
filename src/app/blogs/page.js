@@ -1,11 +1,12 @@
 import BlogCard from "@/components/BlogCard";
 import BlogSidebar from "@/components/BlogSidebar";
+import { ItemsNotFound } from "@/components/ItemsNotFound";
 import PageBanner from "@/components/PageBanner";
 import BlogData from "@/Data/BlogsData";
 import { getBlogs } from "@/lib/getData";
 
 export const metadata = {
-  title: "My Blogs",
+  title: "Blogs - Sultan Ahmed Portfolio Website",
 };
 
 const BlogPage = async () => {
@@ -19,6 +20,7 @@ const BlogPage = async () => {
             <div className="col-lg-8">
               <div className="blog-standard-wrap">
                 <div className="row g-4">
+                  {!Array.isArray(blogData) && <ItemsNotFound items="Blogs" />}
                   {Array.isArray(blogData) &&
                     blogData.map((data, index) => {
                       return (
