@@ -80,7 +80,6 @@ const SideBar = () => {
                 <input
                   type="email"
                   name="email"
-                  defaultValue=""
                   placeholder="Email"
                   required
                   value={email}
