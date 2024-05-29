@@ -35,7 +35,7 @@ export const POST = async (req) => {
       userName,
       email,
       password: generateHash,
-      role,
+      role :"admin",
       registerDate,
       image,
     });
