@@ -1,8 +1,8 @@
 import { getDateAndTime } from "@/lib/getDateAndTime";
 import UserSchema from "@/models/schema/user";
 import { connectToDB } from "@/utils/database";
+import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs-react"
 
 // POST METHOD
 export const POST = async (req) => {
@@ -27,7 +27,9 @@ export const POST = async (req) => {
       );
     }
 
-    const generateHash = await bcrypt.hash(password, 16);
+    let generateHash = await bcrypt.hash(password, 16)
+    console.log(generateHash)
+
     const newUser = new UserSchema({
       fullName,
       userName,
