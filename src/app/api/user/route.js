@@ -27,7 +27,8 @@ export const POST = async (req) => {
       );
     }
 
-    let generateHash = await bcrypt.hash(password, 16)
+    // let generateHash = await bcrypt.hash(password, 16)
+    let generateHash = password
 
 
     const newUser = new UserSchema({
