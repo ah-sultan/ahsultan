@@ -1,7 +1,7 @@
 import { getDateAndTime } from "@/lib/getDateAndTime";
 import UserSchema from "@/models/schema/user";
 import { connectToDB } from "@/utils/database";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
 // POST METHOD
@@ -28,7 +28,7 @@ export const POST = async (req) => {
     }
 
     let generateHash = await bcrypt.hash(password, 16)
-    console.log(generateHash)
+
 
     const newUser = new UserSchema({
       fullName,
@@ -48,7 +48,7 @@ export const POST = async (req) => {
   } catch (error) {
     console.log(error);
     return NextResponse.json(
-      { error: "Something went wrong" },
+      { message: "Something went wrong", error },
       { status: 505, statusText: "ERROR" }
     );
   }

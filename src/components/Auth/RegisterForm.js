@@ -55,8 +55,8 @@ const RegisterForm = () => {
         }
       } catch (error) {
         setLoading(false);
-        console.log(error)
-        toast.error("registration failed please try againg");
+        console.log(error.message)
+        toast.error("registration failed please try again");
       }
     } else {
       toast.warning("please fill the required filed");
