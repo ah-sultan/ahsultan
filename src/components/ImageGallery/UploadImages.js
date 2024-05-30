@@ -166,7 +166,7 @@ const UploadImages = ({ handleShow }) => {
         <Modal.Footer>
           <div>{msg &&  <Alert variant="danger">{msg}</Alert>}</div>
           <Button onClick={() => handleCancel()} variant="danger">
-            Cancel...
+            Cancel
           </Button>
           <Button
             disabled={images.length <= 0}
