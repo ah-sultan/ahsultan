@@ -1,7 +1,7 @@
 import UserSchema from "@/models/schema/user";
 import { connectToDB } from "@/utils/database";
-// import argon2 from "argon2";
-import bcrypt from "bcryptjs-react";
+import argon2 from "argon2";
+// import bcrypt from "bcryptjs-react";
 export const authUser = async (credentials) => {
   if (credentials) {
     try {
