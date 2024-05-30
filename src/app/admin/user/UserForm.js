@@ -27,7 +27,7 @@ const UserForm = ({
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
   const [newImage, setNewImage] = useState(image);
-  const [newRole, setNewRole] = useState(role);
+  const [newRole, setNewRole] = useState(role ? role : roleList[0]);
 
   const router = useRouter();
 
@@ -44,11 +44,11 @@ const UserForm = ({
   // Handle Submit
   const handlePost = async () => {
     if (
-      (newFullName.length &&
-        newUserName.length &&
-        newEmail.length &&
-        newPassword.length &&
-        newRole.length) > 0
+      (newFullName?.length &&
+        newUserName?.length &&
+        newEmail?.length &&
+        newPassword?.length &&
+        newRole?.length) > 0
     ) {
       try {
         setLoading(true);

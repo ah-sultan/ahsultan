@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import albumList from "./albumList";
-import { Button, Modal, Overlay, Spinner } from "react-bootstrap";
+import { Alert, Button, Modal, Overlay, Spinner } from "react-bootstrap";
 import ReactImageUploading from "react-images-uploading";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -11,6 +11,7 @@ const UploadImages = ({ handleShow }) => {
   const [images, setImages] = useState([]);
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState(false)
   const maxNumber = 69;
 
   //   HANDLE ONCHANGE
@@ -24,12 +25,14 @@ const UploadImages = ({ handleShow }) => {
 
   //   HANDLE CANCEL
   const handleCancel = () => {
+    setMsg(false)
     setImages([]);
     setShowModal(false);
   };
 
   //    HANDLE UPLOAD
   const handleUpload = async () => {
+    setMsg(false)
     setLoading(true);
     const formData = new FormData();
     formData.append("albumName", JSON.stringify(album));
@@ -42,7 +45,7 @@ const UploadImages = ({ handleShow }) => {
         method: "POST",
         body: formData,
       });
-
+      const data = await res.json()
       if (res.ok) {
         handleShow();
         setLoading(false);
@@ -50,8 +53,10 @@ const UploadImages = ({ handleShow }) => {
       }else{
         setLoading(false)
       }
+      setMsg(data.msg)
     } catch (error) {
       setLoading(false);
+      setMsg(error)
     }
   };
 
@@ -159,8 +164,9 @@ const UploadImages = ({ handleShow }) => {
           
         </Modal.Body>
         <Modal.Footer>
+          <div>{msg &&  <Alert variant="danger">{err}</Alert>}</div>
           <Button onClick={() => handleCancel()} variant="danger">
-            Cancel
+            Cancel...
           </Button>
           <Button
             disabled={images.length <= 0}
