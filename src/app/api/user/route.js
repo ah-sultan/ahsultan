@@ -2,6 +2,7 @@ import { getDateAndTime } from "@/lib/getDateAndTime";
 import UserSchema from "@/models/schema/user";
 import { connectToDB } from "@/utils/database";
 import bcrypt from "bcrypt";
+import argon2 from 'argon2'
 import { NextResponse } from "next/server";
 
 // POST METHOD
@@ -27,8 +28,8 @@ export const POST = async (req) => {
       );
     }
 
-    // let generateHash = await bcrypt.hash(password, 16)
-    let generateHash = password
+    // const generateHash = await bcrypt.hash(password, 16)
+    const generateHash = await argon2.hash(password, 16)
 
 
     const newUser = new UserSchema({
@@ -96,7 +97,7 @@ export const DELETE = async (req) => {
   }
 };
 
-// PATH METHOD
+// PATCH METHOD
 export const PATCH = async (req) => {
   const { fullName, userName, email, password, role, image } = await req.json();
   const { searchParams } = new URL(req.url);
