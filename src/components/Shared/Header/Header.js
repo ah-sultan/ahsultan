@@ -29,7 +29,7 @@ const Header = ({ onePageMenu }) => {
             <div className="logo-outer">
               <div className="logo">
                 <Link href="/">
-                  <Logo type="light" />
+                  <Logo type="light" /> Bcrypt
                 </Link>
               </div>
             </div>

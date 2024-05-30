@@ -2,7 +2,6 @@ import { getDateAndTime } from "@/lib/getDateAndTime";
 import UserSchema from "@/models/schema/user";
 import { connectToDB } from "@/utils/database";
 import bcrypt from "bcrypt";
-import argon2 from 'argon2'
 import { NextResponse } from "next/server";
 
 // POST METHOD
@@ -28,8 +27,7 @@ export const POST = async (req) => {
       );
     }
 
-    // const generateHash = await bcrypt.hash(password, 16)
-    const generateHash = await argon2.hash(password, 16)
+    const generateHash = await bcrypt.hash(password, 16)
 
 
     const newUser = new UserSchema({
