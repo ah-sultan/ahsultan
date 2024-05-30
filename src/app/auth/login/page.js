@@ -18,13 +18,13 @@ const page = async ({}) => {
         <section className="login-wrapper">
           <div className="container">
             <div className="col-6 mx-auto">
-              {false ? (
+              {session?.user ? (
                 <div className="d-flex justify-content-center">
-                  <div>
+                  <div className="text-center">
                     <h3>Logout now</h3> <br />
                     <Button
                       size="lg"
-                      variant="danger"
+                      variant="primary"
                       className="position-relative mx-auto d-inline-block"
                     >
                       <SignOutBtn />

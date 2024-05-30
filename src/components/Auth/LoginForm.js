@@ -10,12 +10,8 @@ import { useEffect } from "react";
 
 const LoginForm = ({ session }) => {
   const [errorMessage, dispatch] = useFormState(authenticate);
-  const router = useRouter();
 
-  if (session?.user) {
-    router.push("/");
-    return null; // Early return to prevent unnecessary rendering
-  }
+
 
   return (
     <>

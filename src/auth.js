@@ -33,7 +33,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           // logic to verify if user exists
           user = await authUser({ email, password });
 
-          if (!user) {
+          if (!user || user === null) {
             throw new Error("User not found.");
           }
           // return json object with the user data
