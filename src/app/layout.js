@@ -1,4 +1,4 @@
-import { DM_Sans, Inter, Lexend, Syne, Unbounded } from "next/font/google";
+import {Lexend, Red_Rose, } from "next/font/google";
 
 // import Preloader from "@/layout/Preloader";
 import "swiper/css";
@@ -26,7 +26,7 @@ const primaryFont = Lexend({
   variable: "--font-primary",
   display: "swap",
 });
-const secondaryFont = Unbounded({
+const secondaryFont = Red_Rose({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-secondary",

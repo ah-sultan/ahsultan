@@ -6,8 +6,8 @@ import { redirect } from "next/navigation";
 const layout = async ({ children }) => {
   
   const session = await auth();
-  // if (session?.user?.role === "admin") {
-  if (true) {
+  if (session?.user?.role === "admin") {
+  // if (true) {
     return (
       <>
         <main className="admin-page">
