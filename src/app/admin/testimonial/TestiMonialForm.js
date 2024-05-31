@@ -49,7 +49,7 @@ const TestiMonialForm = ({
           body: JSON.stringify(testimonialData),
         });
 
-        if (res.statusText === "OK") {
+        if (res.ok) {
           setLoading(false);
           toast.success("Testimonial Added Successfully");
           setNewName("");
@@ -88,7 +88,7 @@ const TestiMonialForm = ({
         body: JSON.stringify(testimonialData),
       });
 
-      if (res.statusText === "OK") {
+      if (res.ok) {
         toast.success("Testimonial Updated Successfully");
         router.refresh();
         setLoading(false)

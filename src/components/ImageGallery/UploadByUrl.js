@@ -42,7 +42,6 @@ const UploadByUrl = ({ handleShow}) => {
           setLoading(false);
         }
 
-        console.log(res)
 
       } catch (error) {
         setMsg("Something went wrong");
