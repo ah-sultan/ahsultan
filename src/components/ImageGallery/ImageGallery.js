@@ -5,6 +5,7 @@ import ImageList from "./ImageList";
 import Image from "next/image";
 import UploadImages from "./UploadImages";
 import { toast } from "react-toastify";
+import UploadByUrl from "./UploadByUrl";
 
 const ImageGallery = ({
   prevImages,
@@ -101,6 +102,7 @@ const ImageGallery = ({
             <Modal.Title as={"div"} className="w-100">
               <div className="d-flex align-items-center justify-content-between">
                 <h3>Image Gallery</h3>
+                <UploadByUrl handleShow={ handleShow}/>
                 <div className="d-flex align-items-center justify-content-end gap-2">
                   <UploadImages handleShow={handleShow} />
                   <Button

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button, Spinner } from "react-bootstrap";
+import { Button, Modal, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const SingleImage = ({
@@ -11,13 +11,28 @@ const SingleImage = ({
   handleShow,
   selectedImage,
   setSelectedImage,
+  type,
 }) => {
-  const [loading, setLoading] = useState();
-  const [file, setFile] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [url, setUrl] = useState(image);
 
   // HANDLE DELETE
   const handleDelete = async () => {
     setLoading(true);
+
+    if (type === "local") {
+      localDelete();
+    }
+
+    if (type === "url") {
+      urlDelete();
+    }
+  };
+
+  // Local Delete
+  const localDelete = async () => {
     try {
       const res = await fetch(`/api/image-gallery?id=${_id}`, {
         method: "DELETE",
@@ -25,6 +40,29 @@ const SingleImage = ({
           _id,
           image,
           name,
+        }),
+      });
+
+      if (res.ok || res.statusText === "OK") {
+        setLoading(false);
+        toast.success("Image Deleted Successfully");
+        handleShow();
+      } else {
+        setLoading(false);
+      }
+    } catch (error) {
+      toast.error("Error: Something went wrong try again");
+      setLoading(false);
+    }
+  };
+
+  // URL DELETE
+  const urlDelete = async () => {
+    try {
+      const res = await fetch(`/api/image-gallery/upload-by-url?id=${_id}`, {
+        method: "DELETE",
+        body: JSON.stringify({
+          _id,
         }),
       });
 
@@ -76,6 +114,30 @@ const SingleImage = ({
     }
   };
 
+  // HANDLE DELETE IMAGE BY URL
+  const handleUpdateUrl = async () => {
+    setLoading(true)
+    try {
+      const res = await fetch(`/api/image-gallery/upload-by-url?id=${_id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          image: url,
+        }),
+      });
+
+      if (res.ok || res.statusText === "OK") {
+        setLoading(false);
+        toast.success("Image Update Successfully");
+        handleShow();
+      } else {
+        setLoading(false);
+      }
+    } catch (error) {
+      toast.error("Error: Something went wrong try again");
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <div
@@ -95,19 +157,32 @@ const SingleImage = ({
           alt={name}
         />
         <div className="image-item__btn-wrapper">
-          <Button variant="primary" className="position-relative">
-            ✎
-            <input
-              type="file"
-              name="update-image-gallery-file"
-              className="position-absolute w-100 h-100 left-0 top-0 p-0"
-              style={{ opacity: 0 }}
-              onChange={(e) => {
-                handleChange(e.target.files);
-                setFile(e.target.files);
-              }}
-            />
-          </Button>
+          {type === "local" && (
+            <Button variant="primary" className="position-relative">
+              ✎
+              <input
+                type="file"
+                name="update-image-gallery-file"
+                className="position-absolute w-100 h-100 left-0 top-0 p-0"
+                style={{ opacity: 0 }}
+                onChange={(e) => {
+                  handleChange(e.target.files);
+                  setFile(e.target.files);
+                }}
+              />
+            </Button>
+          )}
+
+          {type === "url" && (
+            <Button
+              variant="primary"
+              className="position-relative"
+              type="button"
+              onClick={() => setShowModal({ _id, image, show: true })}
+            >
+              ✎
+            </Button>
+          )}
           <Button variant="danger" onClick={() => handleDelete()}>
             X
           </Button>
@@ -130,6 +205,28 @@ const SingleImage = ({
           style={{ left: 10, top: 10, width: 20, height: 20 }}
         />
       </div>
+
+      <Modal show={showModal}>
+        <Modal.Header>
+          <h6>Update Image url</h6>
+        </Modal.Header>
+        <Modal.Body>
+          <input
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            className="dash-input-form"
+          />
+        </Modal.Body>
+        <Modal.Footer className="d-flex align-items-center">
+          {loading && <Spinner/>}
+          <Button type="button" variant="primary" onClick={handleUpdateUrl}>
+            Update
+          </Button>
+          <Button type="button" variant="danger" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

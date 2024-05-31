@@ -1,8 +1,11 @@
 // import { getImageGallery } from "@/lib/getData";
 "use client";
+import { toast } from "react-toastify";
 import SingleImage from "./SingleImage";
 import getImages from "./imageData";
 import { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { Model } from "mongoose";
 
 const ImageList = ({
   galleryImages,
@@ -13,11 +16,14 @@ const ImageList = ({
   const [images, setImages] = useState(galleryImages);
   const [publishDate, setPublishDate] = useState([]);
 
+
   useEffect(() => {
     const getPublishDates = images.map((img) => img.publishDate);
     const uniquePublishDate = [...new Set(getPublishDates)];
     setPublishDate(uniquePublishDate);
   }, [images]);
+
+
 
   return (
     <>
@@ -47,6 +53,7 @@ const ImageList = ({
             );
           })}
       </div>
+
     </>
   );
 };

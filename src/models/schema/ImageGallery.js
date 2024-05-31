@@ -13,6 +13,8 @@ const ImageGallery = new Schema({
     _id: String,
     name: String,
   },
+
+  type : String,
 });
 
 const ImageGallerySchema =

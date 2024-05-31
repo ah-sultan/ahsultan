@@ -45,7 +45,6 @@ export const POST = async (req, res) => {
         image: "/images/image-gallery/" + filename,
         publishDate,
         publishTime,
-        type : "local",
         albumName: { _id: albumName._id, name: albumName.name },
       });
       await newImage.save();
