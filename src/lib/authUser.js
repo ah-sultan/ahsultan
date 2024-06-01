@@ -7,16 +7,22 @@ export const authUser = async (credentials) => {
       await connectToDB();
 
       const user = await UserSchema.findOne({
-        email: credentials.email,
+        email: credentials?.email,
       });
 
+
       if (!user) throw new Error("wrong email address not found");
-      const isCorrect = await bcrypt.compare(credentials?.password, user?.password);
+      const isCorrect = await bcrypt.compare(
+        credentials?.password,
+        user?.password
+      );
+      
       // const isCorrect = await argon2.verify(credentials.password, user.password);
       if (!isCorrect) throw new Error("Password did not match");
       return user;
     } catch (error) {
-      return new Error("Wrong credentials. user not found");
+      console.log(error);
+      return new Error(error);
     }
   } else {
     return new Error("Wrong credentials");

@@ -56,7 +56,8 @@ const ProjectForm = ({
         newSummary?.length &&
         newBannerImage?.length &&
         newCategory?.length &&
-        newViewProject?.length &&
+        newViewProject?.url?.length &&
+        newViewProject?.name?.length &&
         newDuration?.length &&
         newTechnologies?.length &&
         newPublishedDate?.length &&
@@ -149,12 +150,14 @@ const ProjectForm = ({
     }
   };
 
+  console.log(newViewProject);
+
   return (
     <>
       <form onSubmit={handleSubmit} className="dash-add-blog-from">
         <div className="row my-4">
           {/* Project Title*/}
-          <div className="col-8">
+          <div className="col-12">
             <label htmlFor="ProjectTitle">Projects Title</label>
             <input
               type="text"
@@ -166,15 +169,31 @@ const ProjectForm = ({
             />
           </div>
           {/* Project Preview Link */}
-          <div className="col-4">
-            <label htmlFor="ProjectPreviewLink">Preview link</label>
+          <div className="col-6">
+            <label htmlFor="ProjectPreviewLink">Preview Url</label>
             <input
               type="text"
               className="dash-input-form"
               name="ProjectPreviewLink"
               placeholder="Write Preview Link"
-              value={newViewProject}
-              onChange={(e) => setNewViewProject(e.target.value)}
+              value={newViewProject?.url}
+              onChange={(e) =>
+                setNewViewProject({ ...newViewProject, url: e.target.value })
+              }
+            />
+          </div>
+          {/* Project Preview Link */}
+          <div className="col-6">
+            <label htmlFor="ProjectPreviewLink">Project Name</label>
+            <input
+              type="text"
+              className="dash-input-form"
+              name="ProjectName"
+              placeholder="Write Preview Link"
+              value={newViewProject?.name}
+              onChange={(e) =>
+                setNewViewProject({ ...newViewProject, name: e.target.value })
+              }
             />
           </div>
         </div>
@@ -207,7 +226,7 @@ const ProjectForm = ({
         <div className="row mb-4">
           {/* Thumbnail */}
           <div className="col-6">
-            <label htmlFor="ProjectBanner">Add Thumbnail 1290 X 590</label>
+            <label htmlFor="ProjectBanner">Add Thumbnail 500 X 630</label>
             <ImageGallery
               gridCols={4}
               getSingleImage={setNewThumbnail}
@@ -216,7 +235,7 @@ const ProjectForm = ({
           </div>
           {/* Banner Image */}
           <div className="col-6">
-            <label htmlFor="ProjectBanner">Add Banner Image</label>
+            <label htmlFor="ProjectBanner">Add Banner Image 1290 X 590</label>
             <ImageGallery
               gridCols={4}
               getSingleImage={setNewBannerImage}

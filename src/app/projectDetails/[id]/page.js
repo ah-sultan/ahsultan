@@ -23,6 +23,7 @@ const ProjectDetails = async ({ params }) => {
   const project = await findProject(id);
   const allProjects = await getProjects()
   const hasAllProject = Array.isArray(allProjects)
+
   return (
     <main>
       <PageBanner pageName={"Mobile Application Design"} />
@@ -61,8 +62,8 @@ const ProjectDetails = async ({ params }) => {
                 </div>
                 <div className="pd-info-item">
                   <span>View Project</span>
-                  <Link href={"https://www."+project?.viewProject}>
-                    <h5>{project?.viewProject}</h5>
+                  <Link target="_blank" href={project?.viewProject?.url}>
+                    <h5>{project?.viewProject?.name}</h5>
                   </Link>
                 </div>
                 <div className="pd-info-item">

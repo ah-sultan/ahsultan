@@ -32,10 +32,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           // logic to verify if user exists
           user = await authUser({ email, password });
+          // console.log(user);
+          if (!user?.userName) throw new Error("User not found.");
 
-          if (!user || user === null) {
-            throw new Error("User not found.");
-          }
           // return json object with the user data
           return user;
         } catch (error) {
@@ -70,5 +69,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
-
 });

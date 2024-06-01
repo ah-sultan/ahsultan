@@ -27,8 +27,8 @@ const projectContent = new Schema({
   },
 
   viewProject: {
-    type: String,
-    require: true,
+    url : String,
+    name: String,
   },
 
   duration: {
