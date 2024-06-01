@@ -12,7 +12,8 @@ const ProjectForm = ({
   summary,
   bannerImage,
   category,
-  viewProject,
+  viewProjectUrl,
+  viewProjectName,
   duration,
   technologies,
   publishedDate,
@@ -25,7 +26,10 @@ const ProjectForm = ({
   const [newSummary, setNewSummary] = useState(summary);
   const [newBannerImage, setNewBannerImage] = useState(bannerImage);
   const [newCategory, setNewCategory] = useState(category);
-  const [newViewProject, setNewViewProject] = useState(viewProject);
+  const [newViewProject, setNewViewProject] = useState({
+    url: viewProjectUrl,
+    nama: viewProjectName,
+  });
   const [newDuration, setNewDuration] = useState(duration);
   const [newTechnologies, setNewTechnologies] = useState(technologies);
   const [newPublishedDate, setNewPublishedDate] = useState(publishedDate);
@@ -150,8 +154,6 @@ const ProjectForm = ({
     }
   };
 
-  console.log(newViewProject);
-
   return (
     <>
       <form onSubmit={handleSubmit} className="dash-add-blog-from">
@@ -226,11 +228,11 @@ const ProjectForm = ({
         <div className="row mb-4">
           {/* Thumbnail */}
           <div className="col-6">
-            <label htmlFor="ProjectBanner">Add Thumbnail 500 X 630</label>
+            <label htmlFor="ProjectBanner">Add Thumbnail 630 X 500</label>
             <ImageGallery
               gridCols={4}
               getSingleImage={setNewThumbnail}
-              prevImages={newBannerImage && [newBannerImage]}
+              prevImages={newThumbnail && [newThumbnail]}
             />
           </div>
           {/* Banner Image */}

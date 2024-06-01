@@ -37,16 +37,18 @@ const ImageList = ({
                 <div className="row g-3 mb-4 pb-4">
                   {Array.isArray(images) &&
                     images.map((data, idx) => {
-                      return (
-                        <div key={idx} className="col-lg-2">
-                          <SingleImage
-                            {...data}
-                            handleShow={handleShow}
-                            selectedImage={selectedImage}
-                            setSelectedImage={setSelectedImage}
-                          />
-                        </div>
-                      );
+                      if(data?.publishDate === date){
+                        return (
+                          <div key={idx} className="col-lg-2">
+                            <SingleImage
+                              {...data}
+                              handleShow={handleShow}
+                              selectedImage={selectedImage}
+                              setSelectedImage={setSelectedImage}
+                            />
+                          </div>
+                        );
+                      }
                     })}
                 </div>
               </div>

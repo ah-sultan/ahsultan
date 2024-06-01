@@ -39,7 +39,8 @@ const UpdateNewProject = async ({ searchParams }) => {
             summary={summary}
             bannerImage={bannerImage}
             category={category}
-            viewProject={viewProject}
+            viewProjectUrl={viewProject?.url}
+            viewProjectName={viewProject?.name}
             duration={duration}
             technologies={technologies}
             publishedDate={publishedDate}

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import React from "react";
 import { toast } from "react-toastify";
-import { handleRemoveSelectedImg } from "@/lib/helper";
 import ImageGallery from "@/components/ImageGallery/ImageGallery";
 import { useRouter } from "next/navigation";
 
