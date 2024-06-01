@@ -34,17 +34,17 @@ const TestimonialSlider = ({data}) => {
                       height={85}
                       className="img-fluid"
                       src={data?.image}
-                      alt={data?.clientTitle}
+                      alt={data?.clientName}
                     />
                   </div>
                   <div className="text">{data.reviewText}</div>
                   <div className="testi-des">
                     <h5>{data?.clientTitle}</h5>
-                    <span>{data?.clientTitle}</span>
+                    <span>{data?.clientName}</span>
                   </div>
                 </div>
               </SwiperSlide>
-            );
+            ); 
           })}
       </Swiper>
     </>

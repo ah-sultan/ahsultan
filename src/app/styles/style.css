@@ -6957,9 +6957,15 @@ right: 0;
   position: relative;
   margin-bottom: 35px;
   display: inline-block;
+
 }
 .testimonial-item .author img {
   display: inline-block;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
 }
 .testimonial-item .author:before {
   content: "\f10d";
