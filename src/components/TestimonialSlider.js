@@ -35,12 +35,13 @@ const TestimonialSlider = ({data}) => {
                       className="img-fluid"
                       src={data?.image}
                       alt={data?.clientName}
+                      
                     />
                   </div>
                   <div className="text">{data.reviewText}</div>
                   <div className="testi-des">
-                    <h5>{data?.clientTitle}</h5>
-                    <span>{data?.clientName}</span>
+                    <h5>{data?.clientName}</h5>
+                    <span>{data?.clientTitle}</span>
                   </div>
                 </div>
               </SwiperSlide>
