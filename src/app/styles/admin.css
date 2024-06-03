@@ -21,6 +21,7 @@ body {
 
 .admin-page .ql-editor {
   min-height: 340px;
+  max-height: 450px;
 }
 
 .admin-page label::after {
