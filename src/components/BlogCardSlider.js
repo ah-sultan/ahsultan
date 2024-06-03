@@ -26,7 +26,7 @@ const BlogCardSlider = ({ data }) => {
             blogData.map((data, index) => {
               return (
                 <SwiperSlide key={data._id} className="blogSliderCard">
-                  <BlogCard/>
+                  <BlogCard {...data}/>
                 </SwiperSlide>
               );
             })}

@@ -27,9 +27,10 @@ const BlogPage = async () => {
                         <div className="col-md-6 mb-4" key={index}>
                           <BlogCard
                             _id={data._id}
-                            thumbnail={data.thumbnail}
-                            category={data.category}
-                            title={data.title}
+                            thumbnail={data?.thumbnail}
+                            category={data?.category}
+                            title={data?.title}
+                            publishedDate={data?.publishedDate}
                           />
                         </div>
                       );

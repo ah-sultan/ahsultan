@@ -6,7 +6,7 @@ const BlogCard = ({ _id, thumbnail, publishedDate, category, title }) => {
   return (
     <div className="blog-card">
       <div className="card-img">
-        <Image src={thumbnail} alt="data" width={400} height={250} />
+        <Image src={thumbnail} alt={title} width={400} height={250} />
       </div>
       <div className="card-items">
         <span>{publishedDate}</span>
@@ -14,9 +14,9 @@ const BlogCard = ({ _id, thumbnail, publishedDate, category, title }) => {
         <span>{category?.title}</span>
       </div>
 
-      <h6 className="card-title">
+      <h3 className="card-title">
         <Link href={`/blogDetails/${_id}`}>{title}</Link>
-      </h6>
+      </h3>
     </div>
   );
 };

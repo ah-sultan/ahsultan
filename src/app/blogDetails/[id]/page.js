@@ -14,8 +14,14 @@ import BlogNavigation from "@/components/BlogDetails/BlogNavigation";
 export const generateMetadata = async ({ params }) => {
   const { id } = params;
   const blogData = await findBlog(id);
+
   return {
-    title: blogData.title,
+    title: blogData?.title,
+    description: blogData?.title,
+    keywords: blogData?.keywords,
+    openGraph: {
+      images: [blogData?.thumbnail, blogData?.blogBanner],
+    },
   };
 };
 
@@ -25,7 +31,7 @@ const BlogDetails = async ({ params }) => {
   return (
     <main>
       <PageBanner pageName={"Blog Details"} />
-      
+
       <section className="blog-details-area pb-70 rpb-40 pb-130 rpb-100 rel z-1">
         <div className="container">
           <div className="row">
@@ -94,5 +100,3 @@ const BlogDetails = async ({ params }) => {
   );
 };
 export default BlogDetails;
-
-

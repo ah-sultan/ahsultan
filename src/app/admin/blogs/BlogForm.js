@@ -131,7 +131,7 @@ const BlogForm = ({
     }
   };
 
- const arr = ["april", "april", "may", "JULM"]
+  const arr = ["april", "april", "may", "JULM"];
 
   return (
     <>
@@ -178,7 +178,7 @@ const BlogForm = ({
         {/* BLOG THUMBNAIL AND BANNER */}
         <div className="row mt-4">
           <div className="col-6">
-            <label htmlFor="BlogThumbnail">Add Blog Thumbnail</label>
+            <label htmlFor="BlogThumbnail">Add Blog Thumbnail 400 X 250</label>
             <ImageGallery
               gridCols={4}
               getSingleImage={setNewThumbnail}
