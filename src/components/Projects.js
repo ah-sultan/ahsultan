@@ -4,7 +4,11 @@ import ProjectsData from "@/Data/ProjectsData";
 import { getProjects } from "@/lib/getData";
 
 const Projects = async () => {
-  const projectData = await getProjects();
+  const allProjects = await getProjects();
+  const projectData =
+    allProjects && allProjects?.length > 0
+      ? allProjects.splice(1, 4)
+      : allProjects;
   return (
     <section
       id="portfolio"
@@ -15,7 +19,7 @@ const Projects = async () => {
           projectData.map((data, index) => {
             return (
               <ProjectsCard
-              key={index}
+                key={index}
                 _id={data._id}
                 index={index}
                 title={data.title}
