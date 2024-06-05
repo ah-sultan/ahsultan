@@ -28,7 +28,7 @@ const ProjectForm = ({
   const [newCategory, setNewCategory] = useState(category);
   const [newViewProject, setNewViewProject] = useState({
     url: viewProjectUrl,
-    nama: viewProjectName,
+    name: viewProjectName,
   });
   const [newDuration, setNewDuration] = useState(duration);
   const [newTechnologies, setNewTechnologies] = useState(technologies);
@@ -111,7 +111,8 @@ const ProjectForm = ({
       newSummary !== summary ||
       newBannerImage !== bannerImage ||
       newCategory !== category ||
-      newViewProject !== viewProject ||
+      newViewProject?.url !== viewProjectUrl ||
+      newViewProject?.name !== viewProjectName ||
       newDuration !== duration ||
       newTechnologies !== technologies ||
       newPublishedDate !== publishedDate ||
@@ -192,7 +193,7 @@ const ProjectForm = ({
               className="dash-input-form"
               name="ProjectName"
               placeholder="Write Preview Link"
-              value={newViewProject?.name}
+              value={newViewProject?.project}
               onChange={(e) =>
                 setNewViewProject({ ...newViewProject, name: e.target.value })
               }
