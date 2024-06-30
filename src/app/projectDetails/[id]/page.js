@@ -26,7 +26,7 @@ const ProjectDetails = async ({ params }) => {
 
   return (
     <main>
-      <PageBanner pageName={"Mobile Application Design"} />
+      <PageBanner pageName={project?.title} />
       {/* ProjectDetails Area start */}
       <section className="projects-details-area pt-40 pb-130 rpb-100 rel z-1">
         <div className="container">
